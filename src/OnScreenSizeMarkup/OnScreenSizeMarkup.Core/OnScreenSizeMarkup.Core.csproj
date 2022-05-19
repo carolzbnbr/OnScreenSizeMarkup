@@ -6,15 +6,15 @@
       <AssemblyName>OnScreenSizeMarkup.Core</AssemblyName>
       <RootNamespace>OnScreenSizeMarkup.Core</RootNamespace>
       <PackageId>OnScreenSizeMarkup.Core</PackageId>
-      <Summary>OnScreenSizeMarkup.Core: a markup extension for controlliing UI elements according to the device's actual screen size</Summary>
-      <PackageTags>xamarin, windows, uwp, ios, android, xamarin.forms, maui, OnScreenSizeMarkup.Core, kit</PackageTags>
-      <Title>OnScreenSizeMarkup.Core</Title>
-      <Description>OnScreenSizeMarkup.Core: a markup extension for controlliing UI elements according to the device's actual screen size</Description>
+      <Summary>OnScreenSizeMarkup: A XAML markup extension for controlliing UI elements according to the device's actual screen size</Summary>
+      <PackageTags>xamarin, windows, uwp, ios, android, xamarin.forms, maui, OnScreenSizeMarkup, kit</PackageTags>
+      <Title>OnScreenSizeMarkup</Title>
+      <Description>OnScreenSizeMarkup: A XAML markup extension for controlliing UI elements according to the device's actual screen size</Description>
       <Product>$(AssemblyName) ($(TargetFramework))</Product>
       <AssemblyVersion>1.0.0.0</AssemblyVersion>
       <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
       <Version>1.0.0</Version>
-      <PackageVersion>1.0.0</PackageVersion>
+      <PackageVersion>1.0.2</PackageVersion>
       <Authors>Ana Carolina Zambon</Authors>
       <Owners>carolzbnbr</Owners>
       <NeutralLanguage>en</NeutralLanguage>
@@ -23,11 +23,14 @@
       <DefineConstants>$(DefineConstants);</DefineConstants>
       <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
       <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-      <PackageLicenseFile>LICENSE</PackageLicenseFile>
-      <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
       <DebugType>portable</DebugType>
       <Configurations>Debug;Release</Configurations>
       <PackOnBuild>true</PackOnBuild>
+      <Pack>true</Pack>
+      <PackagePath>build\</PackagePath>
+    <!--  <PackageLicenseUrl>https://github.com/carolzbnbr/OnScreenSizeMarkup/blob/main/LICENSE</PackageLicenseUrl>-->
+      <PackageProjectUrl>https://github.com/carolzbnbr/OnScreenSizeMarkup</PackageProjectUrl>
+      <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     
    </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
