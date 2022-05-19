@@ -1,6 +1,6 @@
 ﻿namespace OnScreenSizeMarkup.Core
 {
-    public enum ScreenSizeGroups
+    public enum ScreenCategories
     {
 
         /// <summary>

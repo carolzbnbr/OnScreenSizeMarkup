@@ -13,7 +13,7 @@ namespace OnScreenSizeMarkup.Core
         /// <param name="deviceModel">device model</param>
         /// <param name="screenSize"></param>
         /// <returns></returns>
-        bool TryGetSizeByDeviceModel(string deviceModel, out ScreenSizeGroups screenSize);
+        bool TryGetSizeByDeviceModel(string deviceModel, out ScreenCategories screenSize);
 
         /// <summary>
         /// Attempt to get the screen-size by device's physical size (width/height).
@@ -22,7 +22,7 @@ namespace OnScreenSizeMarkup.Core
         /// <param name="deviceHeight"></param>
         /// <param name="screenSize"></param>
         /// <returns></returns>
-        bool TryGetSizeByPhysicalSize(double deviceWidth, double deviceHeight, out ScreenSizeGroups screenSize);
+        bool TryGetSizeByPhysicalSize(double deviceWidth, double deviceHeight, out ScreenCategories screenSize);
 
     }
 

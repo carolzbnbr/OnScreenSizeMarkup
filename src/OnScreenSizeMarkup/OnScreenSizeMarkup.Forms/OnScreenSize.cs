@@ -15,12 +15,12 @@ namespace OnScreenSizeMarkup.Forms
     {
 
 
-        private Dictionary<ScreenSizeGroups, object> _values = new Dictionary<ScreenSizeGroups, object>() {
-            { ScreenSizeGroups.ExtraSmall, null},
-            { ScreenSizeGroups.Small, null},
-            { ScreenSizeGroups.Medium,  null},
-            { ScreenSizeGroups.Large,  null},
-            { ScreenSizeGroups.ExtraLarge,  null},
+        private Dictionary<ScreenCategories, object> _values = new Dictionary<ScreenCategories, object>() {
+            { ScreenCategories.ExtraSmall, null},
+            { ScreenCategories.Small, null},
+            { ScreenCategories.Medium,  null},
+            { ScreenCategories.Large,  null},
+            { ScreenCategories.ExtraLarge,  null},
         };
 
 
@@ -39,11 +39,11 @@ namespace OnScreenSizeMarkup.Forms
             get
             {
 
-                return _values[ScreenSizeGroups.ExtraSmall];
+                return _values[ScreenCategories.ExtraSmall];
             }
             set
             {
-                _values[ScreenSizeGroups.ExtraSmall] = value;
+                _values[ScreenCategories.ExtraSmall] = value;
             }
         }
 
@@ -52,11 +52,11 @@ namespace OnScreenSizeMarkup.Forms
             get
             {
 
-                return _values[ScreenSizeGroups.Small];
+                return _values[ScreenCategories.Small];
             }
             set
             {
-                _values[ScreenSizeGroups.Small] = value;
+                _values[ScreenCategories.Small] = value;
             }
         }
         public object Medium
@@ -64,11 +64,11 @@ namespace OnScreenSizeMarkup.Forms
             get
             {
 
-                return _values[ScreenSizeGroups.Medium];
+                return _values[ScreenCategories.Medium];
             }
             set
             {
-                _values[ScreenSizeGroups.Medium] = value;
+                _values[ScreenCategories.Medium] = value;
             }
         }
 
@@ -77,11 +77,11 @@ namespace OnScreenSizeMarkup.Forms
             get
             {
 
-                return _values[ScreenSizeGroups.Large];
+                return _values[ScreenCategories.Large];
             }
             set
             {
-                _values[ScreenSizeGroups.Large] = value;
+                _values[ScreenCategories.Large] = value;
             }
         }
 
@@ -90,11 +90,11 @@ namespace OnScreenSizeMarkup.Forms
             get
             {
 
-                return _values[ScreenSizeGroups.ExtraLarge];
+                return _values[ScreenCategories.ExtraLarge];
             }
             set
             {
-                _values[ScreenSizeGroups.ExtraLarge] = value;
+                _values[ScreenCategories.ExtraLarge] = value;
             }
         }
 
@@ -130,7 +130,7 @@ namespace OnScreenSizeMarkup.Forms
         private object GetValue(IServiceProvider serviceProvider)
         {
             var screenSize = GetScreenSize();
-            if (screenSize != ScreenSizeGroups.NotSet)
+            if (screenSize != ScreenCategories.NotSet)
             {
                 if (_values[screenSize] != null)
                 {
@@ -149,7 +149,7 @@ namespace OnScreenSizeMarkup.Forms
         }
 
 
-        private ScreenSizeGroups GetScreenSize()
+        private ScreenCategories GetScreenSize()
         {
             if (TryGetScreenSize(out var screenSize))
             {
@@ -157,15 +157,15 @@ namespace OnScreenSizeMarkup.Forms
                 return screenSize;
             }
 
-            return ScreenSizeGroups.NotSet;
+            return ScreenCategories.NotSet;
         }
 
 
-        private  bool TryGetScreenSize(out ScreenSizeGroups screenSize)
+        private  bool TryGetScreenSize(out ScreenCategories screenSize)
         {
             if (Manager.Current.DeviceScreenSize != null)
             {
-                if (Manager.Current.DeviceScreenSize.Value != ScreenSizeGroups.NotSet)
+                if (Manager.Current.DeviceScreenSize.Value != ScreenCategories.NotSet)
                 {
                     screenSize = Manager.Current.DeviceScreenSize.Value;
                     return true;
@@ -181,14 +181,14 @@ namespace OnScreenSizeMarkup.Forms
             return true;
         }
 
-        private  ScreenSizeGroups GetHandlerScreenSize()
+        private  ScreenCategories GetHandlerScreenSize()
         {
-            ScreenSizeGroups screenSize;
-            if (!Manager.Current.Handler.TryGetSizeByDeviceModel(DeviceInfo.Model, out screenSize) || screenSize == ScreenSizeGroups.NotSet)
+            ScreenCategories screenSize;
+            if (!Manager.Current.Handler.TryGetSizeByDeviceModel(DeviceInfo.Model, out screenSize) || screenSize == ScreenCategories.NotSet)
             {
                var physicalSize = GetPhysicalSize();
 
-                if (!Manager.Current.Handler.TryGetSizeByPhysicalSize(physicalSize.DeviceWidth, physicalSize.DeviceHeight, out screenSize) || screenSize == ScreenSizeGroups.NotSet)
+                if (!Manager.Current.Handler.TryGetSizeByPhysicalSize(physicalSize.DeviceWidth, physicalSize.DeviceHeight, out screenSize) || screenSize == ScreenCategories.NotSet)
                 {
                     throw new UnkownScreenSizeException($"Fail to classify this device screen size based on Width/Height ({DeviceDisplay.MainDisplayInfo.Width}x{DeviceDisplay.MainDisplayInfo.Height}). Maybe you need to implement your own version of the handler.");
                 }

@@ -17,7 +17,7 @@ namespace OnScreenSizeMarkup.Core
             Handler = new ScreenSizeHandler();
         }
 
-        internal ScreenSizeGroups? DeviceScreenSize { get; set; }
+        internal ScreenCategories? DeviceScreenSize { get; set; }
 
         public IScreenSizeHandler Handler { get; set; }
 
