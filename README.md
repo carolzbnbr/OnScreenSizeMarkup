@@ -27,7 +27,9 @@ The screen sizes are grouped into six categories:
 * `Medium` - Medium devices such as IPhone 12.
 * `Large` - Large devices such as an IPhone 13 Pro Max.
 * `ExtraLarge` - Extra large devices such as tablets.
-  
+
+For each category we define specific value when using the markup on XAML.
+
 There is also a `DefaultSize` category that should be used when only few category options are used in the markup properties, in this case a value defined in the `DefaultSize` property will be applied for the missing options.
 
 ## Getting Started
@@ -48,7 +50,7 @@ Take a look on the sample code below:
 </ContentPage>  
 ```
 
-In the above example we are defining a Grid with 3 rows, but if the device size is medium, one value will be applied, otherwise a defaultSize valued will be used.
+In the above example we are defining a Grid with 3 rows, but if the device fallsback into category `Medium`, a RowDefinitions's value will be defined to `200, *, 200`,  while the other devices will falback to the `DefaultValue` which is `*, 0.5*, *`.
 
 
 ### Edge cases
@@ -64,7 +66,7 @@ I've tried to cover most use cases for screen sizes to categorize them correctly
 
 ### Implementing a handler
 
-A handler is a class in which it's methods returns a  `ScreenSizeGroups` enum item after identifing a physical device screen size to its corresponding Markup `ScreenSizeGroups` enum.
+A handler is a class in which it's methods returns a  `ScreenCategories` enum item after identifing a physical device screen size to its corresponding Markup `ScreenCategories` enum.
 
 Your handler may inherits from `ScreenSizeHandler` class or implements `IScreenSizeHandler` interface. Either the interface or the class contains methods that can be implemented or overrided:
 
