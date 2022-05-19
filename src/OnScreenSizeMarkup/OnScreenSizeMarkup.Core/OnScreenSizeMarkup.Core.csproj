@@ -1,0 +1,70 @@
+
+<Project Sdk="MSBuild.Sdk.Extras/3.0.22">
+    <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+      <!--<TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);uap10.0.16299;</TargetFrameworks>-->
+      <AssemblyName>OnScreenSizeMarkup.Core</AssemblyName>
+      <RootNamespace>OnScreenSizeMarkup.Core</RootNamespace>
+      <PackageId>OnScreenSizeMarkup.Core</PackageId>
+      <Summary>OnScreenSizeMarkup.Core: a markup extension for controlliing UI elements according to the device's actual screen size</Summary>
+      <PackageTags>xamarin, windows, uwp, ios, android, xamarin.forms, maui, OnScreenSizeMarkup.Core, kit</PackageTags>
+      <Title>OnScreenSizeMarkup.Core</Title>
+      <Description>OnScreenSizeMarkup.Core: a markup extension for controlliing UI elements according to the device's actual screen size</Description>
+      <Product>$(AssemblyName) ($(TargetFramework))</Product>
+      <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+      <Version>1.0.0</Version>
+      <PackageVersion>1.0.0</PackageVersion>
+      <Authors>Ana Carolina Zambon</Authors>
+      <Owners>carolzbnbr</Owners>
+      <NeutralLanguage>en</NeutralLanguage>
+      <Copyright>© Ana Carolina Zambon. All rights reserved.</Copyright>
+      <RepositoryUrl>https://github.com/carolzbnbr/OnScreenSizeMarkup</RepositoryUrl>
+      <DefineConstants>$(DefineConstants);</DefineConstants>
+      <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
+      <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+      <PackageLicenseFile>LICENSE</PackageLicenseFile>
+      <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+      <DebugType>portable</DebugType>
+      <Configurations>Debug;Release</Configurations>
+      <PackOnBuild>true</PackOnBuild>
+    
+   </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+      <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+  <ItemGroup>
+     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+  </ItemGroup>
+
+
+    <ItemGroup>
+      <None Remove="NuGet.Build.Packaging" />
+      <None Remove="Exceptions\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Include="ScreenSizeInfo.cs">
+        <SubType></SubType>
+      </Compile>
+      <Compile Include="Manager.cs">
+        <SubType></SubType>
+      </Compile>
+      <Compile Include="IScreenSizeHandler.cs">
+        <SubType></SubType>
+      </Compile>
+      <Compile Include="ScreenSizeHandler.cs">
+        <SubType></SubType>
+      </Compile>
+      <Compile Include="Exceptions\UnkownScreenSizeException.cs">
+        <SubType></SubType>
+      </Compile>
+      <Compile Include="ScreenSizeGroups.cs">
+        <SubType></SubType>
+      </Compile>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Exceptions\" />
+    </ItemGroup>
+  </Project>

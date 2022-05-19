@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+      <AssemblyName>OnScreenSizeMarkup.Forms</AssemblyName>
+      <RootNamespace>OnScreenSizeMarkup.Forms</RootNamespace>
+      <Product>$(AssemblyName) ($(TargetFramework))</Product>
+        <PackageId>OnScreenSizeMarkup.Forms</PackageId>
+      <Summary>OnScreenSizeMarkup: A XAML markup extension for controlliing UI elements according to the device's actual screen size</Summary>
+      <PackageTags>xamarin, windows, uwp, ios, android, xamarin.forms, maui, OnScreenSizeMarkup, kit</PackageTags>
+      <Title>OnScreenSizeMarkup</Title>
+      <Description>OnScreenSizeMarkup: A XAML markup extension for controlliing UI elements according to the device's actual screen size</Description>
+      <Product>$(AssemblyName) ($(TargetFramework))</Product>
+      <AssemblyVersion>1.0.0.0</AssemblyVersion>
+      <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+      <Version>1.0.0</Version>
+      <PackageVersion>1.0.2</PackageVersion>
+      <Authors>Ana Carolina Zambon</Authors>
+      <Owners>carolzbnbr</Owners>
+      <NeutralLanguage>en</NeutralLanguage>
+      <Copyright>© Ana Carolina Zambon. All rights reserved.</Copyright>
+      <RepositoryUrl>https://github.com/carolzbnbr/OnScreenSizeMarkup</RepositoryUrl>
+      <DefineConstants>$(DefineConstants);</DefineConstants>
+      <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
+      <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+      <DebugType>portable</DebugType>
+      <Configurations>Debug;Release</Configurations>
+      <PackOnBuild>true</PackOnBuild>
+      <Pack>true</Pack>
+      <PackagePath>build\</PackagePath>
+    <!--  <PackageLicenseUrl>https://github.com/carolzbnbr/OnScreenSizeMarkup/blob/main/LICENSE</PackageLicenseUrl>-->
+      <PackageProjectUrl>https://github.com/carolzbnbr/OnScreenSizeMarkup</PackageProjectUrl>
+      <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+   </PropertyGroup>
+
+
+    <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+      <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+  <ItemGroup>
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.6.1" /> 
+  </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="NuGet.Build.Packaging" />
+      <None Remove="Xamarin.Essentials" />
+      <None Remove="Extensions\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Include="OnScreenSize.cs">
+        <SubType></SubType>
+      </Compile>
+      <Compile Include="Extensions\ValueConversionExtensions.cs">
+        <SubType></SubType>
+      </Compile>
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Extensions\" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\OnScreenSizeMarkup.Core\OnScreenSizeMarkup.Core.csproj" />
+    </ItemGroup>
+  </Project>
