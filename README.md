@@ -5,7 +5,7 @@
 
 ## OnScreenSizeMarkup: A XAML markup extension
 
-OnScreenSizeMarkup is XAML a markup extension for controlliing UI elements depending on the device screen size.
+OnScreenSizeMarkup is XAML markup extension for controlliing UI elements depending on the device screen size category.
 
 ### Where can I use it?
 
@@ -16,11 +16,11 @@ OnScreenSizeMarkup is currently compatible with:
 
 ### What does that mean? 
 
-It works exactly as other markup extensions such as *OnPlatform* or *OnIdiom* , but it allow us to  control UI views accordding to the screen sizes of the devices, but without need to specify a width/height for every possible screen dimentions.
+It works exactly as other markup extensions such as *OnPlatform* or *OnIdiom*, allowing you to control UI views accordding to the screen sizes category a device fits in.
 
-## Screen Sizes classifications
+## Screen Sizes Categories
 
-The screen sizes are classified in six groups:
+The screen sizes are grouped into six categories:
 
 * `ExtraSmall` - Tiny devices as an Apple Watch.
 * `Small` - Small devices, such as a Google Pixel 5.
@@ -28,7 +28,7 @@ The screen sizes are classified in six groups:
 * `Large` - Large devices such as an IPhone 13 Pro Max.
 * `ExtraLarge` - Extra large devices such as tablets.
   
-There is also a `DefaultSize` group that should be used when few options are used in the markup, in this case a value defined in the `DefaultSize` property will be applied for the missing options.
+There is also a `DefaultSize` category that should be used when only few category options are used in the markup properties, in this case a value defined in the `DefaultSize` property will be applied for the missing options.
 
 ## Getting Started
 
@@ -53,7 +53,7 @@ In the above example we are defining a Grid with 3 rows, but if the device size 
 
 ### Edge cases
 
-I've tried to cover most use cases for screen sizes to be classified correctly, for most cases you don't need to know about the internal working of the markup,but there may be times that markup may incorrectly classify a specific physical device screen size, in cases like this you have three options:
+I've tried to cover most use cases for screen sizes to categorize them correctly, for most cases you don't need to know about the internal working of the markup,but there may be times that markup may incorrectly classify a specific physical device screen size, in cases like this you have three options:
 
  - Get in touch with me on my [blog - TheNextLoop.com](https://thenextloop.com)  (slower option);
   
