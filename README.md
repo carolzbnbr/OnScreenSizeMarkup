@@ -28,7 +28,7 @@ The screen sizes are classified in six groups:
 * `Large` - Large devices such as an IPhone 13 Pro Max.
 * `ExtraLarge` - Extra large devices such as tablets.
   
-There is also a `DefaultSize` group that should be used when few options are used in the markup, in this case a default value will be applied for the missing options.
+There is also a `DefaultSize` group that should be used when few options are used in the markup, in this case a value defined in the `DefaultSize` property will be applied for the missing options.
 
 ## Getting Started
 
