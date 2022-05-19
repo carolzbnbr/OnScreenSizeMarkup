@@ -20,7 +20,7 @@ It works exactly as other markup extensions such as *OnPlatform* or *OnIdiom* , 
 
 ## Screen Sizes classifications
 
-The screen sizes are classifies in six groups:
+The screen sizes are classified in six groups:
 
 * `ExtraSmall` - Tiny devices as an Apple Watch.
 * `Small` - Small devices, such as a Google Pixel 5.
@@ -32,7 +32,7 @@ There is also a `DefaultSize` group that will be used in cases when some of the 
 
 ## Getting Started
 
-Using OnScreenSizeMarkup is very straight foward, you can apply it to most UI View elements, such as Labels, Grids, Buttons, ImageButtons, and etc.
+Using the markup is very straight foward, you can apply it to most UI View elements, such as Labels, Grids, Buttons, ImageButtons, and etc.
 
 Take a look on the sample code below:
 
@@ -54,7 +54,7 @@ In the above example we are defining a Grid with 3 rows, but if the device size 
 ### Edge cases
 
 I've tried to cover most use cases for screen sizes to be classified correctly, for most cases you don't need to know about the internal working of the markup,but there may be times that markup may incorrectly classify a specific physical device screen size, in cases like this you have three options:
-  - File an issue here on github (slow option);
+  - File an issue here on github and provide me your device width/height or your device [device model](https://docs.microsoft.com/en-us/xamarin/essentials/device-information?tabs=ios) (slow option);
 
  - Get in touch with me on my [blog - TheNextLoop.com](https://thenextloop.com)  (slow option);
   
@@ -65,9 +65,9 @@ I've tried to cover most use cases for screen sizes to be classified correctly, 
 
 A handler is a class in which it's methods returns a  `ScreenSizeGroups` enum item after identifing a physical device screen size to its corresponding Markup `ScreenSizeGroups` enum.
 
-Your handler may inherits from  `ScreenSizeHandler` class or implements `IScreenSizeHandler` interface on your own. Both the interface or the class contains the following methods which can be implemented or overrided:
+Your handler may inherits from `ScreenSizeHandler` class or implements `IScreenSizeHandler` interface. Either the interface or the class contains methods that can be implemented or overrided:
 
-* `TryGetSizeByDeviceModel` - Attempts to determine the screen size by a provided device-model. 
+* `TryGetSizeByDeviceModel` - Attempts to determine the screen size by a provided device-model (Currently I'm using [Xamarin.Essentials](https://docs.microsoft.com/en-us/xamarin/essentials/device-information?tabs=ios) for retrieving the device-model). 
 * `TryGetSizeByPhysicalSize` - Attempts to determine the screen-size by device's physical size (width/height)
 
 After implementing your handler you must set its instance as follows:
