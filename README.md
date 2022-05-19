@@ -50,7 +50,7 @@ Take a look on the sample code below:
 </ContentPage>  
 ```
 
-In the above example we are defining a Grid with 3 rows, but if the device fallsback into category `Medium`, a RowDefinitions's value will be defined to `200, *, 200`,  while the other devices will falback to the `DefaultValue` which is `*, 0.5*, *`.
+In the above example we are defining a Grid with 3 rows, and if the device that is running the code fallsback into category `Medium`, a RowDefinitions's value will be defined to `200, *, 200`,  while the other devices will falback to the `DefaultValue` which is `*, 0.5*, *`.
 
 
 ### Edge cases
