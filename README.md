@@ -54,11 +54,12 @@ In the above example we are defining a Grid with 3 rows, but if the device size 
 ### Edge cases
 
 I've tried to cover most use cases for screen sizes to be classified correctly, for most cases you don't need to know about the internal working of the markup,but there may be times that markup may incorrectly classify a specific physical device screen size, in cases like this you have three options:
-  - File an issue here on github and provide me your device width/height or your device [device model](https://docs.microsoft.com/en-us/xamarin/essentials/device-information?tabs=ios) (slow option);
 
- - Get in touch with me on my [blog - TheNextLoop.com](https://thenextloop.com)  (slow option);
-  
- - Implement your own version of the handler (Fastest)
+ - Get in touch with me on my [blog - TheNextLoop.com](https://thenextloop.com)  (slower option);
+ - 
+  - File an issue here on github and provide me your device width/height or your device [device model](https://docs.microsoft.com/en-us/xamarin/essentials/device-information?tabs=ios) (slower option);
+
+ - Implement your own version of the handler (Fastest option)
   
 
 ### Implementing a handler
