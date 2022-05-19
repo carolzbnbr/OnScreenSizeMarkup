@@ -38,7 +38,8 @@ Take a look on the sample code below:
 
 ```cs
 
-<ContentPage  xmlns:markups="clr-namespace:OnScreenSizeMarkup.Forms;assembly=OnScreenSizeMarkup.Forms">
+<ContentPage  
+            xmlns:markups="clr-namespace:OnScreenSizeMarkup.Forms;assembly=OnScreenSizeMarkup.Forms">
     <ContentPage.Content>
          <Grid RowDefinitions="{markups:OnScreenSize Medium='200, *, 200', DefaultSize='*, 0.5*, *'}">
             ....
