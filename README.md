@@ -57,23 +57,22 @@ In the above example we are defining a Grid with 3 rows. If the device that is r
 
 ## The magic
 
-Most of the time you don't need do implement anything in order to categorize the screen sizes, as the markup is backed by a `Default Category fallback handler` instance class, but there may be times that you may need to override/customize the screen size categorization with your own rules, thats when the **Category Fallback Handlers** comes to the rescue.
+Most of the time you don't need do implement anything in order to categorize the screen sizes, as the markup is backed by a `DefaultFallbackHandler` instance class, but there may be times you may need to override/customize the screen size categorization with your own rules, thats when the **Category Fallback Handlers** comes to the rescue.
   
 ### Category fallback handlers
 
-A category fallback handler is a class that implements `ICategoryFallbackHandler` composed of two methods which returns a `ScreenCategories` enum (`ExtraSmall`, `Small`, `Medium`, `Large`, `ExtraLarge`) based on device's model, or device's physical screen size (Width/Height):
+A category fallback handler is a class that implements `ICategoryFallbackHandler` interface composed of two methods which returns a `ScreenCategories` Enum (`ExtraSmall`, `Small`, `Medium`, `Large`, `ExtraLarge`) based on device's model, or device's physical screen size (Width/Height):
 
 * `TryGetCategoryByDeviceModel` - Returns a screen category by the device-model.
 * `TryGetCategoryByPhysicalSize` - Returns a screen category by screen measures (width/height).
 
-Due to some incorrect screen size info returned by some iOS simulator devices during development and tests, it was not possible to depend only on the screen size measures for categorize screens, and in order to fix that, it was intruduced `TryGetCategoryByDeviceModel` method, which based on the device's model we can confidently categorize a screen.
+Due to some incorrect screen size info returned by some iOS simulator devices during development and tests, it was not possible to depend only on the screen size measures for categorize screens, and in order to fix that, it was intruduced `TryGetCategoryByDeviceModel` method, which based on the device's model we can confidently categorize a device.
 
 The Markup first attempts to execute `TryGetCategoryByDeviceModel` by passing the device's model, and in case it returns false, it tries to execute `TryGetCategoryByPhysicalSize` by passing a device screen size (Width/Height).
 
- For getting either the device model or the device size I use [Xamarin.Essentials](https://docs.microsoft.com/en-us/xamarin/essentials/device-information?tabs=ios).
+ **Note**: For getting either the device model or the device size I use [Xamarin.Essentials](https://docs.microsoft.com/en-us/xamarin/essentials/device-information?tabs=ios).
 
-
-If you need to implement your own handler you **MUST** set its instance during the app app initialization as follow:
+If you need to implement your own handler you **MUST** set its instance during the app initialization as follow:
 
 ```cs
     OnScreenSizeMarkup.Core.Manager.Current.Handler = new MyNewFallBackHandlerClass();
@@ -82,7 +81,7 @@ If you need to implement your own handler you **MUST** set its instance during t
  
 ### Default Category fallback handler
 
-The markup comes with a `DefaultFallBackHandler` class which maps most iOS devices models and screens sizes (for android devices).
+The markup comes with a `DefaultFallbackHandler` class which maps most iOS devices models and screens sizes (for android devices).
 
 Here is dictionary's items of the device models and it's categories mappings we currently have:
 
