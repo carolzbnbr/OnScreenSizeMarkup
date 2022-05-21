@@ -84,7 +84,7 @@ If you need to implement your own handler you **MUST** set its instance during t
 
 The markup comes with a `DefaultFallBackHandler` class which maps most iOS devices models and screens sizes (for android devices).
 
-Here is a dictionary of the device models and it's categories mapping we currently have:
+Here is dictionary's items of the device models and it's categories mappings we currently have:
 
 ```cs
             { "iPhone1_1", ScreenCategories.Small },
@@ -208,7 +208,7 @@ Here is a dictionary of the device models and it's categories mapping we current
 ```
 
 
-Also, for other devices like Android devices, here is the mapping based on the screen size:
+Also, for other screens sizes such as Android devices, here is the mapping based on the screen size:
 
 ```cs
   private static ScreenSizeInfo[] screenSizeCategories = new ScreenSizeInfo[]
