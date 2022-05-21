@@ -129,7 +129,7 @@ namespace OnScreenSizeMarkup.Forms
 
         private object GetValue(IServiceProvider serviceProvider)
         {
-            var screenSize = GetScreenSize();
+            var screenSize = GetCategory();
             if (screenSize != ScreenCategories.NotSet)
             {
                 if (_values[screenSize] != null)
@@ -149,46 +149,47 @@ namespace OnScreenSizeMarkup.Forms
         }
 
 
-        private ScreenCategories GetScreenSize()
+        private ScreenCategories GetCategory()
         {
-            if (TryGetScreenSize(out var screenSize))
+            if (TryGetCategory(out var category))
             {
 
-                return screenSize;
+                return category;
             }
 
             return ScreenCategories.NotSet;
         }
 
+        private ScreenCategories? currentCategory = null;
 
-        private  bool TryGetScreenSize(out ScreenCategories screenSize)
+        private  bool TryGetCategory(out ScreenCategories category)
         {
-            if (Manager.Current.DeviceScreenSize != null)
+            if (currentCategory != null)
             {
-                if (Manager.Current.DeviceScreenSize.Value != ScreenCategories.NotSet)
+                if (currentCategory.Value != ScreenCategories.NotSet)
                 {
-                    screenSize = Manager.Current.DeviceScreenSize.Value;
+                    category = currentCategory.Value;
                     return true;
                 }
             }
 
-            screenSize = GetHandlerScreenSize();
+            category = GetHandlerCategory();
 
 #if DEBUG
-            Console.WriteLine($"ScreenSize: {screenSize}. Physiscal Device Size: {DeviceDisplay.MainDisplayInfo.Width}x{DeviceDisplay.MainDisplayInfo.Height}");
+            Console.WriteLine($"{nameof(OnScreenSize)} - Category:{category} - Physical Device Size:{DeviceDisplay.MainDisplayInfo.Width}x{DeviceDisplay.MainDisplayInfo.Height}");
 #endif
-            Manager.Current.DeviceScreenSize = screenSize;
+            currentCategory = category;
             return true;
         }
 
-        private  ScreenCategories GetHandlerScreenSize()
+        private  ScreenCategories GetHandlerCategory()
         {
             ScreenCategories screenSize;
-            if (!Manager.Current.Handler.TryGetSizeByDeviceModel(DeviceInfo.Model, out screenSize) || screenSize == ScreenCategories.NotSet)
+            if (!Manager.Current.Handler.TryGetCategoryByDeviceModel(DeviceInfo.Model, out screenSize) || screenSize == ScreenCategories.NotSet)
             {
                var physicalSize = GetPhysicalSize();
 
-                if (!Manager.Current.Handler.TryGetSizeByPhysicalSize(physicalSize.DeviceWidth, physicalSize.DeviceHeight, out screenSize) || screenSize == ScreenCategories.NotSet)
+                if (!Manager.Current.Handler.TryGetCategoryByPhysicalSize(physicalSize.DeviceWidth, physicalSize.DeviceHeight, out screenSize) || screenSize == ScreenCategories.NotSet)
                 {
                     throw new UnkownScreenSizeException($"Fail to classify this device screen size based on Width/Height ({DeviceDisplay.MainDisplayInfo.Width}x{DeviceDisplay.MainDisplayInfo.Height}). Maybe you need to implement your own version of the handler.");
                 }

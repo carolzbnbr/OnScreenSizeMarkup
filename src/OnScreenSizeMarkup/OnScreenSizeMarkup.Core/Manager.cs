@@ -8,18 +8,11 @@ namespace OnScreenSizeMarkup.Core
     {
         internal Manager()
         {
-            ResetHandler();
+            Handler = new DefaultCategoryFallbackHandler();
         }
 
-        public void ResetHandler()
-        {
-            DeviceScreenSize = null;
-            Handler = new ScreenSizeHandler();
-        }
-
-        internal ScreenCategories? DeviceScreenSize { get; set; }
-
-        public IScreenSizeHandler Handler { get; set; }
+     
+        public ICategoryFallbackHandler Handler { get; set; }
 
         public static Manager Current { get; } = new Manager();
     }

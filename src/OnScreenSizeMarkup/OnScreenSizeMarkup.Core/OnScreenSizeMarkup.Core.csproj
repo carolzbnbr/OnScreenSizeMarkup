@@ -6,15 +6,15 @@
       <AssemblyName>OnScreenSizeMarkup.Core</AssemblyName>
       <RootNamespace>OnScreenSizeMarkup.Core</RootNamespace>
       <PackageId>OnScreenSizeMarkup.Core</PackageId>
-      <Summary>OnScreenSizeMarkup: A XAML markup extension for controlliing UI elements according to the device's actual screen size</Summary>
+      <Summary>OnScreenSizeMarkup: A XAML markup extension for controlling UI Views according to the device's screen size category (Medium, Large, etc)</Summary>
       <PackageTags>xamarin, windows, uwp, ios, android, xamarin.forms, maui, OnScreenSizeMarkup, kit</PackageTags>
       <Title>OnScreenSizeMarkup</Title>
-      <Description>OnScreenSizeMarkup: A XAML markup extension for controlliing UI elements according to the device's actual screen size</Description>
+      <Description>OnScreenSizeMarkup: A XAML markup extension for controlling UI Views according to the device's screen size category (Medium, Large, etc)</Description>
       <Product>$(AssemblyName) ($(TargetFramework))</Product>
       <AssemblyVersion>1.0.0.0</AssemblyVersion>
       <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
       <Version>1.0.0</Version>
-      <PackageVersion>1.0.3</PackageVersion>
+      <PackageVersion>1.0.5</PackageVersion>
       <Authors>Ana Carolina Zambon</Authors>
       <Owners>carolzbnbr</Owners>
       <NeutralLanguage>en</NeutralLanguage>
@@ -54,16 +54,16 @@
       <Compile Include="Manager.cs">
         <SubType></SubType>
       </Compile>
-      <Compile Include="IScreenSizeHandler.cs">
-        <SubType></SubType>
-      </Compile>
-      <Compile Include="ScreenSizeHandler.cs">
+      <Compile Include="ICategoryFallbackHandler.cs">
         <SubType></SubType>
       </Compile>
       <Compile Include="Exceptions\UnkownScreenSizeException.cs">
         <SubType></SubType>
       </Compile>
       <Compile Include="ScreenCategories.cs">
+        <SubType></SubType>
+      </Compile>
+      <Compile Include="DefaultCategoryFallbackHandler.cs">
         <SubType></SubType>
       </Compile>
     </ItemGroup>
