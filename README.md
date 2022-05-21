@@ -1,7 +1,7 @@
 
 [![NuGet Stats](https://img.shields.io/nuget/v/OnScreenSizeMarkup.Forms?style=plastic)](https://www.nuget.org/packages/OnScreenSizeMarkup.Forms) 
 
-
+This code (nuget) was based on a [post](https://thenextloop.com/2021/01/03/adaptive-page-layouts-to-different-device-screen-sizes-for-xamarin-apps/) I wrote a long time ago on my [blog](https://www.thenextloop.com).
 
 ## OnScreenSizeMarkup: A XAML markup extension
 
