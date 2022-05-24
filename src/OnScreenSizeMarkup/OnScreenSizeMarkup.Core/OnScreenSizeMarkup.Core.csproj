@@ -14,7 +14,7 @@
       <AssemblyVersion>1.0.0.0</AssemblyVersion>
       <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
       <Version>1.0.0</Version>
-      <PackageVersion>1.0.5</PackageVersion>
+      <PackageVersion>1.0.6</PackageVersion>
       <Authors>Ana Carolina Zambon</Authors>
       <Owners>carolzbnbr</Owners>
       <NeutralLanguage>en</NeutralLanguage>
@@ -46,6 +46,7 @@
     <ItemGroup>
       <None Remove="NuGet.Build.Packaging" />
       <None Remove="Exceptions\" />
+      <None Remove="Extensions\" />
     </ItemGroup>
     <ItemGroup>
       <Compile Include="ScreenSizeInfo.cs">
@@ -69,5 +70,6 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Exceptions\" />
+      <Folder Include="Extensions\" />
     </ItemGroup>
   </Project>
