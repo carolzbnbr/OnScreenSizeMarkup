@@ -36,23 +36,72 @@ There is also a `DefaultSize` category that should be used when only few categor
 
 Using the markup is very straight foward, you can apply it to most UI View elements, such as Labels, Grids, Buttons, ImageButtons, and etc.
 
-Take a look on the sample code below:
+### XAML sample code:
 
-```cs
+```xml
 
 <ContentPage  
             xmlns:markups="clr-namespace:OnScreenSizeMarkup.Forms;assembly=OnScreenSizeMarkup.Forms">
     <ContentPage.Content>
+
          <Grid RowDefinitions="{markups:OnScreenSize Large='200, *, 200', 
                                                      ExtraLarge='300, *, 300',
                                                      DefaultSize='100, *, 100'}">
-            ....
+            <Label 
+                    Padding="{markups:OnScreenSize 
+                            Medium='15, 15, 0, 0', 
+                            Large='20, 20, 0, 0', 
+                            DefaultSize='10, 10, 0, 0'}"
+                    Text="Hello" TextColor="White" />
          </Grid>
     </ContentPage.Content>
 </ContentPage>  
 ```
 
-In the above example we are defining a Grid with 3 rows. If the device that is running the markup is categorized as `Medium`, a RowDefinitions's value will be defined to `200, *, 200`. At the same time, if the device size is `ExtraLarge` a RowDefinitions's value will be defined as `300, *, 300'`. For the other devices sizes it will be used the `DefaultValue` which is `100, *, 100`.
+In the above example we are defining a Grid with 3 rows, with different values for RowDefinitions depending on the category of the screen fits in.
+
+We are also defining a Label and setting it's padding to vary also depending on the screen's category.
+
+**Note** You can use the markup for most View's properties, not limited to `RowDefinitions` or `Paddings`.
+
+
+### C# sample code:
+
+You can also use a similar mechanism from code-behind:
+
+```cs
+  using OnScreenSizeMarkup.Forms;
+  
+  public MainPage()
+  {
+    Grid grid = new Grid
+    {
+        RowDefinitions =
+        {
+            //first row
+            Markup.OnScreenSize(defaultSize: new RowDefinition { Height = new GridLength(100) },
+                                large: new RowDefinition { Height = new GridLength(200) },
+                                extraLarge: new RowDefinition { Height = new GridLength(300) }),
+            //second row
+            new RowDefinition(),
+
+            //third row
+            Markup.OnScreenSize(defaultSize: new RowDefinition { Height = new GridLength(100) },
+                                large: new RowDefinition { Height = new GridLength(200) },
+                                extraLarge: new RowDefinition { Height = new GridLength(300) }),
+        }
+    };
+    grid.Children.Add(new Label
+    {
+        Text = "Hello",
+        Padding = Markup.OnScreenSize(defaultSize: new Thickness(10, 10, 0, 0),
+                                      medium: new Thickness(15, 15, 0, 0),
+                                      large: new Thickness(20, 20, 0, 0))
+    });
+    Content = grid;      
+  }
+};                                                
+```
 
 
 ## The magic
