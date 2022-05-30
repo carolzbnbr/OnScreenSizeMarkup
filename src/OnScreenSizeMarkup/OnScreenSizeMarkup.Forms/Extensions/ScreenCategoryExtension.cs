@@ -33,9 +33,8 @@ namespace OnScreenSizeMarkup.Forms.Extensions
 
             category = GetHandlerCategory();
 
-#if DEBUG
-            Console.WriteLine($"{nameof(OnScreenSize)} - Category:{category} - Physical Device Size:{DeviceDisplay.MainDisplayInfo.Width}x{DeviceDisplay.MainDisplayInfo.Height}");
-#endif
+            Console.WriteLine($"{nameof(OnScreenSize)} - Screen-Category:{category} - Physical-Device-Size:{DeviceDisplay.MainDisplayInfo.Width}x{DeviceDisplay.MainDisplayInfo.Height}");
+
             Manager.Current.CurrentCategory = category;
             return true;
         }
