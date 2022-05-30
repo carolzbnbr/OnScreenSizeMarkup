@@ -11,7 +11,10 @@ namespace OnScreenSizeMarkup.Core
             Handler = new DefaultCategoryFallbackHandler();
         }
 
-        internal ScreenCategories? CurrentCategory { get; set; } = null;
+        /// <summary>
+        /// Returns the current <see cref="ScreenCategories"/> set for the device.
+        /// </summary>
+        public ScreenCategories? CurrentCategory { get; internal set; } = null;
 
         public ICategoryFallbackHandler Handler { get; set; }
 
