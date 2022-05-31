@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net461</TargetFrameworks>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+ 
+  <ItemGroup>
+    <ProjectReference Include="..\OnScreenSizeMarkup.Core\OnScreenSizeMarkup.Core.csproj" />
+    <ProjectReference Include="..\OnScreenSizeMarkup.Forms\OnScreenSizeMarkup.Forms.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Custom\" />
+    <None Remove="Internal\" />
+    <None Remove="Internals\Inputs\" />
+    <None Remove="Internals\Models\" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="TestDataFiles\" />
+    <None Remove="TestDataFiles\device-sizes.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Internals\" />
+    <Folder Include="Internals\Inputs\" />
+    <Folder Include="Internals\Models\" />
+    <Folder Include="TestDataFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="device-sizes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestDataFiles\device-sizes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
