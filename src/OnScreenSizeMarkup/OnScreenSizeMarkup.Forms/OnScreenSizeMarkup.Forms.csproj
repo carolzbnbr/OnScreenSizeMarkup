@@ -13,7 +13,7 @@
       <AssemblyVersion>1.0.0.0</AssemblyVersion>
       <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
       <Version>1.0.0</Version>
-      <PackageVersion>1.0.8</PackageVersion>
+      <PackageVersion>1.0.9.001</PackageVersion>
       <Authors>Ana Carolina Zambon</Authors>
       <Owners>carolzbnbr</Owners>
       <NeutralLanguage>en</NeutralLanguage>
@@ -30,6 +30,7 @@
     <!--  <PackageLicenseUrl>https://github.com/carolzbnbr/OnScreenSizeMarkup/blob/main/LICENSE</PackageLicenseUrl>-->
       <PackageProjectUrl>https://github.com/carolzbnbr/OnScreenSizeMarkup</PackageProjectUrl>
       <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+      <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
    </PropertyGroup>
 
 
@@ -37,6 +38,12 @@
       <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+      <LangVersion>latestmajor</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+      <LangVersion>latestmajor</LangVersion>
+    </PropertyGroup>
   <ItemGroup>
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
         <PackageReference Include="Xamarin.Essentials" Version="1.6.1" /> 

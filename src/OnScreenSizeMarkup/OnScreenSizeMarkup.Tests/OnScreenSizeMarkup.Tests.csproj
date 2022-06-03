@@ -5,6 +5,12 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.1.0">
@@ -32,6 +38,8 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="TestDataFiles\" />
     <None Remove="TestDataFiles\device-sizes.json" />
+    <None Remove="TestDataFiles\default-device-sizes %28copy%29.json" />
+    <None Remove="TestDataFiles\diagonal-screen-category-sizes.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Internals\" />
@@ -45,8 +53,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestDataFiles\device-sizes.json">
+    <Content Include="TestDataFiles\default-device-sizes.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="TestDataFiles\diagonal-screen-category-sizes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Internals\JsonTestCase.cs" />
   </ItemGroup>
 </Project>

@@ -1,9 +1,8 @@
 ﻿using System;
-using OnScreenSizeMarkup.Core;
-using OnScreenSizeMarkup.Core.Exceptions;
-using Xamarin.Essentials;
+using Microsoft.Maui.Devices;
+using OnScreenSizeMarkup.Maui.Exceptions;
 
-namespace OnScreenSizeMarkup.Forms.Extensions
+namespace OnScreenSizeMarkup.Maui.Extensions
 {
     public static class ScreenCategoryExtension
     {
@@ -41,18 +40,27 @@ namespace OnScreenSizeMarkup.Forms.Extensions
 
         private static ScreenCategories GetHandlerCategory()
         {
-            ScreenCategories screenSize;
-            if (!Manager.Current.Handler.TryGetCategoryByDeviceModel(DeviceInfo.Model, out screenSize) || screenSize == ScreenCategories.NotSet)
-            {
-                var physicalSize = GetPhysicalSize();
+            var physicalSize = GetPhysicalSize();
 
-                if (!Manager.Current.Handler.TryGetCategoryByPhysicalSize(physicalSize.DeviceWidth, physicalSize.DeviceHeight, out screenSize) || screenSize == ScreenCategories.NotSet)
-                {
-                    throw new UnkownScreenSizeException($"Fail to classify this device screen size based on Width/Height ({DeviceDisplay.MainDisplayInfo.Width}x{DeviceDisplay.MainDisplayInfo.Height}). Maybe you need to implement your own version of the handler.");
-                }
+            var category = Manager.Current.Handler.GetCategoryByPhysicalSize(physicalSize.DeviceWidth, physicalSize.DeviceHeight);
+
+            if (category == ScreenCategories.NotSet)
+            {
+                throw new UnkownScreenSizeException($"Fail to classify this device screen size based on Width/Height ({physicalSize.DeviceWidth}x{physicalSize.DeviceHeight}). Maybe you need to implement your own version of the handler.");
             }
 
-            return screenSize;
+
+            //if (!Manager.Current.Handler.TryGetCategoryByDeviceModel(DeviceInfo.Model, out screenSize) || screenSize == ScreenCategories.NotSet)
+            //{
+            //    var physicalSize = GetPhysicalSize();
+
+            //    if (!Manager.Current.Handler.TryGetCategoryByPhysicalSize(physicalSize.DeviceWidth, physicalSize.DeviceHeight, out screenSize) || screenSize == ScreenCategories.NotSet)
+            //    {
+            //        throw new UnkownScreenSizeException($"Fail to classify this device screen size based on Width/Height ({DeviceDisplay.MainDisplayInfo.Width}x{DeviceDisplay.MainDisplayInfo.Height}). Maybe you need to implement your own version of the handler.");
+            //    }
+            //}
+
+            return category;
         }
 
         private static  (double DeviceWidth, double DeviceHeight) GetPhysicalSize()
@@ -61,7 +69,7 @@ namespace OnScreenSizeMarkup.Forms.Extensions
 
             var deviceWidth = device.Width;
             var deviceHeight = device.Height;
-            if (Xamarin.Essentials.DeviceInfo.Idiom == Xamarin.Essentials.DeviceIdiom.Tablet)
+            if (DeviceInfo.Idiom == DeviceIdiom.Tablet)
             {
                 deviceWidth = Math.Max(device.Width, device.Height);
                 deviceHeight = Math.Min(device.Width, device.Height);

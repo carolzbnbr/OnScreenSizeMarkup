@@ -1,9 +1,8 @@
-﻿using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("OnScreenSizeMarkup.Forms")]
+[assembly: InternalsVisibleTo(" OnScreenSizeMarkup.Maui")]
 
-namespace OnScreenSizeMarkup.Core
+namespace  OnScreenSizeMarkup.Maui
 {
     public class Manager
     {
@@ -11,9 +10,6 @@ namespace OnScreenSizeMarkup.Core
         {
             Handler = new DefaultCategoryFallbackHandler();
         }
-
-        public bool IsDebugMode { get; set; }
-
 
         /// <summary>
         /// Returns the current <see cref="ScreenCategories"/> set for the device.

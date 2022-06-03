@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 namespace OnScreenSizeMarkup.Core
 {
 
+    //https://www.omnicalculator.com/other/screen-size#:~:text=To%20calculate%20screen%20size%3A,the%20area%20of%20the%20screen.
+
     public class DefaultCategoryFallbackHandler : ICategoryFallbackHandler
     {
 
@@ -180,7 +182,6 @@ namespace OnScreenSizeMarkup.Core
         public virtual bool TryGetCategoryByPhysicalSize(double deviceWidth, double deviceHeight, out ScreenCategories category)
         {
             category = ScreenCategories.NotSet;
-
             for (int i = 0; i < screenSizeCategories.Length; i++)
             {
                 ScreenSizeInfo sizeInfo = screenSizeCategories[i];
@@ -192,6 +193,7 @@ namespace OnScreenSizeMarkup.Core
                 }
             }
             return false;
+
         }
     }
 }
