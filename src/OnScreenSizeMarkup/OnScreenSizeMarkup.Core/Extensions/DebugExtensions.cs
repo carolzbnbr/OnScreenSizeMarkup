@@ -2,22 +2,22 @@ using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 
-namespace OnScreenSizeMarkup.Core.Extensions;
-
-public static class DebugExtensions
+namespace OnScreenSizeMarkup.Core.Extensions
 {
-    
-    public static void WriteToLog(this string message,  [CallerFilePath]string callerFilePath = null, [CallerMemberName] string memberName = null)
+    public static class DebugExtensions
     {
-        if (!Manager.Current.IsDebugMode)
+        public static void WriteToLog(this string message,  [CallerFilePath]string callerFilePath = null, [CallerMemberName] string memberName = null)
         {
-            return;
+            if (!Manager.Current.IsDebugMode)
+            {
+                return;
+            }
+            var classFilename = Path.GetFileNameWithoutExtension(callerFilePath);
+            if (string.IsNullOrWhiteSpace(memberName))
+            {
+                memberName = "";
+            }
+            Console.WriteLine($"** DEBUG ** {nameof(OnScreenSizeMarkup)} ({classFilename}.{memberName}): {message}");
         }
-        var classFilename = Path.GetFileNameWithoutExtension(callerFilePath);
-        if (string.IsNullOrWhiteSpace(memberName))
-        {
-            memberName = "";
-        }
-        Console.WriteLine($"** DEBUG ** {nameof(OnScreenSizeMarkup)} ({classFilename}.{memberName}): {message}");
     }
 }
