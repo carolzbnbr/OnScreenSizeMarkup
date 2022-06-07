@@ -55,7 +55,9 @@
       <None Remove="Extensions\" />
     </ItemGroup>
     <ItemGroup>
-      <Compile Include="OnScreenSize.cs">
+      <Compile Include="Converters\ValueConverter.cs" />
+      <Compile Include="Extensions\TypeConvertionExtensions.cs" />
+      <Compile Include="OnScreenSizeExtension.cs">
         <SubType></SubType>
       </Compile>
       <Compile Include="Extensions\ValueConversionExtensions.cs">
@@ -63,9 +65,12 @@
       </Compile>
       <Compile Include="Extensions\ScreenCategoryExtension.cs" />
       <Compile Include="Markup.cs" />
+      <Compile Include="OnScreenSizeExtensionBase.cs" />
+      <Compile Include="OnScreenSizeExtension.generic.cs" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Extensions\" />
+      <Folder Include="obj\Debug\netstandard2.0" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\OnScreenSizeMarkup.Core\OnScreenSizeMarkup.Core.csproj" />
