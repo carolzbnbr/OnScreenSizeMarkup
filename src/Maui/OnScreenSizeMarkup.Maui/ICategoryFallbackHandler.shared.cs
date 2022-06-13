@@ -13,7 +13,7 @@ namespace  OnScreenSizeMarkup.Maui
         ///// <param name="deviceModel">device model</param>
         ///// <param name="category"></param>
         ///// <returns></returns>
-        //bool TryGetCategoryByDeviceModel(string deviceModel, out ScreenCategories category);
+        ScreenCategories GetCategoryByDeviceModel(string deviceModel);
 
         /// <summary>
         /// Attempt to get the <see cref="ScreenCategories"/> by device's physical size (width/height).

@@ -32,33 +32,30 @@ namespace OnScreenSizeMarkup.Maui.Extensions
 
             category = GetHandlerCategory();
 
-            Console.WriteLine($"{nameof(OnScreenSize)} - Screen-Category:{category} - Physical-Device-Size:{DeviceDisplay.MainDisplayInfo.Width}x{DeviceDisplay.MainDisplayInfo.Height}");
-
+            $"{nameof(OnScreenSize)} - Screen-Category:{category} - Physical-Device-Size:{DeviceDisplay.MainDisplayInfo.Width}x{DeviceDisplay.MainDisplayInfo.Height} - Device-Model:\"{Microsoft.Maui.Devices.DeviceInfo.Model}\"".WriteToLog();
+            
             Manager.Current.CurrentCategory = category;
             return true;
         }
 
+#pragma warning disable IDE0040
         private static ScreenCategories GetHandlerCategory()
+#pragma warning restore IDE0040
         {
             var physicalSize = GetPhysicalSize();
+            
+            var category = Manager.Current.Handler.GetCategoryByDeviceModel(Microsoft.Maui.Devices.DeviceInfo.Model);
+            if (category != ScreenCategories.NotSet)
+            {
+	            return category;
+            }
 
-            var category = Manager.Current.Handler.GetCategoryByPhysicalSize(physicalSize.DeviceWidth, physicalSize.DeviceHeight);
+            category = Manager.Current.Handler.GetCategoryByPhysicalSize(physicalSize.DeviceWidth, physicalSize.DeviceHeight);
 
             if (category == ScreenCategories.NotSet)
             {
-                throw new UnkownScreenSizeException($"Fail to classify this device screen size based on Width/Height ({physicalSize.DeviceWidth}x{physicalSize.DeviceHeight}). Maybe you need to implement your own version of the handler.");
+                throw new UnkownScreenSizeException($"Fail to classify this device screen size based on device-model \"{Microsoft.Maui.Devices.DeviceInfo.Model}\" or device Width/Height ({physicalSize.DeviceWidth}x{physicalSize.DeviceHeight}). Maybe you need to implement your own version of the handler.");
             }
-
-
-            //if (!Manager.Current.Handler.TryGetCategoryByDeviceModel(DeviceInfo.Model, out screenSize) || screenSize == ScreenCategories.NotSet)
-            //{
-            //    var physicalSize = GetPhysicalSize();
-
-            //    if (!Manager.Current.Handler.TryGetCategoryByPhysicalSize(physicalSize.DeviceWidth, physicalSize.DeviceHeight, out screenSize) || screenSize == ScreenCategories.NotSet)
-            //    {
-            //        throw new UnkownScreenSizeException($"Fail to classify this device screen size based on Width/Height ({DeviceDisplay.MainDisplayInfo.Width}x{DeviceDisplay.MainDisplayInfo.Height}). Maybe you need to implement your own version of the handler.");
-            //    }
-            //}
 
             return category;
         }

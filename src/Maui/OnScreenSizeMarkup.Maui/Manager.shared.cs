@@ -11,6 +11,8 @@ namespace  OnScreenSizeMarkup.Maui
             Handler = new DefaultCategoryFallbackHandler();
         }
 
+        public bool IsDebugMode { get; set; }
+
         /// <summary>
         /// Returns the current <see cref="ScreenCategories"/> set for the device.
         /// </summary>

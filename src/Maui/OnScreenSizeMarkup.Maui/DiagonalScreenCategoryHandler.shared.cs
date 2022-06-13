@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -8,20 +8,6 @@ namespace  OnScreenSizeMarkup.Maui;
 
 public class DiagonalScreenCategoryHandler : ICategoryFallbackHandler
 {
-
-
-	///// <summary>
-	///// Attempt to get the screen size by a provided device-model name.
-	///// </summary>
-	///// <param name="deviceModel">device model</param>
-	///// <param name="category"></param>
-	///// <returns></returns>
-	//public virtual bool TryGetCategoryByDeviceModel(string deviceModel, out ScreenCategories category)
-	//{
-	//    category = ScreenCategories.NotSet;
-	//    return false;
-	//}
-
 
 	public ScreenCategories GetCategoryByPhysicalSize(double deviceWidth, double deviceHeight)
 	{
@@ -55,4 +41,4 @@ public class DiagonalScreenCategoryHandler : ICategoryFallbackHandler
 		var result = (deviceWidth * 2) + (deviceHeight * 2);
 		return Math.Sqrt(result);
 	}
-}
+}*/

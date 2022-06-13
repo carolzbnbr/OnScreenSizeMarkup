@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
+using OnScreenSizeMarkup.Maui.Exceptions;
 
 namespace  OnScreenSizeMarkup.Maui.Extensions;
 
@@ -19,7 +20,18 @@ public static class ValueConversionExtensions
    /// <returns></returns>
     public static object ConvertTo(this object value, Type toType, BindableProperty bindableProperty)
     {
-        object returnValue;
+	    if (Manager.Current.IsDebugMode)
+	    {
+		    var log1 =$"Attempting To Convert \"{(value == null ? "null": value)}\" of type:{(value == null ? "null": value.GetType())} to Type:{(toType == null ? "null" : toType)} on bindable Property of type:{(bindableProperty == null ? "null": bindableProperty.ReturnType)}";
+		    log1.WriteToLog();
+	    }
+
+	    if (toType == null)
+	    {
+		    return null!;
+	    }
+
+	    object returnValue;
         if (ValueConversionExtensions.converter.TryGetValue(toType, out var converter))
         {
             returnValue = converter.ConvertFromInvariantString((string)value!)!;
@@ -28,7 +40,7 @@ public static class ValueConversionExtensions
 
         if (toType.IsEnum)
         {
-            returnValue = Enum.Parse(toType, (string)value);
+            returnValue = Enum.Parse(toType, (string)value!);
             return returnValue;
         }
 
@@ -36,7 +48,7 @@ public static class ValueConversionExtensions
         {
             converter = (TypeConverter)new RowDefinitionCollectionTypeConverter();
             ValueConversionExtensions.converter.Add(toType, converter);
-            var value1 = converter.ConvertFromInvariantString((string)value);
+            var value1 = converter.ConvertFromInvariantString((string)value!);
             return value1!;
         }
 
@@ -44,7 +56,7 @@ public static class ValueConversionExtensions
         {
             converter = (TypeConverter)new ColumnDefinitionCollectionTypeConverter();
             ValueConversionExtensions.converter.Add(toType, converter);
-            var value1 = converter.ConvertFromInvariantString((string)value);
+            var value1 = converter.ConvertFromInvariantString((string)value!);
             return value1!;
         }
 
@@ -59,7 +71,7 @@ public static class ValueConversionExtensions
                 converter = (TypeConverter)Activator.CreateInstance(converterType!)!;
 
                 ValueConversionExtensions.converter.Add(toType, converter);
-                return converter.ConvertFromInvariantString((string)value)!;
+                return converter.ConvertFromInvariantString((string)value!)!;
             }
         }
 
@@ -71,7 +83,7 @@ public static class ValueConversionExtensions
         }
 
 
-        returnValue = Convert.ChangeType(value, toType, CultureInfo.InvariantCulture);
+        returnValue = Convert.ChangeType(value, toType, CultureInfo.InvariantCulture)!;
         return returnValue;
     }
 
