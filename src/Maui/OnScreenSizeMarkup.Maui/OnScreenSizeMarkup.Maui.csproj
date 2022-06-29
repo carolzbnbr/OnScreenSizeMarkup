@@ -1,0 +1,102 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
+
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GitInfoReportImportance>high</GitInfoReportImportance>
+    <PackageId>OnScreenSizeMarkup.Maui</PackageId>
+    <Summary>OnScreenSizeMarkup.Maui: A XAML markup extension for controlling UI Views according to the device's screen size category (Medium, Large, etc)</Summary>
+    <Authors>Ana Carolina Zambon</Authors>
+    <Owners>carolzbnbr</Owners>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Product>OnScreenSizeMarkup.Maui (net6.0)</Product>
+    <Copyright>© Ana Carolina Zambon. All rights reserved.</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/carolzbnbr/OnScreenSizeMarkup</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/carolzbnbr/OnScreenSizeMarkup</RepositoryUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <DefineConstants>$(DefineConstants);</DefineConstants>
+    <UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>
+    <Title>OnScreenSizeMarkup.Maui</Title>
+    <Description>OnScreenSizeMarkup: A XAML markup extension for controlling UI Views according to the device's screen size category (Medium, Large, etc)</Description>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+    <Version>1.0.4-pre1</Version>
+    <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>screen, size, dynamic, adapt, adaptative, markup, onscreensize, onsize, onwindow, maui, height, width, heightrequest, widthrequest</PackageTags>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net6.0-ios')) != true AND $(TargetFramework.StartsWith('net6.0-maccatalyst')) != true ">
+    <Compile Remove="**\**\*.ios.cs" />
+    <None Include="**\**\*.ios.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Remove="**\ios\**\*.cs" />
+    <None Include="**\ios\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.Mac')) != true ">
+    <Compile Remove="**\*.macos.cs" />
+    <Compile Remove="**\macos\**\*.cs" />
+    <None Include="**\macos\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.Mac')) != true AND $(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net6.0-ios')) != true AND $(TargetFramework.StartsWith('net6.0-maccatalyst')) != true">
+    <Compile Remove="**\*.macios.cs" />
+    <None Include="**\*.macios.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Remove="**\macios\**\*.cs" />
+    <None Include="**\macios\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid')) != true AND $(TargetFramework.StartsWith('net6.0-android')) != true ">
+    <Compile Remove="**\**\*.android.cs" />
+    <None Include="**\**\*.android.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Remove="**\android\**\*.cs" />
+    <None Include="**\android\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.Contains('-windows')) != true ">
+    <Compile Remove="**\*.windows.cs" />
+    <None Include="**\*.windows.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Remove="**\windows\**\*.cs" />
+    <None Include="**\windows\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <None Remove="Extensions\" />
+    <None Remove="OnScreenSizeMarkup.Maui.Tests\obj\OnScreenSizeMarkup.Maui.Tests.csproj.nuget.g.props" />
+    <None Remove="OnScreenSizeMarkup.Maui.Tests\obj\OnScreenSizeMarkup.Maui.Tests.csproj.nuget.g.targets" />
+    <None Remove="OnScreenSizeMarkup.Maui.Tests\obj\OnScreenSizeMarkup.Maui.Tests.csproj.nuget.dgspec.json" />
+    <None Remove="OnScreenSizeMarkup.Maui.Tests\obj\project.nuget.cache" />
+    <None Remove="OnScreenSizeMarkup.Maui.Tests\obj\project.assets.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="OnScreenSizeMarkup.Maui.Tests\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <MauiXaml Remove="OnScreenSizeMarkup.Maui.Tests\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <MauiCss Remove="OnScreenSizeMarkup.Maui.Tests\**" />
+  </ItemGroup>
+  
+ 
+</Project>
