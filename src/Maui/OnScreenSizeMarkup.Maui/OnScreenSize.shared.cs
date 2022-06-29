@@ -4,7 +4,9 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
+using OnScreenSizeMarkup.Maui.Categories;
 using OnScreenSizeMarkup.Maui.Extensions;
+using OnScreenSizeMarkup.Maui.Helpers;
 
 namespace OnScreenSizeMarkup.Maui;
 
@@ -68,14 +70,12 @@ public class OnScreenSize : IMarkupExtension<object>
 	
 	public object ProvideValue(IServiceProvider serviceProvider)
 	{
-		"ProvideValue - Step 1...".WriteToLog();
 		
 		var valueProvider = serviceProvider?.GetService<IProvideValueTarget>() ?? throw new ArgumentException($"Service provided for OnScreenSize is null");
 
 		BindableProperty bp;
 		PropertyInfo pi = null!;
 
-		"ProvideValue - Step 2...".WriteToLog();
 		
 		if (valueProvider.TargetObject is Setter setter)
 		{
@@ -111,7 +111,7 @@ public class OnScreenSize : IMarkupExtension<object>
 	private object GetScreenCategoryPropertyValue(IServiceProvider serviceProvider)
 #pragma warning restore IDE0040
 	{
-		var screenCategory = ScreenCategoryExtension.GetCategory();
+		var screenCategory = ScreenCategoryHelper.GetCategory();
 		if (screenCategory != ScreenCategories.NotSet)
 		{
 			if (categoryPropertyValues[screenCategory] != defaultNull)

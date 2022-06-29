@@ -1,4 +1,4 @@
-﻿namespace  OnScreenSizeMarkup.Maui;
+﻿namespace  OnScreenSizeMarkup.Maui.Categories;
 
 /// <summary>
 /// Categories that a device screen size fits in.
@@ -30,5 +30,5 @@ public enum ScreenCategories
 	/// <summary>
 	/// 
 	/// </summary>
-	NotSet = 6,
+	NotSet = 0,
 }

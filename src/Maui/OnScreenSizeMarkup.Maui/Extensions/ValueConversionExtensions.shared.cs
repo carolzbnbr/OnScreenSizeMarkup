@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
+using OnScreenSizeMarkup.Maui.Categories;
 using OnScreenSizeMarkup.Maui.Exceptions;
 
 namespace  OnScreenSizeMarkup.Maui.Extensions;
@@ -60,7 +61,7 @@ public static class ValueConversionExtensions
             return value1!;
         }
 
-        if (toType.Namespace != null && toType.Namespace.StartsWith("Xamarin.Forms"))
+        if (toType.Namespace != null && toType.Namespace.StartsWith("Microsoft.Maui."))
         {
             var typeConverter = toType.GetCustomAttribute<TypeConverterAttribute>(true);
 

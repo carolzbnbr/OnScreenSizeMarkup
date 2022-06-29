@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using OnScreenSizeMarkup.Maui.Categories;
 using OnScreenSizeMarkup.Maui.Exceptions;
 using OnScreenSizeMarkup.Maui.Extensions;
+using OnScreenSizeMarkup.Maui.Helpers;
 
 namespace OnScreenSizeMarkup.Maui;
 
@@ -13,7 +15,7 @@ public static class Markup
 		T large = default(T)!,
 		T extraLarge = default(T)!)
 	{
-		var screenSize = ScreenCategoryExtension.GetCategory();
+		var screenSize = ScreenCategoryHelper.GetCategory();
 		switch (screenSize)
 		{
 			case ScreenCategories.ExtraSmall:
