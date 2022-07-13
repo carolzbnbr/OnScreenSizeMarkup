@@ -19,7 +19,7 @@ OnScreenSizeMarkup is XAML markup extension for controlliing UI elements dependi
 OnScreenSizeMarkup is currently compatible with:
 
 * Xamarin.Forms [![NuGet Stats](https://img.shields.io/nuget/v/OnScreenSizeMarkup.Forms?style=plastic)](https://www.nuget.org/packages/OnScreenSizeMarkup.Forms) 
-* MAUI [![NuGet Stats](https://img.shields.io/nuget/v/OnScreenSizeMarkup.Maui?style=plastic)](https://www.nuget.org/packages/OnScreenSizeMarkup.Forms) 
+* MAUI [![NuGet Stats](https://img.shields.io/nuget/v/OnScreenSizeMarkup.Maui?style=plastic)](https://www.nuget.org/packages/OnScreenSizeMarkup.Maui) 
 
 ### What does that mean? 
 
