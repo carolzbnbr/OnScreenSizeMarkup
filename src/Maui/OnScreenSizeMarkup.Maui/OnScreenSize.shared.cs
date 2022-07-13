@@ -90,7 +90,7 @@ public class OnScreenSize : IMarkupExtension<object>
 		if (Manager.Current.IsDebugMode)
 		{
 			var log1 =$"Providing Value using propertyType:\"{(bp?.ReturnType ?? pi?.PropertyType ?? null)}\" and BindableProperty:{(bp ?? null)}";
-			log1.WriteToLog();
+			log1.WriteToLog(DebugLevels.Verbose);
 		}
 		
 		var propertyType = bp?.ReturnType ?? pi?.PropertyType ?? throw new InvalidOperationException("Não foi posivel determinar a propriedade para fornecer o valor.");

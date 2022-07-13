@@ -24,7 +24,7 @@ public static class ValueConversionExtensions
 	    if (Manager.Current.IsDebugMode)
 	    {
 		    var log1 =$"Attempting To Convert \"{(value == null ? "null": value)}\" of type:{(value == null ? "null": value.GetType())} to Type:{(toType == null ? "null" : toType)} on bindable Property of type:{(bindableProperty == null ? "null": bindableProperty.ReturnType)}";
-		    log1.WriteToLog();
+		    log1.WriteToLog(DebugLevels.Verbose);
 	    }
 
 	    if (toType == null)

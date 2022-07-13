@@ -8,11 +8,7 @@ namespace OnScreenSizeMarkup.Maui.Tests;
 
 public class ScreebCalculationsExtension_GetDiagonal
 {
-   
-//width:828, height:1792 diagonal:6,0553483616011325,  density:326
-//info.Width:828, info.height:1792 info.Density:2
-    
-    
+ 
     //[InlineData(320, 480, 163, 3.5)] //Apple iPhone 3GS
     //[InlineData(750, 1334, 326, 4.7)] //Apple iPhone 6
     //[InlineData(1080, 1920, 401, 5.5)] //Apple iPhone 6/7/8 Plus

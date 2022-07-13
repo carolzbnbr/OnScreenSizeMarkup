@@ -1,7 +1,14 @@
 
-[![NuGet Stats](https://img.shields.io/nuget/v/OnScreenSizeMarkup.Forms?style=plastic)](https://www.nuget.org/packages/OnScreenSizeMarkup.Forms) 
+
 
 This project is based on a [post](https://thenextloop.com/2021/01/03/adaptive-page-layouts-to-different-device-screen-sizes-for-xamarin-apps/) I wrote a long time ago for my [blog](https://www.thenextloop.com).
+
+##### Maui Community Toolkit announcement
+
+I'm pround to anounce that this project will be soon moved to Maui Community Toolkit as per [these]( https://github.com/CommunityToolkit/Maui/issues/425) conversations. 
+
+As it is now ready for MAUI, it just a matter of days to be ported to the MCT and wait to the next release ef the Toolkit to be published.
+
 
 ## OnScreenSizeMarkup: A XAML markup extension
 
@@ -11,8 +18,8 @@ OnScreenSizeMarkup is XAML markup extension for controlliing UI elements dependi
 
 OnScreenSizeMarkup is currently compatible with:
 
-* Xamarin.Forms
-* MAUI (comming soon)
+* Xamarin.Forms [![NuGet Stats](https://img.shields.io/nuget/v/OnScreenSizeMarkup.Forms?style=plastic)](https://www.nuget.org/packages/OnScreenSizeMarkup.Forms) 
+* MAUI [![NuGet Stats](https://img.shields.io/nuget/v/OnScreenSizeMarkup.Maui?style=plastic)](https://www.nuget.org/packages/OnScreenSizeMarkup.Forms) 
 
 ### What does that mean? 
 

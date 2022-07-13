@@ -6,7 +6,7 @@ using OnScreenSizeMarkup.Maui.Handlers;
 
 namespace OnScreenSizeMarkup.Maui.Helpers;
 
-    [SuppressMessage("Style", "IDE0040:Add accessibility modifiers")]
+[SuppressMessage("Style", "IDE0040:Add accessibility modifiers")]
     internal static class ScreenCategoryHelper
     {
 
@@ -38,43 +38,13 @@ namespace OnScreenSizeMarkup.Maui.Helpers;
             return true;
         }
 
-        public static double GetScreenDiagonalInches()
-        {
-	        var dpi =  DensityCalculatorPlatform.GetPixelPerInches();
-		
-	       
-
-	        var displayInfo = Microsoft.Maui.Devices.DeviceDisplay.Current.MainDisplayInfo;
-	     
-	       return GetScreenDiagonalInches(displayInfo.Width, displayInfo.Height,displayInfo.Density, dpi.xdpi, dpi.ydpi );
-        }
-        
-        public static double GetScreenDiagonalInches(double width, double height, double scale, double xDpi, double yDpi)
-        {
-	        var width1 = width;
-	        var height1 = height;
-	        
-	        // var width1 = width * scale;
-	        // var height1 = height * scale;
-	        
-	        var horizontal = width1 / xDpi;
-	        var vertical = height1 / yDpi;
-
-	        var diagonal = Math.Sqrt(Math.Pow(horizontal, 2) + Math.Pow(vertical, 2));
-
-	        var diagonalReturnValue = diagonal.RoundUp();
-	        
-	        $"{nameof(OnScreenSize)} - DiagonalSize: {diagonalReturnValue},  PPI/DPI: x:\"{xDpi}\", y:\"{yDpi}\"".WriteToLog();
-	        
-	        return diagonal.RoundUp();
-        }
         private static ScreenCategories GetCategoryInternal()
         {
-            var diagonalSize = GetScreenDiagonalInches();
+            var diagonalSize = DiagonalSizeHelper.GetScreenDiagonalInches();
             
             var category = Manager.Current.Categorizer.GetCategoryByDiagonalSize(diagonalSize);
             
-            $"{nameof(OnScreenSize)} - Current screen category is \"{category}\", and screen diagonal size is \"{diagonalSize}\"".WriteToLog();
+            $"{nameof(OnScreenSize)} - Current screen category is \"{category}\", and screen diagonal size is \"{diagonalSize}\"".WriteToLog(DebugLevels.Info);
             
             if (category == ScreenCategories.NotSet)
             {

@@ -14,12 +14,12 @@ public class SizeMappingInfo
 	/// </summary>
 	/// <param name="diagonalSize">Diagonal Size to compare against the actual device diagonal size of the device</param>
 	/// <param name="category">The category that must be assumed in case the comparison is match</param>
-	/// <param name="comparerType">How the comparison should be performed</param>
-	public SizeMappingInfo(double diagonalSize, ScreenCategories category, MappingComparerTypes comparerType)
+	/// <param name="comparerMode">How the comparison should be performed</param>
+	public SizeMappingInfo(double diagonalSize, ScreenCategories category, EvaluationModes comparerMode)
 	{
 		DiagonalSize = diagonalSize;
 		Category = category;
-		ComparerType = comparerType;
+		ComparerMode = comparerMode;
 		
 		
 	}
@@ -28,7 +28,7 @@ public class SizeMappingInfo
 	/// <summary>
 	/// Determine how a mapping comparison should be performed against the actual diagonal screen size of the device which is running the code.
 	/// </summary>
-	public MappingComparerTypes ComparerType { get; init; }
+	public EvaluationModes ComparerMode { get; init; }
 
 	/// <summary>
 	/// Physical/actual diagonal size of the screen in inches.
