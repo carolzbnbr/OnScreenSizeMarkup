@@ -3,20 +3,30 @@ using OnScreenSizeMarkup.Maui.Mappings;
 
 namespace OnScreenSizeMarkup.Maui.Helpers;
 
+/// <summary>
+/// Helper class for retrieving PIxel per Inches (PPI) for apple devices so that the screen diagonal size in inches can be calculated later on. 
+/// </summary>
+/// <remarks>
+/// Because Apple does not provide any API for dynamically retrieving Pixel per Pnches (PPI) for all its devices,
+/// as Android does, we need to keep it hardcoded inside this class the PPI info based on device models,
+/// device names, and screen sizes. So that we can fallback to each one of the info (device name, model and screen size)
+/// to get PPI.ided apple-device-model.
+/// Probably we will need to update this list as new iphones and apple devices are launched having different PPI.  
+/// </remarks>
 [SuppressMessage("Style", "IDE0040:Add accessibility modifiers")]
 internal static class ApplePixelPerInchesHelper
 {
 
 	/// <summary>
-	/// Attempts to provide pixel-per-inches for the provided apple-device-model
+	/// Attempts to retrieve the pixel-per-inches (PPI) for the provided apple-device-model
 	/// </summary>
 	/// <param name="appleDeviceModel"></param>
 	/// <param name="ppi"></param>
 	/// <returns></returns>
-	public static bool TryGetPpiByDeviceModel(string appleDeviceModel, out double ppi)
+	internal static bool TryGetPpiByDeviceModel(string appleDeviceModel, out double ppi)
 	{
 		ppi = 0;
-		if (string.IsNullOrWhiteSpace((appleDeviceModel)) || appleDeviceModel.Equals("x86_64", StringComparison.OrdinalIgnoreCase))
+		if (string.IsNullOrWhiteSpace((appleDeviceModel)) || IsUnknownIosSimulator(appleDeviceModel))
 		{
 			return false;
 		}
@@ -30,15 +40,28 @@ internal static class ApplePixelPerInchesHelper
 		ppi = match.PixelPerInches;
 		return true ;
 	}
-	
-	
+
+	private static bool IsUnknownIosSimulator(string appleDeviceModel)
+	{
+		if ( 
+		    appleDeviceModel.Equals("x86_64", StringComparison.OrdinalIgnoreCase) ||  
+		    appleDeviceModel.Equals("arm64", StringComparison.OrdinalIgnoreCase) ||  
+		    appleDeviceModel.Equals("i386", StringComparison.OrdinalIgnoreCase)
+		    )
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 	/// <summary>
 	/// Attempts to retrieve the pixel-per-inches for the provided apple-device-name
 	/// </summary>
 	/// <param name="appleDeviceName"></param>
 	/// <param name="ppi"></param>
 	/// <returns></returns>
-	public static bool TryGetPpiByDeviceName(string appleDeviceName, out double ppi)
+	internal static bool TryGetPpiByDeviceName(string appleDeviceName, out double ppi)
 	{
 		ppi = 0;
 		if (!deviceNamesToPpi.TryGetValue(appleDeviceName, out ppi))
@@ -58,7 +81,7 @@ internal static class ApplePixelPerInchesHelper
 	/// <param name="screenDimensions"></param>
 	/// <param name="ppi"></param>
 	/// <returns></returns>
-	public static bool TryGetPpiByScreenDimensions((double Width, double Height) screenDimensions, out double ppi)
+	internal static bool TryGetPpiByScreenDimensions((double Width, double Height) screenDimensions, out double ppi)
 	{
 		if (!apppleDevicesDimensionsToPpi.TryGetValue(screenDimensions, out  ppi))
 		{
@@ -110,9 +133,9 @@ internal static class ApplePixelPerInchesHelper
 		}
 
 		return false;
-}
+	}
 	
-	
+	#region hardcoded PPI related values
 	
 	
 	private static Dictionary<string, double> deviceNamesToPpi = new(StringComparer.InvariantCultureIgnoreCase)
@@ -278,4 +301,5 @@ internal static class ApplePixelPerInchesHelper
 		new AppleModelInfo( new[] { "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4" }, 132 )
 	};
 
+	#endregion
 }
