@@ -5,7 +5,7 @@ This project is based on a [post](https://thenextloop.com/2021/01/03/adaptive-pa
 
 ##### Maui Community Toolkit announcement
 
-I'm pround to anounce that this project will be soon moved to Maui Community Toolkit as per [these]( https://github.com/CommunityToolkit/Maui/issues/425) conversations. 
+I'm pround to anounce that this project will be soon moved to Maui Community Toolkit as per [these]( https://github.com/CommunityToolkit/Maui/issues/425) conversation. 
 
 As it is now ready for MAUI, it just a matter of days to be ported to the MCT and wait to the next release ef the Toolkit to be published.
 
