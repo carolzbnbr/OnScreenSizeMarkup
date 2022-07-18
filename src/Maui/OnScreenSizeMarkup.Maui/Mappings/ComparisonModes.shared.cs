@@ -1,10 +1,10 @@
 namespace OnScreenSizeMarkup.Maui.Mappings;
 
 /// <summary>
-/// Types of evaluation available for classify a screen.
-/// Used to determine how a <see cref="SizeMappingInfo.DiagonalSize"/> should be compared against a device diagonal size.
+/// Comparison modes.
+/// Used to determine how a <see cref="SizeMappingInfo.DiagonalSize"/> should be compared against an actual device diagonal size.
 /// </summary>
-public enum EvaluationModes
+public enum ComparisonModes
 {
 	/// <summary>
 	/// Smaller than or equals to the current device diagonal screen size.

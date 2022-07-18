@@ -11,17 +11,15 @@ namespace  OnScreenSizeMarkup.Maui.Categories;
 [SuppressMessage("Style", "IDE0040:Add accessibility modifiers")]
 internal  class ScreenCategorizer : IScreenCategorizer
 {
-	public ScreenCategories GetCategoryByDiagonalSize(double deviceActualDiagonalSize)
+	public ScreenCategories GetCategoryByDiagonalSize(List<SizeMappingInfo> mappings, double deviceActualDiagonalSize)
 	{
-		Manager.Current.Mappings.Sort(new DiagonalSizeMappingComparer());
-
 		ScreenCategories category;   
-		if (TryCategorizeByFixedSize(deviceActualDiagonalSize, out category))
+		if (TryCategorizeByFixedSize(mappings, deviceActualDiagonalSize, out category))
 		{
 			return category;
 		}
 		
-		if (TryCategorizeBySmallerOrEqualsTo(deviceActualDiagonalSize, out category))
+		if (TryCategorizeBySmallerOrEqualsTo(mappings, deviceActualDiagonalSize, out category))
 		{
 			return category;
 		}
@@ -32,14 +30,15 @@ internal  class ScreenCategorizer : IScreenCategorizer
 	/// <summary>
 	/// Attempt to categorize a screen based on fixed mapping screen size. 
 	/// </summary>
+	/// <param name="mappings"></param>
 	/// <param name="deviceActualDiagonalSize"></param>
 	/// <param name="category"></param>
 	/// <returns></returns>
-	private static bool TryCategorizeByFixedSize(double deviceActualDiagonalSize, out ScreenCategories category)
+	private static bool TryCategorizeByFixedSize(List<SizeMappingInfo> mappings, double deviceActualDiagonalSize, out ScreenCategories category)
 	{
 		category = ScreenCategories.NotSet;
 		
-		var diagonalSizeMappingsEquals = Manager.Current.Mappings.Where((f => f.ComparerMode == EvaluationModes.SpecificSize)).ToArray();
+		var diagonalSizeMappingsEquals = mappings.Where((f => f.ComparisonMode == ComparisonModes.SpecificSize)).ToArray();
 		for (var index = 0; index < diagonalSizeMappingsEquals.Length; index++)
 		{
 			var sizeInfo = diagonalSizeMappingsEquals[index];
@@ -53,10 +52,14 @@ internal  class ScreenCategorizer : IScreenCategorizer
 		return false;
 	}
 
-	private static bool TryCategorizeBySmallerOrEqualsTo(double deviceActualDiagonalSize, out ScreenCategories category)
+	private static bool TryCategorizeBySmallerOrEqualsTo(List<SizeMappingInfo> mappings, double deviceActualDiagonalSize, out ScreenCategories category)
 	{
+
+		var mappingsLocal = mappings.Where(f => f.ComparisonMode == ComparisonModes.SmallerThanOrEqualsTo).OrderBy(f => f.DiagonalSize).ToList();
+		mappingsLocal.Sort(new DiagonalSizeMappingComparer());
+
 		category = ScreenCategories.NotSet;
-		var diagonalSizeMappings = Manager.Current.Mappings.Where((f => f.ComparerMode == EvaluationModes.SmallerThanOrEqualsTo)).ToArray();
+		var diagonalSizeMappings = mappingsLocal.ToArray();
 		
 		for (var index = 0; index < diagonalSizeMappings.Length; index++)
 		{

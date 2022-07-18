@@ -5,9 +5,6 @@ using OnScreenSizeMarkup.Maui.Mappings;
 #pragma warning disable CS8618
 #pragma warning disable CS1591
 
-[assembly: InternalsVisibleTo("OnScreenSizeMarkup.Maui")]
-[assembly: InternalsVisibleTo("Samples")]
-[assembly: InternalsVisibleTo("OnScreenSizeMarkup.Maui.Tests")]
 
 namespace  OnScreenSizeMarkup.Maui;
 
@@ -28,7 +25,7 @@ public class Manager
     /// <remarks>
     /// You can override this values by setting your own mappings.
     /// </remarks>
-    public ScreenMappingList Mappings { get; set; } = DefaultMappings.MobileMappings;
+    public List<SizeMappingInfo> Mappings { get; set; } = DefaultMappings.MobileMappings;
     
     /// <summary>
     /// Display console messages for debugging purposes.
@@ -38,7 +35,7 @@ public class Manager
     /// <summary>
     /// When <see cref="IsDebugMode"/> is true, defines how detailed the log messages should be logged to.
     /// </summary>
-    public DebugLevels DebugLevel { get; set; } = DebugLevels.Info;
+    public LogLevels DebugLevel { get; set; } = LogLevels.Info;
 
     /// <summary>
     /// Returns the current <see cref="ScreenCategories"/> set for the device.

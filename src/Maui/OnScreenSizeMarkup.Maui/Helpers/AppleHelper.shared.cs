@@ -7,14 +7,14 @@ namespace OnScreenSizeMarkup.Maui.Helpers;
 /// Helper class for retrieving PIxel per Inches (PPI) for apple devices so that the screen diagonal size in inches can be calculated later on. 
 /// </summary>
 /// <remarks>
-/// Because Apple does not provide any API for dynamically retrieving Pixel per Pnches (PPI) for all its devices,
-/// as Android does, we need to keep it hardcoded inside this class the PPI info based on device models,
+/// Because Apple does not provide any API for dynamically retrieving Pixel per Pnches (PPI) for all its devices (as Android does),
+/// we need to keep it hardcoded inside this class the PPI info based on device models,
 /// device names, and screen sizes. So that we can fallback to each one of the info (device name, model and screen size)
 /// to get PPI.ided apple-device-model.
 /// Probably we will need to update this list as new iphones and apple devices are launched having different PPI.  
 /// </remarks>
 [SuppressMessage("Style", "IDE0040:Add accessibility modifiers")]
-internal static class ApplePixelPerInchesHelper
+internal static class AppleHelper
 {
 
 	/// <summary>

@@ -17,6 +17,11 @@
     <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="OnScreenSizeMarkup.Maui.Tests" />
+    <InternalsVisibleTo Include="Samples" />
+  </ItemGroup>
+  
   <PropertyGroup>
     <GitInfoReportImportance>high</GitInfoReportImportance>
     <PackageId>OnScreenSizeMarkup.Maui</PackageId>
@@ -35,9 +40,9 @@
     <Title>OnScreenSizeMarkup.Maui</Title>
     <Description>OnScreenSizeMarkup: A XAML markup extension for controlling UI Views according to the device's screen size category (Medium, Large, etc)</Description>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
-    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.1</AssemblyFileVersion>
+    <Version>1.0.1</Version>
     <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>screen, size, dynamic, adapt, adaptative, markup, onscreensize, onsize, onwindow, maui, height, width, heightrequest, widthrequest</PackageTags>
@@ -88,15 +93,8 @@
   <ItemGroup>
     <Folder Include="Extensions\" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Remove="OnScreenSizeMarkup.Maui.Tests\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <MauiXaml Remove="OnScreenSizeMarkup.Maui.Tests\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <MauiCss Remove="OnScreenSizeMarkup.Maui.Tests\**" />
-  </ItemGroup>
+
+ 
   
  
 </Project>

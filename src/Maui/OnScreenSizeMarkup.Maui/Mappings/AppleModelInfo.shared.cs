@@ -1,6 +1,6 @@
 namespace OnScreenSizeMarkup.Maui.Mappings;
 
-public struct AppleModelInfo : IEquatable<AppleModelInfo>
+internal struct AppleModelInfo : IEquatable<AppleModelInfo>
 {
 	readonly string[] models;
 	readonly int ppi;

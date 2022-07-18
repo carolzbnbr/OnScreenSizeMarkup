@@ -32,8 +32,8 @@ internal static class DiagonalSizeHelper
 		var diagonal = Math.Sqrt(Math.Pow(horizontal, 2) + Math.Pow(vertical, 2));
 
 		var diagonalReturnValue = diagonal.RoundUp();
-	        
-		$"{nameof(OnScreenSize)} - DiagonalSize: {diagonalReturnValue},  PPI/DPI: x:\"{xDpi}\", y:\"{yDpi}\"".WriteToLog(DebugLevels.Info);
+
+		ConsoleHelpers.WriteLine($"{nameof(OnScreenSizeExtension)} - DiagonalSize: {diagonalReturnValue},  PPI/DPI: x:\"{xDpi}\", y:\"{yDpi}\"", LogLevels.Info);
 	        
 		return diagonal.RoundUp();
 	}

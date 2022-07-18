@@ -1,11 +1,13 @@
 using System.Runtime.CompilerServices;
 using OnScreenSizeMarkup.Maui.Categories;
 
-namespace OnScreenSizeMarkup.Maui.Extensions;
+namespace OnScreenSizeMarkup.Maui.Helpers;
 
-public static class DebugExtensions
+#pragma warning disable IDE0040 // Add accessibility modifiers
+internal static class ConsoleHelpers
+#pragma warning restore IDE0040 // Add accessibility modifiers
 {
-	public static void WriteToLog(this string message, DebugLevels level = DebugLevels.Info,  [CallerFilePath]string? callerFilePath = null, [CallerMemberName] string memberName = null!)
+	public static void WriteLine( this string message, LogLevels level = LogLevels.Info,  [CallerFilePath]string? callerFilePath = null, [CallerMemberName] string memberName = null!)
 	{
 		if (!Manager.Current.IsDebugMode)
 		{

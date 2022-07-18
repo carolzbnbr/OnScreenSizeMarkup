@@ -6,7 +6,7 @@
 			 
     <ScrollView>
         <VerticalStackLayout 
-            Spacing="{markups:OnScreenSize DefaultSize='25', Medium='10'}" 
+            Spacing="{markups:OnScreenSize Default='25', Medium='10'}" 
             Padding="30,0" 
             VerticalOptions="Center">
 
@@ -17,8 +17,8 @@
                 HorizontalOptions="Center" />
                 
             <Label 
-                BackgroundColor="{markups:OnScreenSize DefaultSize='Yellow', Small='Red', ExtraSmall='Green', Medium='Blue', Large='Pink', ExtraLarge='Gray'}"
-                Text="{markups:OnScreenSize DefaultSize='DefaultSize', Small='Small', ExtraSmall='ExtraSmall', Medium='Medium', Large='Large', ExtraLarge='ExtraLarge'}"
+                BackgroundColor="{markups:OnScreenSize Default='Yellow', Small='Red', ExtraSmall='Green', Medium='Blue', Large='Pink', ExtraLarge='Gray'}"
+                Text="{markups:OnScreenSize Default='DefaultSize', Small='Small', ExtraSmall='ExtraSmall', Medium='Medium', Large='Large', ExtraLarge='ExtraLarge'}"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />

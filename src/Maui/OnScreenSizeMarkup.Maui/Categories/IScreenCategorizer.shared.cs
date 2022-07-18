@@ -8,5 +8,5 @@ namespace  OnScreenSizeMarkup.Maui.Categories;
 internal  interface IScreenCategorizer
 #pragma warning restore IDE0040
 {
-	ScreenCategories GetCategoryByDiagonalSize(double deviceActualDiagonalSize);
+	ScreenCategories GetCategoryByDiagonalSize(List<SizeMappingInfo> mappings, double deviceActualDiagonalSize);
 }

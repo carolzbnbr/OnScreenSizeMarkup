@@ -4,9 +4,9 @@ using OnScreenSizeMarkup.Maui.Exceptions;
 using OnScreenSizeMarkup.Maui.Extensions;
 using OnScreenSizeMarkup.Maui.Helpers;
 
-namespace OnScreenSizeMarkup.Maui;
+namespace OnScreenSizeMarkup.Maui.Helpers;
 
-public static class Markup
+public static class OnScreenSizeHelpers
 {
 	public static T OnScreenSize<T>(T defaultSize= default(T)!,
 		T extraSmall = default(T)!,
@@ -32,7 +32,7 @@ public static class Markup
 
 		if (EqualityComparer<T>.Default.Equals(defaultSize, default(T)))
 		{
-			throw new XamlMarkupException($"{nameof(Markup)}.{nameof(OnScreenSize)} markup requires a {nameof(defaultSize)} set.");
+			throw new XamlMarkupException($"{nameof(OnScreenSizeExtension)} markup requires a {nameof(defaultSize)} set.");
 		}
 		else
 		{

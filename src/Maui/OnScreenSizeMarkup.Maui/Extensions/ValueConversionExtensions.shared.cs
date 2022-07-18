@@ -3,10 +3,13 @@ using System.Globalization;
 using System.Reflection;
 using OnScreenSizeMarkup.Maui.Categories;
 using OnScreenSizeMarkup.Maui.Exceptions;
+using OnScreenSizeMarkup.Maui.Helpers;
 
 namespace  OnScreenSizeMarkup.Maui.Extensions;
 
-public static class ValueConversionExtensions
+#pragma warning disable IDE0040 // Add accessibility modifiers
+internal static class ValueConversionExtensions
+#pragma warning restore IDE0040 // Add accessibility modifiers
 {
 #pragma warning disable IDE0040
 	private static Dictionary<Type, TypeConverter> converter = new Dictionary<Type, TypeConverter>();
@@ -23,8 +26,7 @@ public static class ValueConversionExtensions
     {
 	    if (Manager.Current.IsDebugMode)
 	    {
-		    var log1 =$"Attempting To Convert \"{(value == null ? "null": value)}\" of type:{(value == null ? "null": value.GetType())} to Type:{(toType == null ? "null" : toType)} on bindable Property of type:{(bindableProperty == null ? "null": bindableProperty.ReturnType)}";
-		    log1.WriteToLog(DebugLevels.Verbose);
+			ConsoleHelpers.WriteLine($"Attempting To Convert \"{(value == null ? "null" : value)}\" of type:{(value == null ? "null" : value.GetType())} to Type:{(toType == null ? "null" : toType)} on bindable Property of type:{(bindableProperty == null ? "null" : bindableProperty.ReturnType)}", LogLevels.Verbose);
 	    }
 
 	    if (toType == null)

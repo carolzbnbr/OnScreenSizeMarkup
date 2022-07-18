@@ -9,8 +9,8 @@ public partial class App : Application
         InitializeComponent();
 
         OnScreenSizeMarkup.Maui.Manager.Current.IsDebugMode = true;
-        
-        OnScreenSizeMarkup.Maui.Manager.Current.Mappings.GetMappings.Add(new SizeMappingInfo( ){   });
+
+      
         MainPage = new AppShell();
     }
 }
