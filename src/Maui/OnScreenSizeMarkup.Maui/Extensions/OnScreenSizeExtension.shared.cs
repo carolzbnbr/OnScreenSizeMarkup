@@ -93,7 +93,6 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 
 		BindableProperty bp;
 		PropertyInfo pi = null!;
-
 		
 		if (valueProvider.TargetObject is Setter setter)
 		{
@@ -105,7 +104,7 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 			pi = (valueProvider.TargetProperty as PropertyInfo)!;
 		}
 
-		if (Manager.Current.IsDebugMode)
+		if (Manager.Current.IsLogEnabled)
 		{
 			ConsoleHelpers.WriteLine($"Providing Value using propertyType:\"{(bp?.ReturnType ?? pi?.PropertyType ?? null)}\" and BindableProperty:{(bp ?? null)}", LogLevels.Verbose);
 		}

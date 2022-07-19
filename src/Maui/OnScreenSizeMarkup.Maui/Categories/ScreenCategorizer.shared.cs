@@ -56,7 +56,7 @@ internal  class ScreenCategorizer : IScreenCategorizer
 	{
 
 		var mappingsLocal = mappings.Where(f => f.ComparisonMode == ComparisonModes.SmallerThanOrEqualsTo).OrderBy(f => f.DiagonalSize).ToList();
-		mappingsLocal.Sort(new DiagonalSizeMappingComparer());
+		mappingsLocal.Sort(new DiagonalSizeComparer());
 
 		category = ScreenCategories.NotSet;
 		var diagonalSizeMappings = mappingsLocal.ToArray();

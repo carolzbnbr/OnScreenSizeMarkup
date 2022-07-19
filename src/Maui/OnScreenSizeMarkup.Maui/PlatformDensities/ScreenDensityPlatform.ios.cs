@@ -12,19 +12,16 @@ namespace OnScreenSizeMarkup.Maui.Handlers;
 
 
 #if IOS
-internal static partial  class DensityCalculatorPlatform 
+internal static partial  class ScreenDensityPlatform 
 {
-
-	
 	public static (double xdpi, double ydpi) GetPixelPerInches()
 	{
 		var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
 
 		(double xdpi, double ydpi) dimensions = new (displayInfo.Width / displayInfo.Density, displayInfo.Height / displayInfo.Density);
 
-		AppleHelper.TryGetPpiWithFallBacks(DeviceInfo.Current.Model, DeviceInfo.Current.Name, dimensions, out var ppi);
+		ApplePpiHelper.TryGetPpiWithFallBacks(DeviceInfo.Current.Model, DeviceInfo.Current.Name, dimensions, out var ppi);
 		return (ppi , ppi);
-
 	}
 }
 

@@ -4,27 +4,8 @@ using UIKit;
 namespace OnScreenSizeMarkup.Maui.Handlers;
 
 #if MACCATALYST
-internal static partial class DensityCalculatorPlatform 
+internal static partial class ScreenDensityPlatform 
 {
-	/*public static double GetScreenDiagonalInches()
-	{
-		var dpi = GetPixelPerInches();
-		
-		var displayInfo = Microsoft.Maui.Devices.DeviceDisplay.Current.MainDisplayInfo;
-		
-		var width = displayInfo.Width * displayInfo.Density;
-		var height = displayInfo.Height * displayInfo.Density;
-        
-		var horizontal = width / dpi;
-		var vertical = height / dpi;
-
-		var diagonal = Math.Sqrt(Math.Pow(horizontal, 2) + Math.Pow(vertical, 2));
-
-		return diagonal.RoundUp();
-	}
-	*/
-
-	
 	public static (double xdpi, double ydpi) GetPixelPerInches()
 	{
 		var displayInfo = Microsoft.Maui.Devices.DeviceDisplay.Current.MainDisplayInfo;

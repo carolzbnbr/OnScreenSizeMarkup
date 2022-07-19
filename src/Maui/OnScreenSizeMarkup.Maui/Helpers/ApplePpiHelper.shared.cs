@@ -14,7 +14,7 @@ namespace OnScreenSizeMarkup.Maui.Helpers;
 /// Probably we will need to update this list as new iphones and apple devices are launched having different PPI.  
 /// </remarks>
 [SuppressMessage("Style", "IDE0040:Add accessibility modifiers")]
-internal static class AppleHelper
+internal static class ApplePpiHelper
 {
 
 	/// <summary>

@@ -16,7 +16,7 @@ namespace OnScreenSizeMarkup.Maui.Handlers;
 
 #if ANDROID
 [SuppressMessage("Style", "IDE0040:Adicionar modificadores de acessibilidade")]
-internal static partial class DensityCalculatorPlatform 
+internal static partial class ScreenDensityPlatform 
 {
 	public static (double xdpi, double ydpi) GetPixelPerInches()
 	{
@@ -24,7 +24,5 @@ internal static partial class DensityCalculatorPlatform
 		
 		return (displayMetrics?.Xdpi ?? 0, displayMetrics?.Ydpi ?? 0);
 	}
-	
-
 }
 #endif

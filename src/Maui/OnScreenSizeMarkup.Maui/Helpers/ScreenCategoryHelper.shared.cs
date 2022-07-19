@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using OnScreenSizeMarkup.Maui.Categories;
-using OnScreenSizeMarkup.Maui.Exceptions;
 using OnScreenSizeMarkup.Maui.Extensions;
 using OnScreenSizeMarkup.Maui.Handlers;
 
@@ -40,7 +39,7 @@ internal static class ScreenCategoryHelper
 
     private static ScreenCategories GetCategoryInternal()
     {
-        var diagonalSize = DiagonalSizeHelper.GetScreenDiagonalInches();
+        var diagonalSize = OnScreenSizeHelpers.GetScreenDiagonalInches();
             
         var category = Manager.Current.Categorizer.GetCategoryByDiagonalSize(Manager.Current.Mappings, diagonalSize);
 
@@ -48,7 +47,7 @@ internal static class ScreenCategoryHelper
             
         if (category == ScreenCategories.NotSet)
         {
-            throw new CategoryNotSetException($"Fail to categorize your current screen. Screen-Diagonal-Size:{diagonalSize}.");
+            throw new InvalidOperationException($"Fail to categorize your current screen. Screen-Diagonal-Size:{diagonalSize}.");
         }
             
         return category;

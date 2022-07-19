@@ -8,9 +8,9 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        OnScreenSizeMarkup.Maui.Manager.Current.IsDebugMode = true;
+        OnScreenSizeMarkup.Maui.Manager.Current.IsLogEnabled = true;
 
-      
+
         MainPage = new AppShell();
     }
 }

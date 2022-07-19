@@ -10,7 +10,7 @@ public class AppleHelperTests
     [InlineData("iPhone10,4","iPhone 8", 375, 667, 326)]
     public void TryGetPpiWithFallBacks_Should_ReturnTrue_And_CorrectPPI_When_CorrectValuesAreProvided(string deviceModel, string deviceName, double width, double height, int expectedPPI)
     {
-        var actualReturn = AppleHelper.TryGetPpiWithFallBacks(deviceModel, deviceName, (width, height), out var actualPPI);
+        var actualReturn = ApplePpiHelper.TryGetPpiWithFallBacks(deviceModel, deviceName, (width, height), out var actualPPI);
 
         Assert.Equal(expectedPPI, actualPPI);
         Assert.Equal(true, actualReturn);
@@ -21,7 +21,7 @@ public class AppleHelperTests
     [InlineData("HARDWARE_ID","Phone name", 215, 47)]
     public void TryGetPpiWithFallBacks_Should_ReturnFalse_When_InvalidValuesAreProvided(string deviceModel, string deviceName, double width, double height)
     {
-        var actualReturn = AppleHelper.TryGetPpiWithFallBacks(deviceModel, deviceName, (width, height), out var actualPPI);
+        var actualReturn = ApplePpiHelper.TryGetPpiWithFallBacks(deviceModel, deviceName, (width, height), out var actualPPI);
 
         Assert.Equal(false, actualReturn);
     }
@@ -31,7 +31,7 @@ public class AppleHelperTests
     [InlineData("iPhone12,3", 458)]
     public void TryGetPpiByDeviceModel_Should_ReturnTrue_And_CorrectPPI_When_DeviceModelIsKnown(string appleDeviceModel, int expectedPPI)
     {
-        var actualReturn = AppleHelper.TryGetPpiByDeviceModel(appleDeviceModel, out var actualPPI);
+        var actualReturn = ApplePpiHelper.TryGetPpiByDeviceModel(appleDeviceModel, out var actualPPI);
 
         Assert.Equal(expectedPPI, actualPPI);
         Assert.Equal(true, actualReturn);
@@ -46,7 +46,7 @@ public class AppleHelperTests
     {
         bool expected = false;
         
-        var actual = AppleHelper.TryGetPpiByDeviceModel(appleDeviceModel, out var actualPPI);
+        var actual = ApplePpiHelper.TryGetPpiByDeviceModel(appleDeviceModel, out var actualPPI);
 
         Assert.Equal(expected, actual);
     }
@@ -59,7 +59,7 @@ public class AppleHelperTests
     [InlineData("iPhone 6 Plus", 401)]
     public void TryGetPpiByDeviceModel_Should_ReturnTrue_And_CorrectPPI_When_DeviceNameIsKnown(string appleDeviceName, int expectedPPI)
     {
-        var actualReturn = AppleHelper.TryGetPpiByDeviceName(appleDeviceName, out var actualPPI);
+        var actualReturn = ApplePpiHelper.TryGetPpiByDeviceName(appleDeviceName, out var actualPPI);
 
         Assert.Equal(expectedPPI, actualPPI);
         Assert.Equal(true, actualReturn);
@@ -73,7 +73,7 @@ public class AppleHelperTests
     {
         bool expected = false;
         
-        var actual = AppleHelper.TryGetPpiByDeviceModel(appleDeviceModel, out var actualPPI);
+        var actual = ApplePpiHelper.TryGetPpiByDeviceModel(appleDeviceModel, out var actualPPI);
     
         Assert.Equal(expected, actual);
     }
@@ -85,7 +85,7 @@ public class AppleHelperTests
     [InlineData(1024,1366, 264)]
     public void TryGetPpiByScreenDimensions_Should_ReturnTrue_And_CorrectPPI_When_DeviceSizeIsFound(double width, double height, int expectedPPI)
     {
-        var actualReturn = AppleHelper.TryGetPpiByScreenDimensions((width, height), out var actualPPI);
+        var actualReturn = ApplePpiHelper.TryGetPpiByScreenDimensions((width, height), out var actualPPI);
 
         Assert.Equal(expectedPPI, actualPPI);
         Assert.Equal(true, actualReturn);
@@ -97,7 +97,7 @@ public class AppleHelperTests
     [InlineData(0, 0)]
     public void TryGetPpiByScreenDimensions_Should_ReturnFalse_When_DeviceSizeIsNotFound(double width, double height)
     {
-        var actualReturn = AppleHelper.TryGetPpiByScreenDimensions((width, height), out var actualPPI);
+        var actualReturn = ApplePpiHelper.TryGetPpiByScreenDimensions((width, height), out var actualPPI);
 
         Assert.Equal(false, actualReturn);
     }

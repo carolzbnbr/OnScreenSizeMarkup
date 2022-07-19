@@ -7,13 +7,13 @@ namespace OnScreenSizeMarkup.Maui.Helpers;
 internal static class ConsoleHelpers
 #pragma warning restore IDE0040 // Add accessibility modifiers
 {
-	public static void WriteLine( this string message, LogLevels level = LogLevels.Info,  [CallerFilePath]string? callerFilePath = null, [CallerMemberName] string memberName = null!)
+	public static void WriteLine( string message, LogLevels level = LogLevels.Info,  [CallerFilePath]string? callerFilePath = null, [CallerMemberName] string memberName = null!)
 	{
-		if (!Manager.Current.IsDebugMode)
+		if (!Manager.Current.IsLogEnabled)
 		{
 			return;
 		}
-		if (Manager.Current.DebugLevel != level)
+		if (Manager.Current.LogLevel != level)
 		{
 			return;
 		}

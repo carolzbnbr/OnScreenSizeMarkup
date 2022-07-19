@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Reflection;
 using OnScreenSizeMarkup.Maui.Categories;
-using OnScreenSizeMarkup.Maui.Exceptions;
 using OnScreenSizeMarkup.Maui.Helpers;
 
 namespace  OnScreenSizeMarkup.Maui.Extensions;
@@ -24,7 +23,7 @@ internal static class ValueConversionExtensions
    /// <returns></returns>
     public static object ConvertTo(this object value, Type toType, BindableProperty bindableProperty)
     {
-	    if (Manager.Current.IsDebugMode)
+	    if (Manager.Current.IsLogEnabled)
 	    {
 			ConsoleHelpers.WriteLine($"Attempting To Convert \"{(value == null ? "null" : value)}\" of type:{(value == null ? "null" : value.GetType())} to Type:{(toType == null ? "null" : toType)} on bindable Property of type:{(bindableProperty == null ? "null" : bindableProperty.ReturnType)}", LogLevels.Verbose);
 	    }
