@@ -40,9 +40,9 @@
     <Title>OnScreenSizeMarkup.Maui</Title>
     <Description>OnScreenSizeMarkup: A XAML markup extension for controlling UI Views according to the device's screen size category (Medium, Large, etc)</Description>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <AssemblyFileVersion>1.0.0.1</AssemblyFileVersion>
-    <Version>1.0.1</Version>
+    <AssemblyVersion>2.0.0.1</AssemblyVersion>
+    <AssemblyFileVersion>2.0.0.1</AssemblyFileVersion>
+    <Version>2.0.1</Version>
     <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>screen, size, dynamic, adapt, adaptative, markup, onscreensize, onsize, onwindow, maui, height, width, heightrequest, widthrequest</PackageTags>
