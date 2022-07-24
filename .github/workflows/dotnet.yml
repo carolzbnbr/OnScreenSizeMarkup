@@ -40,6 +40,8 @@ jobs:
       
     - name: Build
       run: dotnet build --no-restore
+      working-directory: src/Maui/OnScreenSizeMarkup.Maui
       
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      working-directory: src/Maui/OnScreenSizeMarkup.Maui.Tests
