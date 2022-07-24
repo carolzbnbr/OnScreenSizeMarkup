@@ -35,9 +35,9 @@ jobs:
       working-directory: src/Maui/OnScreenSizeMarkup.Maui/
       
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build OnScreenSizeMarkup.Maui.csproj --no-restore
       working-directory: src/Maui/OnScreenSizeMarkup.Maui/
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test OnScreenSizeMarkup.Tests.csproj --no-build --verbosity normal
       working-directory: src/Maui/OnScreenSizeMarkup.Maui.Tests
