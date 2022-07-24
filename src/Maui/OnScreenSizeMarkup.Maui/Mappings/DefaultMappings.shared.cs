@@ -1,22 +1,23 @@
 using OnScreenSizeMarkup.Maui.Categories;
+using OnScreenSizeMarkup.Maui.Extensions;
 
 namespace OnScreenSizeMarkup.Maui.Mappings;
 
 /// <summary>
-/// Predefined sets of mappings.
+/// Predefined lists of mappings for using on <see cref="OnScreenSizeExtension"/>.
 /// </summary>
 public static class DefaultMappings
 {
 	/// <summary>
-	/// Mappings for dealing with mobile devices screen sizes.
+	/// Mappings for categorizing mobile devices screen sizes.
 	/// </summary>
-	public static ScreenMappingList MobileMappings { get;   } = new ScreenMappingList
+	public static List<SizeMappingInfo> MobileMappings { get;   } = new List<SizeMappingInfo>
 	{
-		new SizeMappingInfo(3.8, ScreenCategories.ExtraSmall, EvaluationModes.SmallerThanOrEqualsTo),
-		new SizeMappingInfo(4.9, ScreenCategories.Small, EvaluationModes.SmallerThanOrEqualsTo),
-		new SizeMappingInfo(6.2, ScreenCategories.Medium, EvaluationModes.SmallerThanOrEqualsTo),
-		new SizeMappingInfo(7.9, ScreenCategories.Large, EvaluationModes.SmallerThanOrEqualsTo),
-		new SizeMappingInfo(double.MaxValue, ScreenCategories.ExtraLarge, EvaluationModes.SmallerThanOrEqualsTo),
+		new SizeMappingInfo(3.8, ScreenCategories.ExtraSmall, ComparisonModes.SmallerThanOrEqualsTo),
+		new SizeMappingInfo(4.9, ScreenCategories.Small, ComparisonModes.SmallerThanOrEqualsTo),
+		new SizeMappingInfo(6.2, ScreenCategories.Medium, ComparisonModes.SmallerThanOrEqualsTo),
+		new SizeMappingInfo(7.9, ScreenCategories.Large, ComparisonModes.SmallerThanOrEqualsTo),
+		new SizeMappingInfo(double.MaxValue, ScreenCategories.ExtraLarge, ComparisonModes.SmallerThanOrEqualsTo),
 	};
 }
 

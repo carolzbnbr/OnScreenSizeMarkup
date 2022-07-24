@@ -5,9 +5,6 @@ using OnScreenSizeMarkup.Maui.Mappings;
 #pragma warning disable CS8618
 #pragma warning disable CS1591
 
-[assembly: InternalsVisibleTo("OnScreenSizeMarkup.Maui")]
-[assembly: InternalsVisibleTo("Samples")]
-[assembly: InternalsVisibleTo("OnScreenSizeMarkup.Maui.Tests")]
 
 namespace  OnScreenSizeMarkup.Maui;
 
@@ -15,11 +12,17 @@ namespace  OnScreenSizeMarkup.Maui;
 /// Central point for defining specific settings for the Markup extension.
 /// </summary>
 [SuppressMessage("Style", "IDE0040:Adicionar modificadores de acessibilidade")]
+[SuppressMessage("Style", "IDE1006:Estilos de Nomenclatura")]
 public class Manager
 {
     private Manager()
     {
     }
+
+    /// <summary>
+    /// Gets the singleton instance of this class.
+    /// </summary>
+    private static readonly Lazy<Manager> _Current = new Lazy<Manager>(() => new Manager());
 
     /// <summary>
     /// List of mappings that defines which screen diagonal-sizes (in inches) corresponds to a specific <see cref="ScreenCategories"/> and also
@@ -28,20 +31,20 @@ public class Manager
     /// <remarks>
     /// You can override this values by setting your own mappings.
     /// </remarks>
-    public ScreenMappingList Mappings { get; set; } = DefaultMappings.MobileMappings;
+    public List<SizeMappingInfo> Mappings { get; set; } = DefaultMappings.MobileMappings;
     
     /// <summary>
     /// Display console messages for debugging purposes.
     /// </summary>
-    public bool IsDebugMode { get; set; }
+    public bool IsLogEnabled { get; set; }
 
     /// <summary>
-    /// When <see cref="IsDebugMode"/> is true, defines how detailed the log messages should be logged to.
+    /// When <see cref="IsLogEnabled"/> is true, defines how detailed the log messages should be logged to.
     /// </summary>
-    public DebugLevels DebugLevel { get; set; } = DebugLevels.Info;
+    public LogLevels LogLevel { get; set; } = LogLevels.Info;
 
     /// <summary>
-    /// Returns the current <see cref="ScreenCategories"/> set for the device.
+    /// Returns the _Current <see cref="ScreenCategories"/> set for the device.
     /// </summary>
     public ScreenCategories? CurrentCategory { get; internal set; } = null;
 
@@ -50,6 +53,8 @@ public class Manager
     /// <summary>
     /// Gets the singleton instance of this class.
     /// </summary>
-    public static Manager Current { get; } = new Manager();
+    public static Manager Current => _Current.Value;
+    
+
 }
 

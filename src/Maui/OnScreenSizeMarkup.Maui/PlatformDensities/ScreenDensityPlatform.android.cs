@@ -12,11 +12,11 @@ using Android.Content.Res;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
-namespace OnScreenSizeMarkup.Maui.Handlers;
+namespace OnScreenSizeMarkup.Maui.PlatformDensities;
 
 #if ANDROID
 [SuppressMessage("Style", "IDE0040:Adicionar modificadores de acessibilidade")]
-internal static partial class DensityCalculatorPlatform 
+internal static partial class ScreenDensityPlatform 
 {
 	public static (double xdpi, double ydpi) GetPixelPerInches()
 	{
@@ -24,7 +24,5 @@ internal static partial class DensityCalculatorPlatform
 		
 		return (displayMetrics?.Xdpi ?? 0, displayMetrics?.Ydpi ?? 0);
 	}
-	
-
 }
 #endif

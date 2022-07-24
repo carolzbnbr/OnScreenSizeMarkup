@@ -8,23 +8,20 @@ using System.Runtime.InteropServices;
 using Foundation;
 using ObjCRuntime;
 #pragma warning disable CS8603
-namespace OnScreenSizeMarkup.Maui.Handlers;
+namespace OnScreenSizeMarkup.Maui.PlatformDensities;
 
 
 #if IOS
-internal static partial  class DensityCalculatorPlatform 
+internal static partial  class ScreenDensityPlatform 
 {
-
-	
 	public static (double xdpi, double ydpi) GetPixelPerInches()
 	{
 		var displayInfo = DeviceDisplay.Current.MainDisplayInfo;
 
 		(double xdpi, double ydpi) dimensions = new (displayInfo.Width / displayInfo.Density, displayInfo.Height / displayInfo.Density);
 
-		ApplePixelPerInchesHelper.TryGetPpiWithFallBacks(DeviceInfo.Current.Model, DeviceInfo.Current.Name, dimensions, out var ppi);
+		ApplePpiHelper.TryGetPpiWithFallBacks(DeviceInfo.Current.Model, DeviceInfo.Current.Name, dimensions, out var ppi);
 		return (ppi , ppi);
-
 	}
 }
 
