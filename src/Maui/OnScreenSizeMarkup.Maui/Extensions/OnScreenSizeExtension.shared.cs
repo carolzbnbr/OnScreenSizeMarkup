@@ -31,7 +31,7 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 	};
 
 	/// <summary>
-	/// 
+	/// Xaml internal usage
 	/// </summary>
 	public OnScreenSizeExtension()
 	{
@@ -89,7 +89,9 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 	}
 
 
-	
+	/// <summary>
+	/// Xaml internal usage
+	/// </summary>
 	public object ProvideValue(IServiceProvider serviceProvider)
 	{
 		var valueProvider = serviceProvider?.GetService<IProvideValueTarget>() ?? throw new ArgumentException($"Service provided for OnScreenSize is null");
