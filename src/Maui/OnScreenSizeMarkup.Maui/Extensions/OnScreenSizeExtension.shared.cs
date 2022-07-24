@@ -30,7 +30,9 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 		{ ScreenCategories.ExtraLarge,  defaultNull},
 	};
 
-
+	/// <summary>
+	/// 
+	/// </summary>
 	public OnScreenSizeExtension()
 	{
 		Default = defaultNull;
