@@ -6,6 +6,9 @@ using OnScreenSizeMarkup.Maui.PlatformDensities;
 
 namespace OnScreenSizeMarkup.Maui.Helpers;
 
+/// <summary>
+/// Helper methods for handling screen-size related aspects.
+/// </summary>
 public static class OnScreenSizeHelpers
 {
 	
@@ -35,6 +38,18 @@ public static class OnScreenSizeHelpers
 		return diagonal.RoundUp();
 	}
 
+	/// <summary>
+	/// OnScreenSize's code behind support.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	/// <param name="defaultSize"></param>
+	/// <param name="extraSmall"></param>
+	/// <param name="small"></param>
+	/// <param name="medium"></param>
+	/// <param name="large"></param>
+	/// <param name="extraLarge"></param>
+	/// <returns></returns>
+	/// <exception cref="ArgumentException"></exception>
 	public static T OnScreenSize<T>(T defaultSize= default(T)!,
 		T extraSmall = default(T)!,
 		T small = default(T)!,

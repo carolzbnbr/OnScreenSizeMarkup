@@ -5,6 +5,13 @@ namespace OnScreenSizeMarkup.Maui.Categories;
 /// </summary>
 public enum LogLevels
 {
+	/// <summary>
+	/// Most detailed log messages
+	/// </summary>
 	Verbose = 2,
+
+	/// <summary>
+	/// Informational log messages
+	/// </summary>
 	Info = 0
 }

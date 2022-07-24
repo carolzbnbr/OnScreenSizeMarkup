@@ -7,11 +7,6 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.App;
-using Android.Content;
-using Android.Content.Res;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
 namespace OnScreenSizeMarkup.Maui.PlatformDensities;
 
 #if ANDROID
