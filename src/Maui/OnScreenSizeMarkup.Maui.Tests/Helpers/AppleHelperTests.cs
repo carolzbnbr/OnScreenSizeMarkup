@@ -13,8 +13,8 @@ public class AppleHelperTests
         var actualReturn = ApplePpiHelper.TryGetPpiWithFallBacks(deviceModel, deviceName, (width, height), out var actualPPI);
 
         Assert.Equal(expectedPPI, actualPPI);
-        Assert.Equal(true, actualReturn);
-    }
+        Assert.True(actualReturn);
+    } 
     
     [Theory]
     [InlineData("XXXXX", "Samsung Galaxy 7", 190, 544)]
@@ -23,7 +23,7 @@ public class AppleHelperTests
     {
         var actualReturn = ApplePpiHelper.TryGetPpiWithFallBacks(deviceModel, deviceName, (width, height), out var actualPPI);
 
-        Assert.Equal(false, actualReturn);
+        Assert.False(actualReturn);
     }
     
     [Theory]
@@ -34,7 +34,7 @@ public class AppleHelperTests
         var actualReturn = ApplePpiHelper.TryGetPpiByDeviceModel(appleDeviceModel, out var actualPPI);
 
         Assert.Equal(expectedPPI, actualPPI);
-        Assert.Equal(true, actualReturn);
+        Assert.True(actualReturn);
     }
     
     [Theory]
@@ -62,7 +62,7 @@ public class AppleHelperTests
         var actualReturn = ApplePpiHelper.TryGetPpiByDeviceName(appleDeviceName, out var actualPPI);
 
         Assert.Equal(expectedPPI, actualPPI);
-        Assert.Equal(true, actualReturn);
+        Assert.True(actualReturn);
     }
     
     [Theory]
@@ -88,7 +88,7 @@ public class AppleHelperTests
         var actualReturn = ApplePpiHelper.TryGetPpiByScreenDimensions((width, height), out var actualPPI);
 
         Assert.Equal(expectedPPI, actualPPI);
-        Assert.Equal(true, actualReturn);
+        Assert.True(actualReturn);
     }
     
     [Theory]
@@ -99,6 +99,6 @@ public class AppleHelperTests
     {
         var actualReturn = ApplePpiHelper.TryGetPpiByScreenDimensions((width, height), out var actualPPI);
 
-        Assert.Equal(false, actualReturn);
+        Assert.False(actualReturn);
     }
 }
