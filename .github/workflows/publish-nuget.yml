@@ -15,30 +15,6 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
   
 jobs:
-  build:
-
-    runs-on: macos-latest
-
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
-        
-    - name: Install MAUI Workload
-      run: dotnet workload install maui --ignore-failed-sources
-      
-    - name: Restore dependencies
-      run: dotnet restore
-      working-directory: src/Maui/OnScreenSizeMarkup.Maui
-      
-    - name: Build
-      run: dotnet build --no-restore
-      working-directory: src/Maui/OnScreenSizeMarkup.Maui
-      
-jobs:
   publish:
     name: build, pack & publish
     #ubuntu-latest
@@ -62,44 +38,43 @@ jobs:
       run: dotnet build --no-restore
       working-directory: src/Maui/OnScreenSizeMarkup.Maui
       
-      # Publish
-      - name: publish on version change
-        id: publish_nuget
-        uses: brandedoutcast/publish-nuget@v2
-        with:
-          # Filepath of the project to be packaged, relative to root of repository
-          PROJECT_FILE_PATH: src/Maui/OnScreenSizeMarkup.Maui/OnScreenSizeMarkup.Maui.csproj
-          
-          # Configuration to build and package
-          BUILD_CONFIGURATION: Release
-          
-          # Platform target to compile (default is empty/AnyCPU)
-          # BUILD_PLATFORM: x64          
-          
-          # NuGet package id, used for version detection & defaults to project name
-          PACKAGE_NAME: OnScreenSizeMarkup.Maui
-          
-          # Filepath with version info, relative to root of repository & defaults to PROJECT_FILE_PATH
-          VERSION_FILE_PATH: src/Maui/OnScreenSizeMarkup.Maui/OnScreenSizeMarkup.Maui.csproj
+    # Publish
+    - name: publish on version change
+      id: publish_nuget
+      uses: brandedoutcast/publish-nuget@v2
+      with:
+        # Filepath of the project to be packaged, relative to root of repository
+        PROJECT_FILE_PATH: src/Maui/OnScreenSizeMarkup.Maui/OnScreenSizeMarkup.Maui.csproj
 
-          # Regex pattern to extract version info in a capturing group
-          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
-          
-          # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
-          # VERSION_STATIC: 1.0.0
+        # Configuration to build and package
+        BUILD_CONFIGURATION: Release
 
-          # Flag to toggle git tagging, enabled by default
-          # TAG_COMMIT: true
+        # Platform target to compile (default is empty/AnyCPU)
+        # BUILD_PLATFORM: x64          
 
-          # Format of the git tag, [*] gets replaced with actual version
-          # TAG_FORMAT: v*
+        # NuGet package id, used for version detection & defaults to project name
+        PACKAGE_NAME: OnScreenSizeMarkup.Maui
 
-          # API key to authenticate with NuGet server
-          NUGET_KEY: ${{secrets.NUGETAPIKEY}}
+        # Filepath with version info, relative to root of repository & defaults to PROJECT_FILE_PATH
+        VERSION_FILE_PATH: src/Maui/OnScreenSizeMarkup.Maui/OnScreenSizeMarkup.Maui.csproj
 
-          # NuGet server uri hosting the packages, defaults to https://api.nuget.org
-          # NUGET_SOURCE: https://api.nuget.org
+        # Regex pattern to extract version info in a capturing group
+        VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
 
-          # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
-          # INCLUDE_SYMBOLS: false      
-  
+        # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
+        # VERSION_STATIC: 1.0.0
+
+        # Flag to toggle git tagging, enabled by default
+        # TAG_COMMIT: true
+
+        # Format of the git tag, [*] gets replaced with actual version
+        # TAG_FORMAT: v*
+
+        # API key to authenticate with NuGet server
+        NUGET_KEY: ${{secrets.NUGETAPIKEY}}
+
+        # NuGet server uri hosting the packages, defaults to https://api.nuget.org
+        # NUGET_SOURCE: https://api.nuget.org
+
+        # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
+        # INCLUDE_SYMBOLS: false
