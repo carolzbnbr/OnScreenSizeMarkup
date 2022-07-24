@@ -12,7 +12,7 @@ using Android.Content.Res;
 using Android.Runtime;
 using Android.Util;
 using Android.Views;
-namespace OnScreenSizeMarkup.Maui.Handlers;
+namespace OnScreenSizeMarkup.Maui.PlatformDensities;
 
 #if ANDROID
 [SuppressMessage("Style", "IDE0040:Adicionar modificadores de acessibilidade")]

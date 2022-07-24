@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using OnScreenSizeMarkup.Maui.Categories;
 using OnScreenSizeMarkup.Maui.Extensions;
-using OnScreenSizeMarkup.Maui.Handlers;
 using OnScreenSizeMarkup.Maui.Helpers;
+using OnScreenSizeMarkup.Maui.PlatformDensities;
 
 namespace OnScreenSizeMarkup.Maui.Helpers;
 
@@ -30,7 +30,7 @@ public static class OnScreenSizeHelpers
 
 		var diagonalReturnValue = diagonal.RoundUp();
 
-		ConsoleHelpers.WriteLine($"{nameof(OnScreenSizeExtension)} - DiagonalSize: {diagonalReturnValue},  PPI/DPI: x:\"{xDpi}\", y:\"{yDpi}\"", LogLevels.Info);
+		LogHelpers.WriteLine($"{nameof(OnScreenSizeExtension)} - DiagonalSize: {diagonalReturnValue},  PPI/DPI: x:\"{xDpi}\", y:\"{yDpi}\"", LogLevels.Info);
 	        
 		return diagonal.RoundUp();
 	}

@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using Foundation;
 using ObjCRuntime;
 #pragma warning disable CS8603
-namespace OnScreenSizeMarkup.Maui.Handlers;
+namespace OnScreenSizeMarkup.Maui.PlatformDensities;
 
 
 #if IOS

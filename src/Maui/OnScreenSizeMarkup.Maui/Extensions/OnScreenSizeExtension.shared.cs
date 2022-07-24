@@ -13,12 +13,13 @@ using OnScreenSizeMarkup.Maui.Helpers;
 namespace OnScreenSizeMarkup.Maui;
 
 /// <summary>
-/// 
+/// Markup extension that allows specify values to be applied to a physical screen size according to the category
+/// the screen it fits in, such as ExtraSmall, Small, Medium, Large, ExtraLarge, or Default.
 /// </summary>
 [SuppressMessage("Style", "IDE0040:Adicionar modificadores de acessibilidade")]
+[SuppressMessage("ReSharper", "UseStringInterpolation")]
 public class OnScreenSizeExtension : IMarkupExtension<object>
 {
-
 	static readonly object defaultNull = new ();
 
 	private Dictionary<ScreenCategories, object> categoryPropertyValues = new () {
@@ -106,7 +107,7 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 
 		if (Manager.Current.IsLogEnabled)
 		{
-			ConsoleHelpers.WriteLine($"Providing Value using propertyType:\"{(bp?.ReturnType ?? pi?.PropertyType ?? null)}\" and BindableProperty:{(bp ?? null)}", LogLevels.Verbose);
+			LogHelpers.WriteLine($"Providing Value using propertyType:\"{(bp?.ReturnType ?? pi?.PropertyType ?? null)}\" and BindableProperty:{(bp ?? null)}", LogLevels.Verbose);
 		}
 		
 		var propertyType = bp?.ReturnType ?? pi?.PropertyType ?? throw new InvalidOperationException("Não foi posivel determinar a propriedade para fornecer o valor.");
@@ -138,12 +139,9 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 
 		if (Default == defaultNull)
 		{
-			throw new XamlParseException($"{nameof(OnScreenSizeExtension)} markup requires a {nameof(Default)} set.");
+			throw new XamlParseException(string.Format("{0} requires property {0}.{1} defined to use as fallback as property {0}.{2} was not set.",nameof(OnScreenSizeExtension),nameof(Default), screenCategory.ToString()));
 		}
-		else
-		{
-			return Default;
-		}
+		return Default;
 	}
 
 

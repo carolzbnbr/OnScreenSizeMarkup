@@ -1,7 +1,7 @@
 using OnScreenSizeMarkup.Maui.Extensions;
 using UIKit;
 
-namespace OnScreenSizeMarkup.Maui.Handlers;
+namespace OnScreenSizeMarkup.Maui.PlatformDensities;
 
 #if MACCATALYST
 internal static partial class ScreenDensityPlatform 

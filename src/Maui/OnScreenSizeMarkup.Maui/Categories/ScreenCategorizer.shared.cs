@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using OnScreenSizeMarkup.Maui.Comparers;
 using OnScreenSizeMarkup.Maui.Extensions;
 using OnScreenSizeMarkup.Maui.Mappings;
 
@@ -38,7 +37,7 @@ internal  class ScreenCategorizer : IScreenCategorizer
 	{
 		category = ScreenCategories.NotSet;
 		
-		var diagonalSizeMappingsEquals = mappings.Where((f => f.ComparisonMode == ComparisonModes.SpecificSize)).ToArray();
+		var diagonalSizeMappingsEquals = mappings.Where((f => f.ComparisonMode == ComparisonModes.SpecificSize)).OrderBy(f => f.DiagonalSize).ToArray();
 		for (var index = 0; index < diagonalSizeMappingsEquals.Length; index++)
 		{
 			var sizeInfo = diagonalSizeMappingsEquals[index];
@@ -56,7 +55,7 @@ internal  class ScreenCategorizer : IScreenCategorizer
 	{
 
 		var mappingsLocal = mappings.Where(f => f.ComparisonMode == ComparisonModes.SmallerThanOrEqualsTo).OrderBy(f => f.DiagonalSize).ToList();
-		mappingsLocal.Sort(new DiagonalSizeComparer());
+	//	mappingsLocal.Sort(new DiagonalSizeComparer());
 
 		category = ScreenCategories.NotSet;
 		var diagonalSizeMappings = mappingsLocal.ToArray();

@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using OnScreenSizeMarkup.Maui.Categories;
 using OnScreenSizeMarkup.Maui.Extensions;
-using OnScreenSizeMarkup.Maui.Handlers;
 
 namespace OnScreenSizeMarkup.Maui.Helpers;
 
 [SuppressMessage("Style", "IDE0040:Add accessibility modifiers")]
+[SuppressMessage("ReSharper", "UseStringInterpolation")]
 internal static class ScreenCategoryHelper
 {
 
@@ -43,11 +43,11 @@ internal static class ScreenCategoryHelper
             
         var category = Manager.Current.Categorizer.GetCategoryByDiagonalSize(Manager.Current.Mappings, diagonalSize);
 
-		ConsoleHelpers.WriteLine($"{nameof(OnScreenSizeExtension)} - Current screen category is \"{category}\", and screen diagonal size is \"{diagonalSize}\"", LogLevels.Info);
+		LogHelpers.WriteLine(string.Format("{0} - Current screen category is \"{1}\", and screen diagonal size is \"{2}\"",nameof(OnScreenSizeExtension),category, diagonalSize), LogLevels.Info);
             
         if (category == ScreenCategories.NotSet)
         {
-            throw new InvalidOperationException($"Fail to categorize your current screen. Screen-Diagonal-Size:{diagonalSize}.");
+            throw new InvalidOperationException(string.Format("Fail to categorize your current screen. Screen-Diagonal-Size:{0}.", diagonalSize));
         }
             
         return category;
