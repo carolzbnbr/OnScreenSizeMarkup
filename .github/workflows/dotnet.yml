@@ -3,9 +3,21 @@ name: .NET
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.gitignore'
+      - '**/*.gitattributes'    
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+permissions:
+  contents: read
 
+env:
+  DOTNET_NOLOGO: true                     # Disable the .NET logo
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
+  DOTNET_CLI_TELEMETRY_OPTOUT: true       # Disable sending .NET CLI telemetry
+  
 jobs:
   build:
 
@@ -17,10 +29,15 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+    - name: Install MAUI Workload
+      run: dotnet workload install maui --ignore-failed-sources
+      
     - name: Restore dependencies
       run: dotnet restore
       working-directory: src/Maui/OnScreenSizeMarkup.Maui
+      
     - name: Build
       run: dotnet build --no-restore
+      
     - name: Test
       run: dotnet test --no-build --verbosity normal
