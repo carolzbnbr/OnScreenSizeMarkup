@@ -20,7 +20,7 @@ internal static partial  class ScreenDensityPlatform
 
 		(double xdpi, double ydpi) dimensions = new (displayInfo.Width / displayInfo.Density, displayInfo.Height / displayInfo.Density);
 
-		ApplePpiHelper.TryGetPpiWithFallBacks(DeviceInfo.Current.Model, DeviceInfo.Current.Name, dimensions, out var ppi);
+		AppleScreenDensityHelper.TryGetPpiWithFallBacks(DeviceInfo.Current.Model, DeviceInfo.Current.Name, dimensions, out var ppi);
 		return (ppi , ppi);
 	}
 }

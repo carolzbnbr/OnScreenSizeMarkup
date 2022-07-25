@@ -7,7 +7,7 @@ using OnScreenSizeMarkup.Maui.PlatformDensities;
 namespace OnScreenSizeMarkup.Maui.Helpers;
 
 /// <summary>
-/// Helper methods for handling screen-size related aspects.
+/// Helper methods for supporting OnScreenSize on code-behind.
 /// </summary>
 public static class OnScreenSizeHelpers
 {
