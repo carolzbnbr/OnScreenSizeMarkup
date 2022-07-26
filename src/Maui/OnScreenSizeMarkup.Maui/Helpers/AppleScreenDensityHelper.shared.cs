@@ -38,16 +38,16 @@ internal static class AppleScreenDensityHelper
 		}
 
 		ppi = match.PixelPerInches;
-		return true ;
+		return true;
 	}
 
 	private static bool IsUnknownIosSimulator(string appleDeviceModel)
 	{
-		if ( 
-		    appleDeviceModel.Equals("x86_64", StringComparison.OrdinalIgnoreCase) ||  
-		    appleDeviceModel.Equals("arm64", StringComparison.OrdinalIgnoreCase) ||  
-		    appleDeviceModel.Equals("i386", StringComparison.OrdinalIgnoreCase)
-		    )
+		if (
+			appleDeviceModel.Equals("x86_64", StringComparison.OrdinalIgnoreCase) ||
+			appleDeviceModel.Equals("arm64", StringComparison.OrdinalIgnoreCase) ||
+			appleDeviceModel.Equals("i386", StringComparison.OrdinalIgnoreCase)
+			)
 		{
 			return true;
 		}
@@ -69,12 +69,12 @@ internal static class AppleScreenDensityHelper
 			return false;
 		}
 
-		return true ;
+		return true;
 	}
-	
-	
 
-	
+
+
+
 	/// <summary>
 	/// Attempts to return pixel-per-inches for the provided screen size.
 	/// </summary>
@@ -83,7 +83,7 @@ internal static class AppleScreenDensityHelper
 	/// <returns></returns>
 	internal static bool TryGetPpiByScreenDimensions((double Width, double Height) screenDimensions, out double ppi)
 	{
-		if (!apppleDevicesDimensionsToPpi.TryGetValue(screenDimensions, out  ppi))
+		if (!apppleDevicesDimensionsToPpi.TryGetValue(screenDimensions, out ppi))
 		{
 			return false;
 		}
@@ -103,7 +103,7 @@ internal static class AppleScreenDensityHelper
 	public static bool TryGetPpiWithFallBacks(string appleDeviceModel, string appleDeviceName, (double Width, double Height) screenDimensions,
 		out double ppi)
 	{
-		
+
 		//Attempts to get by the device model, such as "iPhone14,2", "iPhone10,4", and etc.
 		if (TryGetPpiByDeviceModel(appleDeviceModel, out ppi))
 		{
@@ -134,137 +134,107 @@ internal static class AppleScreenDensityHelper
 
 		return false;
 	}
-	
+
 	#region hardcoded PPI related values
-	
-	
+
+
 	private static Dictionary<string, double> deviceNamesToPpi = new(StringComparer.InvariantCultureIgnoreCase)
 	{
-		{"iPhone 3GS",	163	},	//	iPhone 3GS	
-		{"iPhone 3G",	163	},	//	iPhone 3G	
-		{"iPhone 1st gen",	163	},	//	iPhone 1st gen	
-		{"iPod touch 3rd gen",	163	},	//	iPod touch 3rd gen	
-		{"iPod touch 2nd gen",	163	},	//	iPod touch 2nd gen	
-		{"iPod touch 1st gen",	163	},	//	iPod touch 1st gen	
-		{"iPhone SE 1st gen",	326	},	//	iPhone SE 1st gen	
-		{"iPhone 5C",	326	},	//	iPhone 5C	
-		{"iPhone 5S",	326	},	//	iPhone 5S	
-		{"iPhone 5",	326	},	//	iPhone 5	
-		{"iPhone 4S",	326	},	//	iPhone 4S	
-		{"iPhone 4",	326	},	//	iPhone 4	
-		{"iPod touch 7th gen",	326	},	//	iPod touch 7th gen	
-		{"iPod touch 6th gen",	326	},	//	iPod touch 6th gen	
-		{"iPod touch 5th gen",	326	},	//	iPod touch 5th gen	
-		{"iPod touch 4th gen",	326	},	//	iPod touch 4th gen	
-		{"iPhone SE 2nd gen",	326	},	//	iPhone SE 2nd gen	
-		{"iPhone 8",	326	},	//	iPhone 8	
-		{"iPhone 7",	326	},	//	iPhone 7	
-		{"iPhone 6s",	326	},	//	iPhone 6s	
-		{"iPhone 6",	326	},	//	iPhone 6	
-		{"iPad mini",	163	},	//	iPad mini	
-		{"iPad 2",	132	},	//	iPad 2	
-		{"iPad 1st gen",	132	},	//	iPad 1st gen	
-		{"iPhone 11",	326	},	//	iPhone 11	
-		{"iPhone XR",	326	},	//	iPhone XR	
-		{"iPhone 13 mini",	476	},	//	iPhone 13 mini	
-		{"iPhone 12 mini",	476	},	//	iPhone 12 mini	
-		{"iPhone 8 Plus",	401	},	//	iPhone 8 Plus	
-		{"iPhone 11 Pro",	458	},	//	iPhone 11 Pro	
-		{"iPhone XS",	458	},	//	iPhone XS	
-		{"iPhone X",	458	},	//	iPhone X	
-		{"iPhone 13",	460	},	//	iPhone 13	
-		{"iPhone 13 Pro",	460	},	//	iPhone 13 Pro	
-		{"iPhone 12",	460	},	//	iPhone 12	
-		{"iPhone 12 Pro",	460	},	//	iPhone 12 Pro	
-		{"iPhone 11 Pro Max",	458	},	//	iPhone 11 Pro Max	
-		{"iPhone XS Max",	458	},	//	iPhone XS Max	
-		{"iPhone 7 Plus",	401	},	//	iPhone 7 Plus	
-		{"iPhone 6s Plus",	401	},	//	iPhone 6s Plus	
-		{"iPhone 6 Plus",	401	},	//	iPhone 6 Plus	
-		{"iPhone 13 Pro Max",	458	},	//	iPhone 13 Pro Max	
-		{"iPhone 12 Pro Max",	458	},	//	iPhone 12 Pro Max	
-		{"iPad Mini (6th gen)",	326	},	//	iPad Mini (6th gen)	
-		{"iPad Mini (5th gen)",	326	},	//	iPad Mini (5th gen)	
-		{"iPad 6th gen",	264	},	//	iPad 6th gen	
-		{"iPad 5th gen",	264	},	//	iPad 5th gen	
-		{$"iPad Pro (1st gen 9.7\")",	264	},	//	iPad Pro (1st gen 9.7”)	
-		{"iPad mini 4",	326},	//	iPad mini 4	
-		{"iPad Air 2",	326},	//	iPad Air 2	
-		{"iPad mini 3",	264},	//	iPad mini 3	
-		{"iPad mini 2",	326},	//	iPad mini 2	
-		{"iPad Air",	264},	//	iPad Air	
-		{"iPad 4th gen",	264	},	//	iPad 4th gen	
-		{"iPad 3rd gen",	264	},	//	iPad 3rd gen	
-		{"iPad 9th gen",	264	},	//	iPad 9th gen	
-		{"iPad 8th gen",	264	},	//	iPad 8th gen	
-		{"iPad 7th gen",	264	},	//	iPad 7th gen	
-		{"iPad Air (4th gen)",	264	},	//	iPad Air (4th gen)	
-		{$"iPad Pro (5th gen 11\")",	264	},	//	iPad Pro (5th gen 11)	
-		{$"iPad Pro (4th gen 11\")",	264	},	//	iPad Pro (4th gen 11)	
-		{$"iPad Air (3rd gen)",	264	},	//	iPad Air (3rd gen)	
-		{$"iPad Pro (3rd gen 11\")",	264	},	//	iPad Pro (3rd gen 11)	
-		{$"iPad Pro (2nd gen 10.5\")",	264	},	//	iPad Pro (2nd gen 10.5)	
-		{$"iPad Pro (5th gen 12.9\")",	264	},	//	iPad Pro (5th gen 12.9)	
-		{$"iPad Pro (4th gen 12.9\")",	264	},	//	iPad Pro (4th gen 12.9)	
-		{$"iPad Pro (3rd gen 12.9\")",	264	},	//	iPad Pro (3rd gen 12.9)	
-		{$"iPad Pro (2nd gen 12.9\")",	264	},	//	iPad Pro (2nd gen 12.9)	
-		{$"iPad Pro (1st gen 12.9\")",	264	},	//	iPad Pro (1st gen 12.9)	
+		{"iPhone 3GS",  163 },	//	iPhone 3GS	
+		{"iPhone 3G",   163 },	//	iPhone 3G	
+		{"iPhone 1st gen",  163 },	//	iPhone 1st gen	
+		{"iPod touch 3rd gen",  163 },	//	iPod touch 3rd gen	
+		{"iPod touch 2nd gen",  163 },	//	iPod touch 2nd gen	
+		{"iPod touch 1st gen",  163 },	//	iPod touch 1st gen	
+		{"iPhone SE 1st gen",   326 },	//	iPhone SE 1st gen	
+		{"iPhone 5C",   326 },	//	iPhone 5C	
+		{"iPhone 5S",   326 },	//	iPhone 5S	
+		{"iPhone 5",    326 },	//	iPhone 5	
+		{"iPhone 4S",   326 },	//	iPhone 4S	
+		{"iPhone 4",    326 },	//	iPhone 4	
+		{"iPod touch 7th gen",  326 },	//	iPod touch 7th gen	
+		{"iPod touch 6th gen",  326 },	//	iPod touch 6th gen	
+		{"iPod touch 5th gen",  326 },	//	iPod touch 5th gen	
+		{"iPod touch 4th gen",  326 },	//	iPod touch 4th gen	
+		{"iPhone SE 2nd gen",   326 },	//	iPhone SE 2nd gen	
+		{"iPhone 8",    326 },	//	iPhone 8	
+		{"iPhone 7",    326 },	//	iPhone 7	
+		{"iPhone 6s",   326 },	//	iPhone 6s	
+		{"iPhone 6",    326 },	//	iPhone 6	
+		{"iPad mini",   163 },	//	iPad mini	
+		{"iPad 2",  132 },	//	iPad 2	
+		{"iPad 1st gen",    132 },	//	iPad 1st gen	
+		{"iPhone 11",   326 },	//	iPhone 11	
+		{"iPhone XR",   326 },	//	iPhone XR	
+		{"iPhone 13 mini",  476 },	//	iPhone 13 mini	
+		{"iPhone 12 mini",  476 },	//	iPhone 12 mini	
+		{"iPhone 8 Plus",   401 },	//	iPhone 8 Plus	
+		{"iPhone 11 Pro",   458 },	//	iPhone 11 Pro	
+		{"iPhone XS",   458 },	//	iPhone XS	
+		{"iPhone X",    458 },	//	iPhone X	
+		{"iPhone 13",   460 },	//	iPhone 13	
+		{"iPhone 13 Pro",   460 },	//	iPhone 13 Pro	
+		{"iPhone 12",   460 },	//	iPhone 12	
+		{"iPhone 12 Pro",   460 },	//	iPhone 12 Pro	
+		{"iPhone 11 Pro Max",   458 },	//	iPhone 11 Pro Max	
+		{"iPhone XS Max",   458 },	//	iPhone XS Max	
+		{"iPhone 7 Plus",   401 },	//	iPhone 7 Plus	
+		{"iPhone 6s Plus",  401 },	//	iPhone 6s Plus	
+		{"iPhone 6 Plus",   401 },	//	iPhone 6 Plus	
+		{"iPhone 13 Pro Max",   458 },	//	iPhone 13 Pro Max	
+		{"iPhone 12 Pro Max",   458 },	//	iPhone 12 Pro Max	
+		{"iPad Mini (6th gen)", 326 },	//	iPad Mini (6th gen)	
+		{"iPad Mini (5th gen)", 326 },	//	iPad Mini (5th gen)	
+		{"iPad 6th gen",    264 },	//	iPad 6th gen	
+		{"iPad 5th gen",    264 },	//	iPad 5th gen	
+		{$"iPad Pro (1st gen 9.7\")",   264 },	//	iPad Pro (1st gen 9.7”)	
+		{"iPad mini 4", 326},	//	iPad mini 4	
+		{"iPad Air 2",  326},	//	iPad Air 2	
+		{"iPad mini 3", 264},	//	iPad mini 3	
+		{"iPad mini 2", 326},	//	iPad mini 2	
+		{"iPad Air",    264},	//	iPad Air	
+		{"iPad 4th gen",    264 },	//	iPad 4th gen	
+		{"iPad 3rd gen",    264 },	//	iPad 3rd gen	
+		{"iPad 9th gen",    264 },	//	iPad 9th gen	
+		{"iPad 8th gen",    264 },	//	iPad 8th gen	
+		{"iPad 7th gen",    264 },	//	iPad 7th gen	
+		{"iPad Air (4th gen)",  264 },	//	iPad Air (4th gen)	
+		{$"iPad Pro (5th gen 11\")",    264 },	//	iPad Pro (5th gen 11)	
+		{$"iPad Pro (4th gen 11\")",    264 },	//	iPad Pro (4th gen 11)	
+		{$"iPad Air (3rd gen)", 264 },	//	iPad Air (3rd gen)	
+		{$"iPad Pro (3rd gen 11\")",    264 },	//	iPad Pro (3rd gen 11)	
+		{$"iPad Pro (2nd gen 10.5\")",  264 },	//	iPad Pro (2nd gen 10.5)	
+		{$"iPad Pro (5th gen 12.9\")",  264 },	//	iPad Pro (5th gen 12.9)	
+		{$"iPad Pro (4th gen 12.9\")",  264 },	//	iPad Pro (4th gen 12.9)	
+		{$"iPad Pro (3rd gen 12.9\")",  264 },	//	iPad Pro (3rd gen 12.9)	
+		{$"iPad Pro (2nd gen 12.9\")",  264 },	//	iPad Pro (2nd gen 12.9)	
+		{$"iPad Pro (1st gen 12.9\")",  264 },	//	iPad Pro (1st gen 12.9)	
 	};
 
-	private static Dictionary<(double Width, double Height), double> apppleDevicesDimensionsToPpi = new ()
+	private static Dictionary<(double Width, double Height), double> apppleDevicesDimensionsToPpi = new()
 	{
-			{new (	320	,	480	),	163 },	//	iPhone 3GS
-			{new (	320	,	568	),	326	},	//	iPhone SE 1st gen
-			// {new (	320	,	480	),	326	},	//	iPhone 4S
-			// {new (	320	,	568	),	326	},	//	iPod touch 7th gen
-			// {new (	320	,	480	),	326	},	//	iPod touch 4th gen
-			{new (	375	,	667	),	326	},	//	iPhone 8, iPhone 6s
-			// {new (	768	,	1024	),	132	},	//	iPad 1st gen
-			// {new (	414	,	896	),	326	},	//	iPhone XR
-			{new (	375	,	812	),	476	},	//	iPhone 12 mini
-			{new (	414	,	736	),	401	},	//	iPhone 8 Plus
-			// {new (	375	,	812	),	458	},	//	iPhone X
-			{new (	390	,	844	),	460	},	//	iPhone 12 Pro
-			// {new (	414	,	896	),	458	},	//	iPhone 11 Pro Max
-			{new (	414	,	896	),	458	},	//	iPhone XS Max
-			// {new (	476	,	847	),	401	},	//	iPhone 7 Plus
-			// {new (	476	,	847	),	401	},	//	iPhone 6s Plus
-			{new (	476	,	847	),	401	},	//	iPhone 6 Plus
-			// {new (	428	,	926	),	458	},	//	iPhone 13 Pro Max
-			{new (	428	,	926	),	458	},	//	iPhone 12 Pro Max
-			{new (	744	,	1133	),	326	},	//	iPad Mini (6th gen)
-			{new (	768	,	1024	),	326	},	//	iPad Mini (5th gen)
-			// {new (	768	,	1024	),	264	},	//	iPad 6th gen
-			// {new (	768	,	1024	),	264	},	//	iPad 5th gen
-			// {new (	768	,	1024	),	264	},	//	iPad Pro (1st gen 9.7”)
-			// {new (	768	,	1024	),	326	},	//	iPad mini 4
-			// {new (	768	,	1024	),	326	},	//	iPad Air 2
-			// {new (	768	,	1024	),	264	},	//	iPad mini 3
-			// {new (	768	,	1024	),	326	},	//	iPad mini 2
-			// {new (	768	,	1024	),	264	},	//	iPad Air
-			// {new (	768	,	1024	),	264	},	//	iPad 4th gen
-			// {new (	768	,	1024	),	264	},	//	iPad 3rd gen
-			{new (	810	,	1080	),	264	},	//	iPad 9th gen
-			// {new (	810	,	1080	),	264	},	//	iPad 8th gen
-			// {new (	810	,	1080	),	264	},	//	iPad 7th gen
-			// {new (	820	,	1180	),	264	},	//	iPad Air (4th gen)
-			{new (	834	,	1194	),	264	},	//	iPad Pro (5th gen 11")
-			// {new (	834	,	1194	),	264	},	//	iPad Pro (4th gen 11")
-			// {new (	834	,	1112	),	264	},	//	iPad Air (3rd gen)
-			// {new (	834	,	1194	),	264	},	//	iPad Pro (3rd gen 11")
-			{new (	834	,	1112	),	264	},	//	iPad Pro (2nd gen 10.5")
-			// {new (	1024	,	1366	),	264	},	//	iPad Pro (5th gen 12.9")
-			// {new (	1024	,	1366	),	264	},	//	iPad Pro (4th gen 12.9")
-			// {new (	1024	,	1366	),	264	},	//	iPad Pro (3rd gen 12.9")
-			// {new (	1024	,	1366	),	264	},	//	iPad Pro (2nd gen 12.9")
-			{new (	1024	,	1366	),	264	},	//	iPad Pro (1st gen 12.9")
+			{new (  320 ,   480 ),  163 },	//	iPhone 3GS
+			{new (  320 ,   568 ),  326 },	//	iPhone SE 1st gen
+			{new (  375 ,   667 ),  326 },	//	iPhone 8, iPhone 6s
+			{new (  375 ,   812 ),  476 },	//	iPhone 12 mini
+			{new (  414 ,   736 ),  401 },	//	iPhone 8 Plus
+			{new (  390 ,   844 ),  460 },	//	iPhone 12 Pro
+			{new (  414 ,   896 ),  458 },	//	iPhone XS Max
+			{new (  476 ,   847 ),  401 },	//	iPhone 6 Plus
+			{new (  428 ,   926 ),  458 },	//	iPhone 12 Pro Max
+			{new (  744 ,   1133    ),  326 },	//	iPad Mini (6th gen)
+			{new (  768 ,   1024    ),  326 },	//	iPad Mini (5th gen)
+			{new (  810 ,   1080    ),  264 },	//	iPad 9th gen
+			{new (  834 ,   1194    ),  264 },	//	iPad Pro (5th gen 11")
+			{new (  834 ,   1112    ),  264 },	//	iPad Pro (2nd gen 10.5")
+			{new (  1024    ,   1366    ),  264 },	//	iPad Pro (1st gen 12.9")
 	};
-	
-	private static readonly AppleModelInfo[] machineNamesToPpi = new[]
+
+	private static readonly (string[] Models, int PixelPerInches)[] machineNamesToPpi = new (string[] Models, int PixelPerInches)[]
 	{
-		new AppleModelInfo( new[] { "iPhone14,4", "iPhone13,1" }, 476 ),
-		new AppleModelInfo( new[] { "iPhone14,5", "iPhone14,2", "iPhone13,2", "iPhone13,3" }, 460  ),
-		new AppleModelInfo( 
+		new ( new[] { "iPhone14,4", "iPhone13,1" }, 476 ),
+		new ( new[] { "iPhone14,5", "iPhone14,2", "iPhone13,2", "iPhone13,3" }, 460  ),
+		new (
 			new[]
 			{
 				"iPhone14,3", "iPhone13,4", "iPhone12,3", "iPhone12,5", "iPhone11,2", "iPhone11,4", "iPhone11,6",
@@ -272,8 +242,8 @@ internal static class AppleScreenDensityHelper
 			},
 			458
 		),
-		new AppleModelInfo( new[] { "iPhone10,2", "iPhone10,5", "iPhone9,2", "iPhone9,4", "iPhone8,2", "iPhone7,1" }, 401 ),
-		new AppleModelInfo( 
+		new ( new[] { "iPhone10,2", "iPhone10,5", "iPhone9,2", "iPhone9,4", "iPhone8,2", "iPhone7,1" }, 401 ),
+		new (
 			new[]
 			{
 				"iPhone12,1", "iPhone11,8", "iPhone14,6", "iPhone12,8", "iPhone10,1", "iPhone10,4", "iPhone9,1",
@@ -284,7 +254,7 @@ internal static class AppleScreenDensityHelper
 			},
 			326
 		),
-		new AppleModelInfo( 
+		new (
 			new[]
 			{
 				"iPad13,16", "iPad13,17", "iPad12,1", "iPad12,2", "iPad13,8", "iPad13,9", "iPad13,10", "iPad13,11",
@@ -297,8 +267,8 @@ internal static class AppleScreenDensityHelper
 			},
 			264
 		),
-		new AppleModelInfo( new[] { "iPad2,5", "iPad2,6", "iPad2,7" }, 163 ),
-		new AppleModelInfo( new[] { "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4" }, 132 )
+		new ( new[] { "iPad2,5", "iPad2,6", "iPad2,7" }, 163 ),
+		new ( new[] { "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4" }, 132 )
 	};
 
 	#endregion

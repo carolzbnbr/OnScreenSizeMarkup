@@ -17,7 +17,7 @@ public class ValueConversionExtensionsTests
         var actual = OnScreenSizeMarkup.Maui.Extensions.ValueConversionExtensions.ConvertTo( stringToParse, typeof(RowDefinitionCollection), Grid.RowDefinitionsProperty);
         
         //assert
-        Assert.Equal(expected.GetType(), actual.GetType());
+        Assert.IsType<RowDefinitionCollection>(actual);
         Assert.Equal(expected.Count, ((RowDefinitionCollection)actual).Count);
     }
 }
