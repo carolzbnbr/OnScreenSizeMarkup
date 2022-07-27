@@ -37,7 +37,7 @@ internal  class ScreenCategorizer : IScreenCategorizer
 	{
 		category = ScreenCategories.NotSet;
 		
-		var diagonalSizeMappingsEquals = mappings.Where((f => f.ComparisonMode == ComparisonModes.SpecificSize)).OrderBy(f => f.DiagonalSize).ToArray();
+		var diagonalSizeMappingsEquals = mappings.Where((f => f.CompareMode == ScreenSizeCompareModes.SpecificSize)).OrderBy(f => f.DiagonalSize).ToArray();
 		for (var index = 0; index < diagonalSizeMappingsEquals.Length; index++)
 		{
 			var sizeInfo = diagonalSizeMappingsEquals[index];
@@ -54,8 +54,7 @@ internal  class ScreenCategorizer : IScreenCategorizer
 	private static bool TryCategorizeBySmallerOrEqualsTo(List<SizeMappingInfo> mappings, double deviceActualDiagonalSize, out ScreenCategories category)
 	{
 
-		var mappingsLocal = mappings.Where(f => f.ComparisonMode == ComparisonModes.SmallerThanOrEqualsTo).OrderBy(f => f.DiagonalSize).ToList();
-	//	mappingsLocal.Sort(new DiagonalSizeComparer());
+		var mappingsLocal = mappings.Where(f => f.CompareMode == ScreenSizeCompareModes.SmallerOrEqualsTo).OrderBy(f => f.DiagonalSize).ToList();
 
 		category = ScreenCategories.NotSet;
 		var diagonalSizeMappings = mappingsLocal.ToArray();

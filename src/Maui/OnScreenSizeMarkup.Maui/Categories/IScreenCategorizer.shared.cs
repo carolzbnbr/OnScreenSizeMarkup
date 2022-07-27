@@ -1,4 +1,6 @@
 ﻿
+using OnScreenSizeMarkup.Maui.Mappings;
+
 namespace  OnScreenSizeMarkup.Maui.Categories;
 
 /// <summary>

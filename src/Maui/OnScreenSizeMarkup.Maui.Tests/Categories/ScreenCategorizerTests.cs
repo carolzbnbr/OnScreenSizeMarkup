@@ -23,15 +23,15 @@ namespace OnScreenSizeMarkup.Maui.Tests.Categories
             //arrange
             var mappings = new List<SizeMappingInfo>
             {
-                new SizeMappingInfo(double.MaxValue, ScreenCategories.ExtraLarge, ComparisonModes.SmallerThanOrEqualsTo),
-                new SizeMappingInfo(7.9, ScreenCategories.Large, ComparisonModes.SmallerThanOrEqualsTo),
-                new SizeMappingInfo(3.8, ScreenCategories.ExtraSmall, ComparisonModes.SmallerThanOrEqualsTo),
-                new SizeMappingInfo(3.5, ScreenCategories.ExtraSmall, ComparisonModes.SpecificSize),
-                new SizeMappingInfo(7.8, ScreenCategories.Small, ComparisonModes.SpecificSize),
-                new SizeMappingInfo(3.5, ScreenCategories.Large, ComparisonModes.SmallerThanOrEqualsTo),
-                new SizeMappingInfo(6.2, ScreenCategories.Medium, ComparisonModes.SmallerThanOrEqualsTo),
-                new SizeMappingInfo(2.1, ScreenCategories.ExtraSmall, ComparisonModes.SpecificSize),
-                new SizeMappingInfo(4.9, ScreenCategories.Small, ComparisonModes.SmallerThanOrEqualsTo),
+                new SizeMappingInfo(double.MaxValue, ScreenCategories.ExtraLarge, ScreenSizeCompareModes.SmallerOrEqualsTo),
+                new SizeMappingInfo(7.9, ScreenCategories.Large, ScreenSizeCompareModes.SmallerOrEqualsTo),
+                new SizeMappingInfo(3.8, ScreenCategories.ExtraSmall, ScreenSizeCompareModes.SmallerOrEqualsTo),
+                new SizeMappingInfo(3.5, ScreenCategories.ExtraSmall, ScreenSizeCompareModes.SpecificSize),
+                new SizeMappingInfo(7.8, ScreenCategories.Small, ScreenSizeCompareModes.SpecificSize),
+                new SizeMappingInfo(3.5, ScreenCategories.Large, ScreenSizeCompareModes.SmallerOrEqualsTo),
+                new SizeMappingInfo(6.2, ScreenCategories.Medium, ScreenSizeCompareModes.SmallerOrEqualsTo),
+                new SizeMappingInfo(2.1, ScreenCategories.ExtraSmall, ScreenSizeCompareModes.SpecificSize),
+                new SizeMappingInfo(4.9, ScreenCategories.Small, ScreenSizeCompareModes.SmallerOrEqualsTo),
             };
 
             //prepare

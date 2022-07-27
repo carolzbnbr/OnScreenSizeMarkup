@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using OnScreenSizeMarkup.Maui;
+using Samples.ViewModels;
 
 namespace Samples;
 
@@ -16,7 +17,9 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-
+        builder.Services.AddTransient<MainPage>();
+        builder.Services.AddTransient<MainPageViewModel>();
+        
         return builder.Build();
     }
 }

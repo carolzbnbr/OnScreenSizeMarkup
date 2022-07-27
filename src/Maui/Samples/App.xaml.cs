@@ -1,4 +1,5 @@
 ﻿using OnScreenSizeMarkup.Maui;
+using OnScreenSizeMarkup.Maui.Categories;
 
 namespace Samples;
 
@@ -7,10 +8,8 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
-
-        OnScreenSizeMarkup.Maui.Manager.Current.IsLogEnabled = true;
-
-
+        Manager.Current.LogLevel = LogLevels.Verbose;
+        Manager.Current.IsLogEnabled = true;
         MainPage = new AppShell();
     }
 }

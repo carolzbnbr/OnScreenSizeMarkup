@@ -1,30 +1,34 @@
-﻿using OnScreenSizeMarkup.Maui.Extensions;
+﻿using OnScreenSizeMarkup.Maui;
+using OnScreenSizeMarkup.Maui.Extensions;
 using OnScreenSizeMarkup.Maui.Helpers;
+using Samples.ViewModels;
 
 namespace Samples;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
-
-    public MainPage()
+    public MainPage(MainPageViewModel viewModel)
     {
-        InitializeComponent();
-        
-        
+        try
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+       
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
-    {
-        count++;
-        var actual = ScreenCategoryHelper.GetCategory();
-        
-        
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
 
-        SemanticScreenReader.Announce(CounterBtn.Text);
+    protected override void OnAppearing()
+    {
+        mappings.ItemsSource = OnScreenSizeMarkup.Maui.Manager.Current.Mappings;
+        
+        base.OnAppearing();
     }
+    
+
 }

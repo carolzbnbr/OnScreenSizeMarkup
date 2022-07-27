@@ -2,7 +2,7 @@
 using OnScreenSizeMarkup.Maui.Categories;
 using OnScreenSizeMarkup.Maui.Mappings;
 
-namespace  OnScreenSizeMarkup.Maui;
+namespace  OnScreenSizeMarkup.Maui.Mappings;
 
 /// <summary>
 /// Size mapping info about the screen diagonal-size and the category it falls into.
@@ -14,12 +14,12 @@ public class SizeMappingInfo
 	/// </summary>
 	/// <param name="diagonalSize">Diagonal Size to compare against the actual device diagonal size of the device</param>
 	/// <param name="category">The category that must be assumed in case the comparison is match</param>
-	/// <param name="comparisonMode">How the comparison should be performed</param>
-	public SizeMappingInfo(double diagonalSize, ScreenCategories category, ComparisonModes comparisonMode)
+	/// <param name="compareMode">How the comparison should be performed</param>
+	public SizeMappingInfo(double diagonalSize, ScreenCategories category, ScreenSizeCompareModes compareMode)
 	{
 		DiagonalSize = diagonalSize;
 		Category = category;
-		ComparisonMode = comparisonMode;
+		CompareMode = compareMode;
 		
 		
 	}
@@ -28,7 +28,7 @@ public class SizeMappingInfo
 	/// <summary>
 	/// Determine how a mapping comparison should be performed against the actual diagonal screen size of the device which is running the code.
 	/// </summary>
-	public ComparisonModes ComparisonMode { get; init; }
+	public ScreenSizeCompareModes CompareMode { get; init; }
 
 	/// <summary>
 	/// Physical/actual diagonal size of the screen in inches.
