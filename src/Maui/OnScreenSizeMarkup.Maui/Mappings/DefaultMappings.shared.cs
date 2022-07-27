@@ -13,11 +13,11 @@ public static class DefaultMappings
 	/// </summary>
 	public static List<SizeMappingInfo> MobileMappings { get;   } = new List<SizeMappingInfo>
 	{
-		new SizeMappingInfo(3.8, ScreenCategories.ExtraSmall, ComparisonModes.SmallerThanOrEqualsTo),
-		new SizeMappingInfo(4.9, ScreenCategories.Small, ComparisonModes.SmallerThanOrEqualsTo),
-		new SizeMappingInfo(6.2, ScreenCategories.Medium, ComparisonModes.SmallerThanOrEqualsTo),
-		new SizeMappingInfo(7.9, ScreenCategories.Large, ComparisonModes.SmallerThanOrEqualsTo),
-		new SizeMappingInfo(double.MaxValue, ScreenCategories.ExtraLarge, ComparisonModes.SmallerThanOrEqualsTo),
+		new SizeMappingInfo(3.9, ScreenCategories.ExtraSmall, ScreenSizeCompareModes.SmallerOrEqualsTo),
+		new SizeMappingInfo(4.9, ScreenCategories.Small, ScreenSizeCompareModes.SmallerOrEqualsTo),
+		new SizeMappingInfo(6.2, ScreenCategories.Medium, ScreenSizeCompareModes.SmallerOrEqualsTo),
+		new SizeMappingInfo(7.9, ScreenCategories.Large, ScreenSizeCompareModes.SmallerOrEqualsTo),
+		new SizeMappingInfo(200.0, ScreenCategories.ExtraLarge, ScreenSizeCompareModes.SmallerOrEqualsTo),
 	};
 }
 

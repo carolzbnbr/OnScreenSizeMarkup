@@ -62,6 +62,15 @@ internal static class ValueConversionExtensions
             return value1!;
         }
 
+        if (toType == typeof(Thickness))
+        {
+	        converter = (TypeConverter)new Microsoft.Maui.Converters.ThicknessTypeConverter();
+	        ValueConversionExtensions.converter.Add(toType, converter);
+	        var value1 = converter.ConvertFromInvariantString((string)value!);
+	        return value1!;
+        }
+
+        
         if (toType.Namespace != null && toType.Namespace.StartsWith("Microsoft.Maui."))
         {
             var typeConverter = toType.GetCustomAttribute<TypeConverterAttribute>(true);

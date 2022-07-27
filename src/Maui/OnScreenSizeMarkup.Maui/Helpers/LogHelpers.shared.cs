@@ -13,7 +13,7 @@ internal static class LogHelpers
 		{
 			return;
 		}
-		if (Manager.Current.LogLevel != level)
+		if (Manager.Current.LogLevel > level)
 		{
 			return;
 		}

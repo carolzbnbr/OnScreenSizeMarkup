@@ -8,10 +8,10 @@ public enum LogLevels
 	/// <summary>
 	/// Most detailed log messages
 	/// </summary>
-	Verbose = 2,
+	Verbose = 0,
 
 	/// <summary>
 	/// Informational log messages
 	/// </summary>
-	Info = 0
+	Info = 2
 }

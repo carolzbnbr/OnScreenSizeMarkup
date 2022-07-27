@@ -1,5 +1,7 @@
 ﻿
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Converters;
 using Xunit;
 
 
@@ -19,5 +21,19 @@ public class ValueConversionExtensionsTests
         //assert
         Assert.IsType<RowDefinitionCollection>(actual);
         Assert.Equal(expected.Count, ((RowDefinitionCollection)actual).Count);
+    }
+    
+    
+    [Fact]
+    public void ConvertTo_String_To_Thickness()
+    {
+        var stringToParse = "5,0";
+        
+        var expected = new ThicknessTypeConverter().ConvertFromInvariantString(stringToParse);
+        
+        var actual = OnScreenSizeMarkup.Maui.Extensions.ValueConversionExtensions.ConvertTo( stringToParse, typeof(Microsoft.Maui.Thickness ), VerticalStackLayout.SpacingProperty);
+        
+        //assert
+        Assert.IsType<Thickness>(actual);
     }
 }
