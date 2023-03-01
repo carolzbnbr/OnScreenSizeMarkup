@@ -51,10 +51,15 @@ public class Manager
     internal IScreenCategorizer Categorizer { get; } = new ScreenCategorizer();
 
     /// <summary>
+    /// Default categorization assumed when running on platforms other than iOS, Maccatalyst or Android.
+    /// Applied when running on Windows.
+    /// </summary>
+    public ScreenCategories DefaultScreenCategoryFallbackPlatform { get; set; } = ScreenCategories.ExtraLarge;
+
+    /// <summary>
     /// Gets the singleton instance of this class.
     /// </summary>
     public static Manager Current => _Current.Value;
     
 
 }
-

@@ -39,10 +39,13 @@ internal static class ScreenCategoryHelper
 
     private static ScreenCategories GetCategoryInternal()
     {
+#if WINDOWS
+	    return Manager.Current.DefaultScreenCategoryFallbackPlatform;
+#else
         var diagonalSize = OnScreenSizeHelpers.GetScreenDiagonalInches();
             
         var category = Manager.Current.Categorizer.GetCategoryByDiagonalSize(Manager.Current.Mappings, diagonalSize);
-
+	    
 		LogHelpers.WriteLine(string.Format("{0} - Current screen category is \"{1}\", and screen diagonal size is \"{2}\"",nameof(OnScreenSizeExtension),category, diagonalSize), LogLevels.Info);
             
         if (category == ScreenCategories.NotSet)
@@ -51,6 +54,7 @@ internal static class ScreenCategoryHelper
         }
             
         return category;
+#endif
     }
 
 }
