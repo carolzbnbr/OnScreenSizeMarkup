@@ -34,6 +34,7 @@
             <Setter Property="HorizontalTextAlignment" Value="Center"/>
         </Style>
 
+    <Thickness x:Key="PaddingThickness">145,50,15,5</Thickness>
         
     </ResourceDictionary>
 
@@ -90,7 +91,8 @@
                     </Label.FormattedText>
                 </Label>
             
-                <Grid 
+                <Grid
+                      Padding="{markups:OnScreenSize Default=20, Medium={StaticResource PaddingThickness}}" 
                       RowDefinitions="{markups:OnScreenSize Default='*, 3*', Medium='30, 0.8*', Large='45, *', ExtraLarge='80, *'}"
                       ColumnDefinitions="{markups:OnScreenSize Default='*, *, *', ExtraLarge='2*, *, *'}">
               

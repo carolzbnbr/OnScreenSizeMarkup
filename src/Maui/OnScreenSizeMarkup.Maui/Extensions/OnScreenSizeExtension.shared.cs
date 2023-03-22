@@ -118,6 +118,8 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 
 		var value = GetScreenCategoryPropertyValue(serviceProvider);
 
+		// Resolve StaticResource if needed
+		value = ResolveStaticResource(serviceProvider, value);
 
 		return value!.ConvertTo(propertyType, bp!);
 	}
@@ -148,5 +150,30 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 		return Default;
 	}
 
+	private static object ResolveStaticResource(IServiceProvider serviceProvider, object value)
+	{
 
+		if (value is StaticResourceExtension staticResource)
+		{
+			var resolvedValue = staticResource.ProvideValue(serviceProvider);
+			if (resolvedValue is string stringValue)
+			{
+				return stringValue;
+			}
+
+			return resolvedValue;
+		}
+		else if (value is DynamicResourceExtension dynamicResource)
+		{
+			var resolvedValue = dynamicResource.ProvideValue(serviceProvider);
+			if (resolvedValue is string stringValue)
+			{
+				return stringValue;
+			}
+
+			return resolvedValue;
+		}
+
+		return value;
+	}
 }

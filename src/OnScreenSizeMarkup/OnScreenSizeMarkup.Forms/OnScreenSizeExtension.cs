@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using OnScreenSizeMarkup.Core;
@@ -11,11 +12,77 @@ using Xamarin.Forms.Xaml;
 namespace OnScreenSizeMarkup.Forms
 {
     //[ContentProperty(nameof(TypeName))]
-    public class OnScreenSizeExtension : OnScreenSizeExtensionBase<object>, IMarkupExtension
+    public class OnScreenSizeExtension : IMarkupExtension<object>
     {
-        public  OnScreenSizeExtension()
+        static readonly object defaultNull = new();
+
+        private Dictionary<ScreenCategories, object> categoryPropertyValues = new() {
+        { ScreenCategories.ExtraSmall, defaultNull},
+        { ScreenCategories.Small, defaultNull},
+        { ScreenCategories.Medium,  defaultNull},
+        { ScreenCategories.Large,  defaultNull},
+        { ScreenCategories.ExtraLarge,  defaultNull},
+    };
+
+        /// <summary>
+        /// Xaml internal usage
+        /// </summary>
+        public OnScreenSizeExtension()
         {
+            DefaultSize = defaultNull;
         }
+
+        /// <summary>
+        /// Default value assumed when the other property values were not provided for the current device. 
+        /// </summary>
+        public object DefaultSize { get; set; }
+
+
+        /// <summary>
+        /// Defines a value used when the screen size is categorized as <see cref="ScreenCategories.ExtraSmall"/>
+        /// </summary>
+        public object ExtraSmall
+        {
+            get => categoryPropertyValues[ScreenCategories.ExtraSmall]!;
+            set => categoryPropertyValues[ScreenCategories.ExtraSmall] = value;
+        }
+        /// <summary>
+        /// Defines a value used when the screen size is categorized as <see cref="ScreenCategories.Small"/>
+        /// </summary>
+        public object Small
+        {
+            get => categoryPropertyValues[ScreenCategories.Small]!;
+            set => categoryPropertyValues[ScreenCategories.Small] = value;
+        }
+
+        /// <summary>
+        /// Defines a value used when the screen size is categorized as <see cref="ScreenCategories.Medium"/>
+        /// </summary>
+        public object Medium
+        {
+            get => categoryPropertyValues[ScreenCategories.Medium]!;
+            set => categoryPropertyValues[ScreenCategories.Medium] = value;
+        }
+
+        /// <summary>
+        /// Defines a value used when the screen size is categorized as <see cref="ScreenCategories.Large"/>
+        /// </summary>
+        public object Large
+        {
+            get => categoryPropertyValues[ScreenCategories.Large]!;
+            set => categoryPropertyValues[ScreenCategories.Large] = value;
+        }
+
+        /// <summary>
+        /// Defines a value used when the screen size is categorized as <see cref="ScreenCategories.ExtraLarge"/>
+        /// </summary>
+        public object ExtraLarge
+        {
+            get => categoryPropertyValues[ScreenCategories.ExtraLarge]!;
+            set => categoryPropertyValues[ScreenCategories.ExtraLarge] = value;
+        }
+
+
 
         public object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -40,22 +107,52 @@ namespace OnScreenSizeMarkup.Forms
             var value = GetValue(serviceProvider);
 
 
-            return value.ConvertTo(propertyType, bp);
+            // Resolve StaticResource if needed
+            value = ResolveStaticResource(serviceProvider, value);
+
+            return value!.ConvertTo(propertyType, bp!);
         }
 
+        private static object ResolveStaticResource(IServiceProvider serviceProvider, object value)
+        {
 
+            if (value is StaticResourceExtension staticResource)
+            {
+                var resolvedValue = staticResource.ProvideValue(serviceProvider);
+                if (resolvedValue is string stringValue)
+                {
+                    return stringValue;
+                }
+
+                return resolvedValue;
+            }
+            else if (value is DynamicResourceExtension dynamicResource)
+            {
+                var resolvedValue = dynamicResource.ProvideValue(serviceProvider);
+                if (resolvedValue is string stringValue)
+                {
+                    return stringValue;
+                }
+
+                return resolvedValue;
+            }
+
+            return value;
+        }
+        
         private object GetValue(IServiceProvider serviceProvider)
         {
             var screenSize = ScreenCategoryExtension.GetCategory();
+
             if (screenSize != ScreenCategories.NotSet)
             {
-                if (_values[screenSize] != null)
+                if (categoryPropertyValues[screenSize] != defaultNull)
                 {
-                    return _values[screenSize];
+                    return categoryPropertyValues[screenSize]!;
                 }
             }
 
-            if (DefaultSize == null)
+            if (DefaultSize == defaultNull)
             {
                 throw new XamlParseException($"{nameof(OnScreenSizeExtension)} markup requires a {nameof(DefaultSize)} set.");
             }

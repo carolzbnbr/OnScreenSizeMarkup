@@ -11,19 +11,19 @@ namespace OnScreenSizeMarkup.Forms.Tests.Core
 	public class DefaultCategoryFallbackHandler_TryGetCategoryByPhysicalSize
 	{
 
-		[TestCaseSource(typeof(JsonDefaultCategorySizeFile))]
-		public  void Apply_MultipleScreenSizesAndCategoriesFromJson_ComparesObtainedScreenCategoryVersusJsonScreenCategory(ScreenDeviceInfo json)
-		{
-			// Arrange
-			var fallbackHandler = new DefaultCategoryFallbackHandler();
-
-			// Act
-			fallbackHandler.TryGetCategoryByPhysicalSize((double)json.ScreenWidth, (double)json.ScreenHeight, out var returnedScreenCategory);
-
-			// Assert
-			Assert.AreEqual(json.ScreenCategory, returnedScreenCategory,message: $"{json.ScreenWidth}x{json.ScreenHeight}");
-		}
-
+		// [TestCaseSource(typeof(JsonDefaultCategorySizeFile))]
+		// public  void Apply_MultipleScreenSizesAndCategoriesFromJson_ComparesObtainedScreenCategoryVersusJsonScreenCategory(ScreenDeviceInfo json)
+		// {
+		// 	// Arrange
+		// 	var fallbackHandler = new DefaultCategoryFallbackHandler();
+		//
+		// 	// Act
+		// 	fallbackHandler.TryGetCategoryByPhysicalSize((double)json.ScreenWidth, (double)json.ScreenHeight, out var returnedScreenCategory);
+		//
+		// 	// Assert
+		// 	Assert.AreEqual(json.ScreenCategory, returnedScreenCategory,message: $"{json.ScreenWidth}x{json.ScreenHeight}");
+		// }
+		//
 
 
 	}

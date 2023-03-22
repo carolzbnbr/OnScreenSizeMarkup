@@ -33,7 +33,12 @@ internal static class ValueConversionExtensions
 		    return null!;
 	    }
 
-	    object returnValue;
+		if (value!.GetType() == toType)
+		{
+			return value;
+		}
+
+		object returnValue;
         if (ValueConversionExtensions.converter.TryGetValue(toType, out var converter))
         {
             returnValue = converter.ConvertFromInvariantString((string)value!)!;
@@ -73,6 +78,7 @@ internal static class ValueConversionExtensions
         
         if (toType == typeof(Thickness))
         {
+			
 	        converter = (TypeConverter)new Microsoft.Maui.Converters.ThicknessTypeConverter();
 	        ValueConversionExtensions.converter.Add(toType, converter);
 	        var value1 = converter.ConvertFromInvariantString((string)value!);
