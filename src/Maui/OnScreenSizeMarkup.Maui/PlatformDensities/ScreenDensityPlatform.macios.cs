@@ -24,5 +24,10 @@ internal static partial class ScreenDensityPlatform
 
 		return (dpi, dpi);
 	}
+
+	public static (double width, double height) GetNativeScreenResolution()
+	{
+		return (UIScreen.MainScreen.NativeBounds.Width, UIScreen.MainScreen.NativeBounds.Height);
+	}
 }
 #endif

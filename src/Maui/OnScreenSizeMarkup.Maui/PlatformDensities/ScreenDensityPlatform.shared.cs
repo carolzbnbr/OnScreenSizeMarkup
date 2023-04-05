@@ -11,5 +11,10 @@ internal static partial class ScreenDensityPlatform
 	{
 		throw new NotSupportedException("Platform implementation not found");
 	}
+
+	public static (double width, double height) GetNativeScreenResolution()
+	{
+		throw new NotSupportedException("Platform implementation not found");
+	}
 }
 #endif

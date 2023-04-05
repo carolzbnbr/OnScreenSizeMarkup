@@ -15,28 +15,37 @@ public static class OnScreenSizeHelpers
 	internal static double GetScreenDiagonalInches()
 	{
 		var dpi =  ScreenDensityPlatform.GetPixelPerInches();
-		
+
+		(double width, double height) resolution;
+		if (Manager.Current.UseNativeScreenResolution)
+		{
+			resolution = ScreenDensityPlatform.GetNativeScreenResolution();
+		}
+		else
+		{
+			resolution = (Microsoft.Maui.Devices.DeviceDisplay.Current.MainDisplayInfo.Width, Microsoft.Maui.Devices.DeviceDisplay.Current.MainDisplayInfo.Height);
+		}
+
 		var displayInfo = Microsoft.Maui.Devices.DeviceDisplay.Current.MainDisplayInfo;
-	     
-		return GetScreenDiagonalInches(displayInfo.Width, displayInfo.Height,displayInfo.Density, dpi.xdpi, dpi.ydpi );
+		return GetScreenDiagonalInches(resolution.width, resolution.height, displayInfo.Density, dpi.xdpi, dpi.ydpi);
 	}
-        
+
+
+
+
 	internal static double GetScreenDiagonalInches(double width, double height, double scale, double xDpi, double yDpi)
 	{
-		var width1 = width;
-		var height1 = height;
-	        
-		var horizontal = width1 / xDpi;
-		var vertical = height1 / yDpi;
+		var horizontal = width / xDpi;
+		var vertical = height / yDpi;
 
 		var diagonal = Math.Sqrt(Math.Pow(horizontal, 2) + Math.Pow(vertical, 2));
 
 		var diagonalReturnValue = diagonal.RoundUp();
 
 		LogHelpers.WriteLine($"{nameof(OnScreenSizeExtension)} - DiagonalSize: {diagonalReturnValue},  PPI/DPI: x:\"{xDpi}\", y:\"{yDpi}\"", LogLevels.Info);
-	        
-		return diagonal.RoundUp();
+		return diagonalReturnValue;
 	}
+
 
 	/// <summary>
 	/// OnScreenSize's code behind support.

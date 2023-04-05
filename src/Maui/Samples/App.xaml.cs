@@ -10,6 +10,7 @@ public partial class App : Application
         InitializeComponent();
         Manager.Current.LogLevel = LogLevels.Verbose;
         Manager.Current.IsLogEnabled = true;
+        Manager.Current.UseNativeScreenResolution = true;
         MainPage = new AppShell();
     }
 }
