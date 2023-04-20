@@ -1,7 +1,8 @@
 ﻿<?xml version = "1.0" encoding = "UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Samples"
+             
+             xmlns:markups="clr-namespace:OnScreenSizeMarkup.Maui;assembly=OnScreenSizeMarkup.Maui"
              x:Class="Samples.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -9,6 +10,27 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+         <OnPlatform x:Key="ImageSize" x:TypeArguments="x:Double">
+               <OnPlatform.Platforms>
+                   <On Platform="Android">
+                       <markups:OnScreenSize FallbackType="{x:Type x:Double}"
+                           Default="70"
+                           Medium="130"
+                           Large="170"
+                           ExtraLarge="350" />
+                   </On>
+                   <On Platform="iOS">
+                       <markups:OnScreenSize FallbackType="{x:Type x:Double}"
+                           Default="80"
+                           Medium="150"
+                           Large="200"
+                           ExtraLarge="300"
+                           />
+                   </On>
+               </OnPlatform.Platforms>
+           </OnPlatform>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

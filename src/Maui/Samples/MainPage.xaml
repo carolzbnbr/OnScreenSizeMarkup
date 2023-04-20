@@ -34,8 +34,9 @@
             <Setter Property="HorizontalTextAlignment" Value="Center"/>
         </Style>
 
-        
-    </ResourceDictionary>
+        <Thickness x:Key="PaddingThickness">145,50,15,5</Thickness>
+
+        </ResourceDictionary>
 
 </ContentPage.Resources>
     <ScrollView>
@@ -47,7 +48,8 @@
         
             <Image
                 Source="dotnet_bot.png"
-                HeightRequest="{markups:OnScreenSize ExtraSmall='120',   Small='135',  Medium='145',  Large='200', ExtraLarge='300'}"
+                HeightRequest="{StaticResource ImageSize}"
+                WidthRequest="{StaticResource ImageSize}"
                 HorizontalOptions="Center" />
           
             
@@ -90,7 +92,8 @@
                     </Label.FormattedText>
                 </Label>
             
-                <Grid 
+                <Grid
+                      Padding="{markups:OnScreenSize Default=20, Medium={StaticResource PaddingThickness}}" 
                       RowDefinitions="{markups:OnScreenSize Default='*, 3*', Medium='30, 0.8*', Large='45, *', ExtraLarge='80, *'}"
                       ColumnDefinitions="{markups:OnScreenSize Default='*, *, *', ExtraLarge='2*, *, *'}">
               

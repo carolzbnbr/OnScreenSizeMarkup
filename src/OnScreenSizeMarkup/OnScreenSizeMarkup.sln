@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnScreenSizeMarkup.Core", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnScreenSizeMarkup.Tests", "OnScreenSizeMarkup.Tests\OnScreenSizeMarkup.Tests.csproj", "{3E163361-1079-48ED-A852-4E99ACFBA533}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp", "Samples\SampleApp\SampleApp\SampleApp.csproj", "{D780AB21-1A63-47CB-B9C1-E858955FBFDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp.Droid", "Samples\SampleApp\SampleApp.Droid\SampleApp.Droid.csproj", "{61F5F3BC-275A-4756-A518-4F921231C9C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp.iOS", "Samples\SampleApp\SampleApp.iOS\SampleApp.iOS.csproj", "{349B686D-D340-48F5-987B-32CF4166AE79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +33,18 @@ Global
 		{3E163361-1079-48ED-A852-4E99ACFBA533}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E163361-1079-48ED-A852-4E99ACFBA533}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E163361-1079-48ED-A852-4E99ACFBA533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D780AB21-1A63-47CB-B9C1-E858955FBFDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D780AB21-1A63-47CB-B9C1-E858955FBFDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D780AB21-1A63-47CB-B9C1-E858955FBFDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D780AB21-1A63-47CB-B9C1-E858955FBFDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F5F3BC-275A-4756-A518-4F921231C9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F5F3BC-275A-4756-A518-4F921231C9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F5F3BC-275A-4756-A518-4F921231C9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F5F3BC-275A-4756-A518-4F921231C9C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{349B686D-D340-48F5-987B-32CF4166AE79}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{349B686D-D340-48F5-987B-32CF4166AE79}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{349B686D-D340-48F5-987B-32CF4166AE79}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
+		{349B686D-D340-48F5-987B-32CF4166AE79}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

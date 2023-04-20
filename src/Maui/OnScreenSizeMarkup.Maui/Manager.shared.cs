@@ -32,11 +32,14 @@ public class Manager
     /// You can override this values by setting your own mappings.
     /// </remarks>
     public List<SizeMappingInfo> Mappings { get; set; } = DefaultMappings.MobileMappings;
-    
-    /// <summary>
-    /// Display console messages for debugging purposes.
-    /// </summary>
-    public bool IsLogEnabled { get; set; }
+
+   
+    public bool UseNativeScreenResolution { get; set; } = false;
+
+	/// <summary>
+	/// Display console messages for debugging purposes.
+	/// </summary>
+	public bool IsLogEnabled { get; set; }
 
     /// <summary>
     /// When <see cref="IsLogEnabled"/> is true, defines how detailed the log messages should be logged to.
