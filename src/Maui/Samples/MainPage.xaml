@@ -34,9 +34,9 @@
             <Setter Property="HorizontalTextAlignment" Value="Center"/>
         </Style>
 
-    <Thickness x:Key="PaddingThickness">145,50,15,5</Thickness>
-        
-    </ResourceDictionary>
+        <Thickness x:Key="PaddingThickness">145,50,15,5</Thickness>
+
+        </ResourceDictionary>
 
 </ContentPage.Resources>
     <ScrollView>
@@ -48,7 +48,8 @@
         
             <Image
                 Source="dotnet_bot.png"
-                HeightRequest="{markups:OnScreenSize ExtraSmall='120',   Small='135',  Medium='145',  Large='200', ExtraLarge='300'}"
+                HeightRequest="{StaticResource ImageSize}"
+                WidthRequest="{StaticResource ImageSize}"
                 HorizontalOptions="Center" />
           
             
