@@ -58,6 +58,15 @@ internal static class ValueConversionExtensions
             var value1 = converter.ConvertFromInvariantString((string)value!);
             return value1!;
         }
+        
+        
+        if (toType == typeof(GridLength))
+        {
+	        converter = (TypeConverter)new GridLengthTypeConverter();
+	        ValueConversionExtensions.converter.Add(toType, converter);
+	        var value1 = converter.ConvertFromInvariantString((string)value!);
+	        return value1!;
+        }
 
         if (toType == typeof(ColumnDefinitionCollection))
         {

@@ -10,6 +10,20 @@ namespace OnScreenSizeMarkup.Maui.Tests;
 public class ValueConversionExtensionsTests
 {
     [Fact]
+    public void ConvertTo_String_To_GridLength()
+    {
+        var stringToParse = "160";
+        
+        var expected =  (GridLength)new GridLengthTypeConverter().ConvertFromInvariantString(stringToParse);
+        
+        var actual = OnScreenSizeMarkup.Maui.Extensions.ValueConversionExtensions.ConvertTo( stringToParse, typeof(GridLength), RowDefinition.HeightProperty);
+        
+        //assert
+        Assert.IsType<GridLength>(actual);
+        Assert.Equal(expected, ((GridLength)actual));
+    }
+    
+    [Fact]
     public void ConvertTo_String_To_RowDefinition()
     {
         var stringToParse = "0.25*, 0.13*, 0.08*, 230, *";

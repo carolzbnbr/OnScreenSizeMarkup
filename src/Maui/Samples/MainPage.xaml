@@ -120,8 +120,10 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate >
                                 <Grid x:DataType="mapping:SizeMappingInfo"  
-                                    RowDefinitions="{markups:OnScreenSize ExtraSmall='30', Small='35', Medium='30', Large='45', ExtraLarge='80'}"
                                        ColumnDefinitions="{markups:OnScreenSize Default='*, *, *', ExtraLarge='2*, *, *'}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="{markups:OnScreenSize ExtraSmall=30, Small=30, Medium=35, Large=45, ExtraLarge=80}" />
+                                    </Grid.RowDefinitions>                                    
                                     <Label Grid.Column="0"
                                            Text="{Binding CompareMode}"
                                            Style="{StaticResource TableDataLabel}"
