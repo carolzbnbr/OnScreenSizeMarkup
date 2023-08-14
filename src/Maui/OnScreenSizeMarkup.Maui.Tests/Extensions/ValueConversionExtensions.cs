@@ -1,11 +1,9 @@
-﻿
-using Microsoft.Maui;
+﻿using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Converters;
 using Xunit;
 
-
-namespace OnScreenSizeMarkup.Maui.Tests;
+namespace OnScreenSizeMarkup.Maui.Tests.Extensions;
 
 public class ValueConversionExtensionsTests
 {
@@ -44,7 +42,7 @@ public class ValueConversionExtensionsTests
         
         var expected = new CornerRadiusTypeConverter().ConvertFromInvariantString(stringToParse);
         
-        var actual = Extensions.ValueConversionExtensions.ConvertTo( stringToParse, typeof(Microsoft.Maui.CornerRadius ), VerticalStackLayout.SpacingProperty);
+        var actual = Maui.Extensions.ValueConversionExtensions.ConvertTo( stringToParse, typeof(Microsoft.Maui.CornerRadius ), VerticalStackLayout.SpacingProperty);
         
         //assert
         Assert.IsType<CornerRadius>(actual);

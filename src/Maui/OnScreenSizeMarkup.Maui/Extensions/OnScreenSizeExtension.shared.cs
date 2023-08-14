@@ -10,6 +10,8 @@ using Microsoft.Maui.Graphics.Text;
 using OnScreenSizeMarkup.Maui.Categories;
 using OnScreenSizeMarkup.Maui.Extensions;
 using OnScreenSizeMarkup.Maui.Helpers;
+using OnScreenSizeMarkup.Maui.Providers;
+using ServiceProvider = OnScreenSizeMarkup.Maui.Helpers.ServiceProvider;
 
 namespace OnScreenSizeMarkup.Maui;
 
@@ -23,6 +25,12 @@ namespace OnScreenSizeMarkup.Maui;
 public class OnScreenSizeExtension : IMarkupExtension<object>
 {
 	static readonly object defaultNull = new();
+
+	static readonly IScreenCategoryProvider screenCategoryProvider;
+	static OnScreenSizeExtension()
+	{
+		screenCategoryProvider = UniversalFactory.CreateScreenCategoryProvider();
+	}
 
 	private Dictionary<ScreenCategories, object> categoryPropertyValues = new() {
 		{ ScreenCategories.ExtraSmall, defaultNull},
@@ -131,7 +139,7 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 		LogHelpers.WriteLine($"Providing Value using propertyType:\"{(bp?.ReturnType ?? pi?.PropertyType ?? null)}\" and BindableProperty:{(bp ?? null)}", LogLevels.Verbose);
 
 		// Resolve StaticResource if needed
-		var value = ResolveStaticResource(serviceProvider, ExtractValueBasedOnScreenCategory(ScreenCategoryHelper.GetCategory()));
+		var value = ResolveStaticResource(serviceProvider, ExtractValueBasedOnScreenCategory(screenCategoryProvider.GetCategory()));
 		
 		var propertyType = DeterminePropertyType(bp, pi);
 		 

@@ -1,7 +1,7 @@
 using OnScreenSizeMarkup.Maui.Helpers;
 using Xunit;
 
-namespace OnScreenSizeMarkup.Maui.Tests.Helpers;
+namespace OnScreenSizeMarkup.Maui.Tests;
 
 public class AppleScreenDensityHelperTests
 {
