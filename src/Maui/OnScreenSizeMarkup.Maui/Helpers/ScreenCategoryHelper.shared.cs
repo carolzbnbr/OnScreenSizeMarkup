@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using OnScreenSizeMarkup.Maui.Categories;
-using OnScreenSizeMarkup.Maui.Extensions;
 
 namespace OnScreenSizeMarkup.Maui.Helpers;
 

@@ -108,6 +108,11 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 	/// </summary>
 	public object ProvideValue(IServiceProvider serviceProvider)
 	{
+		if (serviceProvider == null)
+		{
+			throw new ArgumentException($"Service provided for OnScreenSize is null");
+		}
+
 		var valueProvider = serviceProvider?.GetService<IProvideValueTarget>() ?? throw new ArgumentException($"Service provided for OnScreenSize is null");
 
 		BindableProperty bp;
@@ -122,47 +127,44 @@ public class OnScreenSizeExtension : IMarkupExtension<object>
 			bp = (valueProvider.TargetProperty as BindableProperty)!;
 			pi = (valueProvider.TargetProperty as PropertyInfo)!;
 		}
-
-		var xxx = Manager.Current.UseNativeScreenResolution;
-		if (Manager.Current.IsLogEnabled)
-		{
-			LogHelpers.WriteLine($"Providing Value using propertyType:\"{(bp?.ReturnType ?? pi?.PropertyType ?? null)}\" and BindableProperty:{(bp ?? null)}", LogLevels.Verbose);
-		}
-
-		//var propertyType = bp?.ReturnType ?? pi?.PropertyType ?? throw new InvalidOperationException("Não foi posivel determinar a propriedade para fornecer o valor.");
-
-		var value = GetScreenCategoryPropertyValue(serviceProvider);
+		
+		LogHelpers.WriteLine($"Providing Value using propertyType:\"{(bp?.ReturnType ?? pi?.PropertyType ?? null)}\" and BindableProperty:{(bp ?? null)}", LogLevels.Verbose);
 
 		// Resolve StaticResource if needed
-		value = ResolveStaticResource(serviceProvider, value);
-
-		var propertyType = bp?.ReturnType ?? pi?.PropertyType ?? FallbackType ?? throw new InvalidOperationException($"Could not infer the return type for the property that you are applying the markup to. Please ensure that the property has a valid return type and that it is accessible. In some cases, you may need to set the \"{nameof(FallbackType)}\" property explicitly to specify the return type of the property. If you continue to experience this issue, please review your code and try again.");
-
+		var value = ResolveStaticResource(serviceProvider, ExtractValueBasedOnScreenCategory(ScreenCategoryHelper.GetCategory()));
+		
+		var propertyType = DeterminePropertyType(bp, pi);
+		 
 		return value!.ConvertTo(propertyType, bp!);
 	}
 
+	private Type DeterminePropertyType(BindableProperty? bp, PropertyInfo? pi)
+	{
+		return bp?.ReturnType ?? pi?.PropertyType ?? FallbackType ?? throw new InvalidOperationException($"Could not infer the return type for the property that you are applying the markup to. Please ensure that the property has a valid return type and that it is accessible. In some cases, you may need to set the \"{nameof(FallbackType)}\" property explicitly to specify the return type of the property. If you continue to experience this issue, please review your code and try again.");
+	}
+	
 	/// <summary>
-	/// Gets a value from one of the properties that best suites a <see cref="ScreenCategories"/> a device fits in.
+	/// Extracts a value based on the current screen category, taking into account the different size categories.
 	/// </summary>
-	/// <param name="serviceProvider"></param>
-	/// <returns></returns>
-	/// <exception cref="XamlParseException"></exception>
+	/// <param name="category">The screen category used to determine the appropriate value.</param>
+	/// <returns>The value corresponding to the specified screen category.</returns>
+	/// <exception cref="ArgumentException">Thrown when the specified category does not have an associated value.</exception>
+	/// <exception cref="XamlParseException">Thrown when the specified category does not have an associated value.</exception>
 #pragma warning disable IDE0040
-	private object GetScreenCategoryPropertyValue(IServiceProvider serviceProvider)
+	private object ExtractValueBasedOnScreenCategory(ScreenCategories category)
 #pragma warning restore IDE0040
 	{
-		var screenCategory = ScreenCategoryHelper.GetCategory();
-		if (screenCategory != ScreenCategories.NotSet)
+		if (category != ScreenCategories.NotSet)
 		{
-			if (categoryPropertyValues[screenCategory] != defaultNull)
+			if (categoryPropertyValues[category] != defaultNull)
 			{
-				return categoryPropertyValues[screenCategory]!;
+				return categoryPropertyValues[category]!;
 			}
 		}
 
 		if (Default == defaultNull)
 		{
-			throw new XamlParseException(string.Format("{0} requires property {0}.{1} defined to use as fallback as property {0}.{2} was not set.", nameof(OnScreenSizeExtension), nameof(Default), screenCategory.ToString()));
+			throw new XamlParseException(string.Format("{0} requires property {0}.{1} defined to use as fallback as property {0}.{2} was not set.", nameof(OnScreenSizeExtension), nameof(Default), category.ToString()));
 		}
 		return Default;
 	}
