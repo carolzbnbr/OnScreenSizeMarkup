@@ -5,7 +5,7 @@ This project is based on a [post](https://thenextloop.com/2021/01/03/adaptive-pa
 
 ### .NET MAUI library Moved to another Repository
 
-The .NET MAUI library has been separated into its own repository. If you are looking for the library for .NET MAUI, please go [here]([repository_link](https://github.com/carolzbnbr/OnScreenSizeMarkup.Maui)).
+The .NET MAUI library has been separated into its own repository. If you are looking for the library for .NET MAUI, please go [here](https://github.com/carolzbnbr/OnScreenSizeMarkup.Maui).
 
 If you are looking for Xamarin library, keep on this current repo.
 
