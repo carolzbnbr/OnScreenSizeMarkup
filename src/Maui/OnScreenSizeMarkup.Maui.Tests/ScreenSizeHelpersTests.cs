@@ -1,6 +1,7 @@
 using System;
 using NSubstitute;
 using OnScreenSizeMarkup.Maui.Categories;
+using OnScreenSizeMarkup.Maui.Helpers;
 using OnScreenSizeMarkup.Maui.Providers;
 using Xunit;
 
@@ -20,7 +21,7 @@ public class ScreenSizeHelpersTests
         var screenCategoryProvider = Substitute.For<IScreenCategoryProvider>();
         screenCategoryProvider.GetCategory().Returns(screenCategory);
     
-        var screenSizeHelpers = new ScreenSizeHelpers(screenCategoryProvider);
+        var screenSizeHelpers = new OnScreenSizeHelpers(screenCategoryProvider);
         double result = (double)screenSizeHelpers.OnScreenSize(baseSize, extraSmallFactor: factor, smallFactor: factor, mediumFactor: factor, largeFactor: factor, extraLargeFactor: factor);
     
         Assert.Equal(expected, result);

@@ -3,15 +3,39 @@ using OnScreenSizeMarkup.Maui.Helpers;
 
 namespace OnScreenSizeMarkup.Maui.Providers;
 
+/// <summary>
+/// Determines the category that best matches the device's screen size.
+/// </summary>
 public class ScreenCategoryProvider : IScreenCategoryProvider
 {
 	readonly IScreenInfoProvider screenInfoProvider;
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="screenInfoProvider"></param>
 	public ScreenCategoryProvider(IScreenInfoProvider screenInfoProvider)
 	{
 		this.screenInfoProvider = screenInfoProvider;
 	}
 
+	static IScreenCategoryProvider? instance = null!;
+	/// <summary>
+	/// Provides access to this instance.
+	/// This should only be used if the component has not been registered with MAUI's dependency injection using <see cref="ConfigureServices.AddOnScreenSize"/>.
+	/// </summary>
+	public static IScreenCategoryProvider Instance
+	{
+		get
+		{
+			if (instance == null)
+			{
+				instance = UniversalFactory.CreateScreenCategoryProvider();
+			}
+			return instance;
+		}
+	}
+	
 	public ScreenCategories GetCategory()
 	{
 		if (TryGetCategory(out var category))

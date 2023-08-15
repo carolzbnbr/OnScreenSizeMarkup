@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui;
+﻿using System.ComponentModel;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Converters;
 using Xunit;
@@ -50,6 +51,7 @@ public class ValueConversionExtensionsTests
         var actualCast = (CornerRadius)actual;
         Assert.Equal(200, actualCast.TopLeft);
     }
+    
     [Fact]
     public void ConvertTo_String_To_Thickness()
     {
@@ -61,5 +63,31 @@ public class ValueConversionExtensionsTests
         
         //assert
         Assert.IsType<Thickness>(actual);
+    }
+    
+    [Fact]
+    public void ConvertTo_String_To_Double()
+    {
+        var stringToParse = "5.0";
+        
+        var expected = new DoubleCollectionConverter().ConvertFromInvariantString(stringToParse);
+        
+        var actual = OnScreenSizeMarkup.Maui.Extensions.ValueConversionExtensions.ConvertTo( stringToParse, typeof(double ), null!);
+        
+        //assert
+        Assert.IsType<double>(actual);
+    }
+    
+    [Fact]
+    public void ConvertTo_String_To_Int()
+    {
+        var stringToParse = "5";
+        
+        var expected = new Int32Converter().ConvertFromInvariantString(stringToParse);
+        
+        var actual = OnScreenSizeMarkup.Maui.Extensions.ValueConversionExtensions.ConvertTo( stringToParse, typeof(int ), null!);
+        
+        //assert
+        Assert.IsType<int>(actual);
     }
 }

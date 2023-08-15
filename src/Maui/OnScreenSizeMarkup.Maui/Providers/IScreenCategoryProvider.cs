@@ -3,7 +3,7 @@ using OnScreenSizeMarkup.Maui.Categories;
 namespace OnScreenSizeMarkup.Maui.Providers;
 
 /// <summary>
-/// Defines the functionality to categorize a device's screen size based on its physical dimensions.
+/// Determines the category that best matches the device's screen size.
 /// </summary>
 public interface IScreenCategoryProvider
 {

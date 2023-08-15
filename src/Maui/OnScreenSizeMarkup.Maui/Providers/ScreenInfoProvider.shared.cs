@@ -11,6 +11,24 @@ namespace OnScreenSizeMarkup.Maui.Providers;
 public class ScreenInfoProvider : IScreenInfoProvider
 {
 	
+	static IScreenInfoProvider? instance = null!;
+	/// <summary>
+	/// Provides access to this instance.
+	/// This should only be used if the component has not been registered with MAUI's dependency injection using <see cref="ConfigureServices.AddOnScreenSize"/>.
+	/// </summary>
+	public static IScreenInfoProvider Instance
+	{
+		get
+		{
+			if (instance == null)
+			{
+				instance = UniversalFactory.CreateScreenInfoProvider();
+			}
+			return instance;
+		}
+	}
+
+
 	/// <summary>
 	/// Returns the physical diagonal size of the current device's screen in inches.
 	/// </summary>

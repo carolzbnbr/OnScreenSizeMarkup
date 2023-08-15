@@ -1,3 +1,4 @@
+using OnScreenSizeMarkup.Maui.Helpers;
 using OnScreenSizeMarkup.Maui.Providers;
 using ServiceProvider = OnScreenSizeMarkup.Maui.Helpers.ServiceProvider;
 
@@ -8,8 +9,22 @@ namespace OnScreenSizeMarkup.Maui;
 /// It is specifically designed to support client applications that do not rely on dependency injection.
 /// This enables a consistent and manageable way to construct objects across different parts of the application.
 /// </summary>
-public class UniversalFactory
+class UniversalFactory
 {
+	
+	/// <summary>
+	/// Returns an instance of <see cref="IScreenSizeHelpers"/>
+	/// </summary>
+	/// <returns></returns>
+	public static IScreenSizeHelpers CreateScreenSizeHelpers()
+	{
+		if (ConfigureServices.IsRegistered)
+		{
+			return ServiceProvider.GetService<IScreenSizeHelpers>();
+		}
+
+		return new OnScreenSizeHelpers(new ScreenCategoryProvider(CreateScreenInfoProvider()));
+	}	
 	
 	internal static IScreenCategoryProvider CreateScreenCategoryProvider()
 	{
@@ -21,7 +36,7 @@ public class UniversalFactory
 		return new ScreenCategoryProvider(CreateScreenInfoProvider());
 	}
 	
-	static IScreenInfoProvider CreateScreenInfoProvider()
+	internal static IScreenInfoProvider CreateScreenInfoProvider()
 	{
 		return new ScreenInfoProvider();
 	}

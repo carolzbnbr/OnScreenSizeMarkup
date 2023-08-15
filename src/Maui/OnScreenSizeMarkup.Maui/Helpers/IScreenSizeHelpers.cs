@@ -1,5 +1,5 @@
 
-namespace OnScreenSizeMarkup.Maui;
+namespace OnScreenSizeMarkup.Maui.Helpers;
 
 /// <summary>
 /// Provides methods to manipulate sizes based on the physical screen size of the device.
@@ -7,16 +7,16 @@ namespace OnScreenSizeMarkup.Maui;
 public interface IScreenSizeHelpers
 {
 	/// <summary>
-	/// Multiplies the provided <paramref name="baseSize"/> by a factor corresponding to the physical screen size of the device.
+	/// Multiplies the provided <paramref name="baseValue"/> by a factor corresponding to the physical screen size of the device.
 	/// </summary>
-	/// <param name="baseSize">The base size to be multiplied.</param>
+	/// <param name="baseValue">The base size to be multiplied.</param>
 	/// <param name="extraSmallFactor">Factor for ExtraSmall sized screens.</param>
 	/// <param name="smallFactor">Factor for Small sized screens.</param>
 	/// <param name="mediumFactor">Factor for Medium sized screens.</param>
 	/// <param name="largeFactor">Factor for Large sized screens.</param>
 	/// <param name="extraLargeFactor">Factor for ExtraLarge sized screens.</param>
 	/// <returns>The result of the multiplication based on the screen size.</returns>
-	IConvertible OnScreenSize(IConvertible baseSize,
+	IConvertible OnScreenSize(IConvertible baseValue,
 		double extraSmallFactor = default(double)!,
 		double smallFactor = default(double)!,
 		double mediumFactor = default(double)!,

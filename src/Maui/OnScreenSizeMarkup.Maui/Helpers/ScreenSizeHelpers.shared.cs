@@ -1,13 +1,12 @@
 using OnScreenSizeMarkup.Maui.Categories;
-using OnScreenSizeMarkup.Maui.Helpers;
 using OnScreenSizeMarkup.Maui.Providers;
 
-namespace OnScreenSizeMarkup.Maui;
+namespace OnScreenSizeMarkup.Maui.Helpers;
 
 /// <summary>
 /// Provides methods to manipulate sizes based on the physical screen size of the device.
 /// </summary>
-public class ScreenSizeHelpers: IScreenSizeHelpers
+public class OnScreenSizeHelpers: IScreenSizeHelpers
 {
 	readonly IScreenCategoryProvider screenCategoryProvider;
 	
@@ -15,14 +14,31 @@ public class ScreenSizeHelpers: IScreenSizeHelpers
 	/// 
 	/// </summary>
 	/// <param name="screenCategoryProvider"></param>
-	public ScreenSizeHelpers(IScreenCategoryProvider screenCategoryProvider)
+	public OnScreenSizeHelpers(IScreenCategoryProvider screenCategoryProvider)
 	{
 		this.screenCategoryProvider = screenCategoryProvider;
 	}
-	 
+
+	static IScreenSizeHelpers? instance = null!;
+	/// <summary>
+	/// Provides access to this instance.
+	/// This should only be used if the component has not been registered with MAUI's dependency injection using <see cref="ConfigureServices.AddOnScreenSize"/>.
+	/// </summary>
+	public static IScreenSizeHelpers Instance
+	{
+		get
+		{
+			if (instance == null)
+			{
+				instance = UniversalFactory.CreateScreenSizeHelpers();
+			}
+			return instance;
+		}
+	}
 	
+
 	/// <inheritdoc />
-	public  IConvertible OnScreenSize(IConvertible baseSize,
+	public  IConvertible OnScreenSize(IConvertible baseValue,
 		double extraSmallFactor = default(double)!,
 		double smallFactor = default(double)!,
 		double mediumFactor = default(double)!,
@@ -54,7 +70,7 @@ public class ScreenSizeHelpers: IScreenSizeHelpers
 				break;
 		}
 
-		var retValue = ProportionalSizeConverter.Multiply(typeof(double), baseSize, factorValue);
+		var retValue = ProportionalSizeConverter.Multiply(typeof(double), baseValue, factorValue);
 		
 		return retValue;
 	}
