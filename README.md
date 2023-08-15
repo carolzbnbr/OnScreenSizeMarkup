@@ -3,11 +3,10 @@
 
 This project is based on a [post](https://thenextloop.com/2021/01/03/adaptive-page-layouts-to-different-device-screen-sizes-for-xamarin-apps/) I wrote a long time ago for my [blog](https://www.thenextloop.com).
 
-##### Maui Community Toolkit announcement
+### Unique repo For .NET MAUI
 
-I'm pround to anounce that this project will be soon moved to Maui Community Toolkit as per [these]( https://github.com/CommunityToolkit/Maui/issues/425) conversation. 
+The Xamarin and .NET libraries have been separated into distinct repositories. If you are looking for the library for >NET MAUI, please go [here]([repository_link](https://github.com/carolzbnbr/OnScreenSizeMarkup.Maui)).
 
-As it is now ready for MAUI, it just a matter of days to be ported to the MCT and wait to the next release ef the Toolkit to be published.
 
 
 ## OnScreenSizeMarkup: A XAML markup extension
